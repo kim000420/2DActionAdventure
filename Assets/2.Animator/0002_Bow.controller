@@ -88,19 +88,19 @@ AnimatorStateMachine:
     m_Position: {x: 200, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2354023551339380944}
-    m_Position: {x: 235, y: 65, z: 0}
+    m_Position: {x: 450, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 9032166036476410983}
-    m_Position: {x: 270, y: 130, z: 0}
+    m_Position: {x: 200, y: -70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -853149314805432711}
-    m_Position: {x: 305, y: 195, z: 0}
+    m_Position: {x: 230, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8048910381269726646}
-    m_Position: {x: 340, y: 260, z: 0}
+    m_Position: {x: 230, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6276708117192651136}
-    m_Position: {x: 375, y: 325, z: 0}
+    m_Position: {x: 210, y: -120, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -144,7 +144,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bow_Jump1
+  m_Name: Bow_JumpStart
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

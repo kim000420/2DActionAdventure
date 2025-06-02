@@ -1,96 +1,228 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using TutorialBoss.States;
 using TutorialBoss.States.Jo;
+using System.Collections;
+using TutorialBoss.States.Bow;
+using TutorialBoss.AnimEvents;
 
 namespace TutorialBoss.Controller
 {
     public class TutorialBossStateController : MonoBehaviour
     {
-        [Header("FSM »óÅÂ")]
-        private ITutorialBossState currentState;
+        [Header("FSM ìƒíƒœ")]
+        public ITutorialBossState currentState;
 
-        [Header("°ø¿ë ÄÄÆ÷³ÍÆ®")]
+        [Header("ê³µìš© ì»´í¬ë„ŒíŠ¸")]
         public Animator animator;
         public Rigidbody2D rb;
         public Transform player;
+        public TutorialBossStats bossStats; // TutorialBossStats ì¶”ê°€
 
-        [Header("·»´õ¸µ")]
+        [Header("ë Œë”ë§")]
         public SpriteRenderer spriteRenderer;
+        public float defaultLocalScaleX = -1f; // ê¸°ë³¸ ìŠ¤í”„ë¼ì´íŠ¸ê°€ ì™¼ìª½ì„ ë³´ê³  ìˆë‹¤ë©´ -1f, ì˜¤ë¥¸ìª½ì´ë©´ 1f.
 
-        [Header("±âº» »óÅÂ")]
-        public string bossName = "Jo"; // Jo, Bow, Dok2 Áß ÇÏ³ª·Î ¼³Á¤
+        [Header("ê¸°ë³¸ ìƒíƒœ")]
+        public string bossName = "Jo"; // Jo, Bow, Dok2 ì¤‘ í•˜ë‚˜ë¡œ ì„¤ì •
         public bool isDead = false;
         public bool isGroggy = false;
-        //public bool isAttacking = false;
+        public bool isHitRecovery; // í”¼ê²© í›„ ì¼ì • ì‹œê°„ ë™ì•ˆ ë¹„í™œì„±
 
-        [Header("°ø°İ ÄğÅ¸ÀÓ")]
+        [Header("ì í”„ ìƒíƒœ")]
+        public bool isBowJumping = false; // Bow ë³´ìŠ¤ì˜ ì í”„ ì¤‘ ì—¬ë¶€
+        public float bowJumpForce = 10f; // Bow ë³´ìŠ¤ ì í”„ í˜
+        public float bowJumpCooldown = 1f; // Bow ë³´ìŠ¤ ì í”„ ì¿¨íƒ€ì„ (ë˜ëŠ” ì°©ì§€ í›„ ëŒ€ê¸° ì‹œê°„)
+
+        [Header("Bow ë³´ìŠ¤ ê´€ë ¨")]
+        public Transform bowShootPoint; // Bow ë³´ìŠ¤ê°€ í™”ì‚´ì„ ë°œì‚¬í•  ìœ„ì¹˜
+        public float bowShotAngle = 0f; // Bow ë³´ìŠ¤ í™”ì‚´ ë°œì‚¬ ê°ë„ (0ì€ ìˆ˜í‰)
+        public float bowEscapeDuration = 2f; // Bow ë³´ìŠ¤ì˜ ë„ë§ ì§€ì† ì‹œê°„
+
+        public GameObject arrowPrefab; // í™”ì‚´ í”„ë¦¬íŒ¹ì„ ìœ ë‹ˆí‹° ì—ë””í„°ì—ì„œ ì—°ê²°
+        public float arrowAimHeightOffset = 0.5f; // í”Œë ˆì´ì–´ ìœ„ì¹˜ì—ì„œ ì–¼ë§ˆë‚˜ ìœ„ë¥¼ ì¡°ì¤€í• ì§€
+
+
+        [Header("ê³µê²© ì¿¨íƒ€ì„")]
         public bool isAttackCooldown = false;
+        private Coroutine attackCooldownCoroutine;
 
-        [Header("¸Â°í³ª¼­ ´ÙÀ½Çàµ¿ ÄğÅ¸ÀÓ")]
-        public bool isHitRecovery; // ÇÇ°İ ÈÄ ÀÏÁ¤ ½Ã°£ µ¿¾È ºñÈ°¼º
+        [Header("ì§€ë©´ ê°ì§€")]
+        public Transform groundCheck;
+        public LayerMask groundLayer;
+        public float groundCheckRadius = 0.2f;
+        private bool wasGrounded; // ì´ì „ í”„ë ˆì„ì˜ ì§€ë©´ ìƒíƒœ ì €ì¥
 
-        [Header("Bow º¸½º - ÀÌµ¿ ¹× È¸ÇÇ")]
-        public float bowJumpForce = 7f; // BowÀÇ Á¡ÇÁ Èû
-        public float bowJumpCooldown = 2f; // Á¡ÇÁ ÈÄ ´ÙÀ½ Á¡ÇÁ±îÁöÀÇ ÄğÅ¸ÀÓ
-        public bool isBowJumping = false; // Bow°¡ ÇöÀç Á¡ÇÁ ÁßÀÎÁö
-        public float bowEscapeDistance = 5f; // ÇÃ·¹ÀÌ¾î·ÎºÎÅÍ µµ¸Á°¥ °Å¸®
-        public float bowMinEscapeDistance = 3f; // µµ¸Á »óÅÂ¸¦ À¯ÁöÇÒ ÃÖ¼Ò °Å¸®
-        public float bowEscapeDuration = 1.5f; // µµ¸Á »óÅÂ Áö¼Ó ½Ã°£
-                                               // --- Bow º¸½º °ü·Ã ÇÊµå Ãß°¡ ³¡ ---
-        [Header("Áö¸é °¨Áö")]
-        public Transform groundCheck; // Áö¸é °¨Áö¸¦ À§ÇÑ Transform (GroundCheck ¿ÀºêÁ§Æ®)
-        public LayerMask groundLayer; // Áö¸éÀ¸·Î ÀÎ½ÄÇÒ LayerMask
-        public float groundCheckRadius = 0.2f; // GroundCheck ¿ÀºêÁ§Æ®ÀÇ °¨Áö ¹İ°æ
+        [Header("ì í”„í›„ ì§€ë©´ ê°ì§€ ìœ ì˜ˆì‹œê°„")]
+        public float jumpGracePeriod = 0.2f; // ì í”„ í›„ groundCheckë¥¼ ë¬´ì‹œí•  ì‹œê°„
+        private float jumpGracePeriodTimer; // ìœ ì˜ˆ ì‹œê°„ì„ ì¹´ìš´íŠ¸í•  íƒ€ì´ë¨¸
+
+        [Header("ë²½ ê°ì§€")]
+        public Transform wallCheck;
+        public LayerMask wallLayer;
+        public float wallCheckDistance = 0.5f;
+        private Collider2D[] ownColliders;
+
 
         private void Awake()
         {
-            if (spriteRenderer == null)
-                spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            bossStats = GetComponent<TutorialBossStats>();
+
+            // "Player" íƒœê·¸ë¥¼ ê°€ì§„ ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ì•„ í• ë‹¹
+            if (player == null)
+            {
+                GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+                if (playerObj != null)
+                {
+                    player = playerObj.transform;
+                }
+            }
+
+            ownColliders = GetComponentsInChildren<Collider2D>();
         }
 
         private void Start()
         {
+            wasGrounded = IsGrounded();
+            jumpGracePeriodTimer = 0f;
+
             switch (bossName)
             {
                 case "Jo":
                     ChangeState(new JoChaseState(this));
                     break;
-                case "Bow": // Bow º¸½º ÃÊ±â »óÅÂ Ãß°¡
-                    //ChangeState(new States.Bow.BowIdleState(this)); // BowIdleState¸¦ ÃÊ±â »óÅÂ·Î ¼³Á¤
+                case "Bow":
+                    ChangeState(new BowEscapeState(this));
+                    break;
+                default:
+                    Debug.LogWarning($"[Controller] Unknown boss name: {bossName}.");
                     break;
             }
-
         }
 
         private void Update()
         {
+            if (jumpGracePeriodTimer > 0)
+            {
+                jumpGracePeriodTimer -= Time.deltaTime;
+                if (jumpGracePeriodTimer < 0) jumpGracePeriodTimer = 0;
+            }
+
+            bool isCurrentlyGrounded = IsGrounded();
+            wasGrounded = isCurrentlyGrounded;
             currentState?.Execute();
         }
 
         public void ChangeState(ITutorialBossState newState)
         {
+
+            if (currentState == newState) return;
+
             currentState?.Exit();
             currentState = newState;
             currentState.Enter();
         }
-        // --- »õ·Î¿î ÇïÆÛ ÇÔ¼ö Ãß°¡ (Á¡ÇÁ »óÅÂ È®ÀÎ¿ë) ---
+
+        // í”Œë ˆì´ì–´ ë°˜ëŒ€ ë°©í–¥ì„ ë°”ë¼ë³´ë„ë¡ Scale ë³€ê²½
+        public void FaceAwayFromPlayer()
+        {
+            if (player == null) return;
+            Vector2 dir = player.position - transform.position;
+            if (dir.x > 0) transform.localScale = new Vector3(Mathf.Abs(defaultLocalScaleX), transform.localScale.y, transform.localScale.z);
+            else if (dir.x < 0) transform.localScale = new Vector3(-Mathf.Abs(defaultLocalScaleX), transform.localScale.y, transform.localScale.z);
+        }
+        // í”Œë ˆì´ì–´ ë°©í–¥ì„ ë°”ë¼ë³´ë„ë¡ Scale ë³€ê²½
+        public void FaceToPlayer()
+        {
+            if (player == null) return;
+            Vector2 dir = player.position - transform.position;
+            if (dir.x > 0) transform.localScale = new Vector3(-Mathf.Abs(defaultLocalScaleX), transform.localScale.y, transform.localScale.z);
+            else if (dir.x < 0) transform.localScale = new Vector3(Mathf.Abs(defaultLocalScaleX), transform.localScale.y, transform.localScale.z);
+        }
+
+        // ì§€ë©´ ê°ì§€
         public bool IsGrounded()
         {
-            if (groundCheck == null)
+            // ì í”„ ìœ ì˜ˆ ì‹œê°„ ë™ì•ˆì—ëŠ” í•­ìƒ falseë¥¼ ë°˜í™˜
+            if (jumpGracePeriodTimer > 0)
             {
-                Debug.LogWarning("[TutorialBossStateController] GroundCheck TransformÀÌ ÇÒ´çµÇÁö ¾Ê¾Ò½À´Ï´Ù. Áö¸é °¨Áö°¡ ºÒ°¡´ÉÇÕ´Ï´Ù.");
-                return true; // ±âº»ÀûÀ¸·Î true ¹İÈ¯ÇÏ¿© Á¡ÇÁ¸¦ ¸·Áö ¾Êµµ·Ï
+                // Debug.Log($"[IsGrounded] Grace Period Active! Returning false. Remaining: {jumpGracePeriodTimer:F2}");
+                return false;
             }
-            // GroundCheck ¿ÀºêÁ§Æ® À§Ä¡¿¡¼­ groundLayer¿Í ´ê¾ÆÀÖ´ÂÁö OverlapCircle·Î È®ÀÎ
+            return IsGroundedInternal();
+        }
+        // ì‹¤ì œ ë¬¼ë¦¬ ê°ì§€ë¥¼ ìˆ˜í–‰í•˜ëŠ” ë‚´ë¶€ í•¨ìˆ˜
+        private bool IsGroundedInternal()
+        {
+            if (groundCheck == null) return false;
             return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         }
 
-        // À¯´ÏÆ¼ ¿¡µğÅÍ¿¡¼­ GroundCheckRadius ½Ã°¢È­¸¦ À§ÇÑ Gizmos
+        // ì í”„ ì‹œ í˜¸ì¶œë  í•¨ìˆ˜
+        public void StartJumpGracePeriod()
+        {
+            jumpGracePeriodTimer = jumpGracePeriod;
+        }
+        // ë²½ ê°ì§€
+        public bool IsWallAhead()
+        {
+
+            float currentFacingDirection = Mathf.Sign(transform.localScale.x);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(wallCheck.position, Vector2.right * currentFacingDirection, wallCheckDistance, wallLayer);
+
+            foreach (RaycastHit2D hit in hits)
+            {
+                bool isOwnCollider = false;
+                foreach (Collider2D ownCol in ownColliders)
+                {
+                    if (hit.collider == ownCol)
+                    {
+                        isOwnCollider = true;
+                        break;
+                    }
+                }
+                if (!isOwnCollider) return true;
+            }
+            return false;
+        }
+
+        // ê³µê²© ì¿¨íƒ€ì„ ì‹œì‘
+        public void StartAttackCooldown(float cooldownTime)
+        {
+            if (attackCooldownCoroutine != null) StopCoroutine(attackCooldownCoroutine);
+            attackCooldownCoroutine = StartCoroutine(AttackCooldownRoutine(cooldownTime));
+        }
+
+        private IEnumerator AttackCooldownRoutine(float cooldownTime)
+        {
+            isAttackCooldown = true;
+            yield return new WaitForSeconds(cooldownTime);
+            isAttackCooldown = false;
+        }
+
+        // ìœ ë‹ˆí‹° ì—ë””í„°ì—ì„œ Gizmos ì‹œê°í™”ë¥¼ ìœ„í•œ í•¨ìˆ˜
         private void OnDrawGizmosSelected()
         {
-            if (groundCheck == null) return;
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+            if (groundCheck != null)
+            {
+                Gizmos.color = Color.green;
+                Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+            }
+
+            if (wallCheck != null)
+            {
+                Gizmos.color = Color.blue;
+                float currentFacingDirection = Mathf.Sign(transform.localScale.x); // ë³´ìŠ¤ê°€ ë°”ë¼ë³´ëŠ” ë°©í–¥
+                Gizmos.DrawRay(wallCheck.position, Vector3.right * currentFacingDirection * wallCheckDistance);
+            }
+
+            if (bowShootPoint != null)
+            {
+                Gizmos.color = Color.magenta;
+                Vector2 shotDirection = Quaternion.Euler(0, 0, bowShotAngle) * Vector2.right;
+                shotDirection.x *= Mathf.Sign(transform.localScale.x);
+                Gizmos.DrawRay(bowShootPoint.position, shotDirection.normalized * 2f);
+            }
         }
     }
 }

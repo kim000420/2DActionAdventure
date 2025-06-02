@@ -2,6 +2,7 @@
 using System.Collections;
 using TutorialBoss.Controller;
 using TutorialBoss.States.Jo;
+using TutorialBoss.States.Bow;
 
 namespace TutorialBoss.States
 {
@@ -50,9 +51,9 @@ namespace TutorialBoss.States
                     controller.ChangeState(new JoIdleState(controller));
                      // ✅ 여기서 호출
                     break;
-
-                default:
-                    Debug.LogWarning($"[HitState] 알 수 없는 보스 이름: {controller.bossName}");
+                case "Bow": // ✅ Bow 보스 피격 후 EscapeState로 복귀
+                    controller.StartCoroutine(HitRecovery());
+                    controller.ChangeState(new BowEscapeState(controller));
                     break;
             }
         }

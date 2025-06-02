@@ -2237,7 +2237,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &548342049
 Transform:
   m_ObjectHideFlags: 0
@@ -2262,7 +2262,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 548342048}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a532102698218054aa0edbd003cca7fa, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -2872,7 +2872,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 654282054}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a532102698218054aa0edbd003cca7fa, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -4339,7 +4339,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &977373493
 Animator:
   serializedVersion: 5
@@ -4491,23 +4491,32 @@ MonoBehaviour:
   animator: {fileID: 977373493}
   rb: {fileID: 977373496}
   player: {fileID: 1969422667}
+  bossStats: {fileID: 0}
   spriteRenderer: {fileID: 977373494}
+  defaultLocalScaleX: -1
   bossName: Jo
   isDead: 0
   isGroggy: 0
-  isAttackCooldown: 0
   isHitRecovery: 0
+  isBowJumping: 0
   bowJumpForce: 7
   bowJumpCooldown: 2
-  isBowJumping: 0
-  bowEscapeDistance: 5
-  bowMinEscapeDistance: 3
-  bowEscapeDuration: 1.5
+  bowShootPoint: {fileID: 0}
+  arrowPrefab: {fileID: 0}
+  bowShotAngle: 2.9
+  bowEscapeDuration: -3.86
+  isAttackCooldown: 0
   groundCheck: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
   groundCheckRadius: 0.2
+  jumpGracePeriod: 0.2
+  wallCheck: {fileID: 0}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  wallCheckDistance: 0.5
 --- !u!114 &977373499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4520,13 +4529,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2424de90553606644a64638163080105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossName: Jo
   maxHP: 300
   currentHP: 100
   currentGroggy: 0
   maxGroggy: 999
   detectRange: 20
   attackRange: 1.5
+  escapeTriggerRange: 2
   moveSpeed: 4
   knockbackResistance: 1
 --- !u!114 &977373500
@@ -5275,7 +5284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1092147258}
   m_Layer: 8
-  m_Name: GameObject
+  m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5289,7 +5298,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092147257}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.18, y: 0.24, z: 0}
+  m_LocalPosition: {x: -0.96, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6677,7 +6686,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1252370822}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -0.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8719,6 +8728,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1761096957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1761096958}
+  m_Layer: 8
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1761096958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761096957}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.27, y: 0.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1826591512}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1768461691
 GameObject:
   m_ObjectHideFlags: 0
@@ -9147,7 +9187,7 @@ GameObject:
   - component: {fileID: 1805625683}
   m_Layer: 9
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9480,6 +9520,7 @@ GameObject:
   - component: {fileID: 1826591512}
   - component: {fileID: 1826591511}
   - component: {fileID: 1826591510}
+  - component: {fileID: 1826591513}
   - component: {fileID: 1826591509}
   - component: {fileID: 1826591508}
   - component: {fileID: 1826591507}
@@ -9507,7 +9548,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a532102698218054aa0edbd003cca7fa, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -9521,7 +9562,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1826591505}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a532102698218054aa0edbd003cca7fa, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -9529,7 +9570,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.16, y: 1.28}
+    oldSize: {x: 0.92, y: 1.38}
     newSize: {x: 1.16, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -9625,24 +9666,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1826591508}
   rb: {fileID: 1826591506}
-  player: {fileID: 1826591512}
+  player: {fileID: 0}
+  bossStats: {fileID: 1826591511}
   spriteRenderer: {fileID: 1826591509}
-  bossName: Jo
+  defaultLocalScaleX: 1
+  bossName: Bow
   isDead: 0
   isGroggy: 0
-  isAttackCooldown: 0
   isHitRecovery: 0
-  bowJumpForce: 7
-  bowJumpCooldown: 2
   isBowJumping: 0
-  bowEscapeDistance: 5
-  bowMinEscapeDistance: 3
+  bowJumpForce: 10
+  bowJumpCooldown: 2
+  bowShootPoint: {fileID: 1761096958}
+  arrowPrefab: {fileID: 2546672859426337729, guid: f0a9706ac71f6db4a8b60fab466b2b83, type: 3}
+  bowShotAngle: 182.38
   bowEscapeDuration: 1.5
+  isAttackCooldown: 0
   groundCheck: {fileID: 1252370823}
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
   groundCheckRadius: 0.2
+  jumpGracePeriod: 1
+  wallCheck: {fileID: 1092147258}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  wallCheckDistance: 0.5
 --- !u!114 &1826591511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9655,14 +9705,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2424de90553606644a64638163080105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossName: Jo
   maxHP: 100
   currentHP: 100
   currentGroggy: 0
   maxGroggy: 999
   detectRange: 5
-  attackRange: 1.5
-  moveSpeed: 2.5
+  attackRange: 20
+  escapeTriggerRange: 5
+  moveSpeed: 4
   knockbackResistance: 1
 --- !u!4 &1826591512
 Transform:
@@ -9678,9 +9728,23 @@ Transform:
   m_Children:
   - {fileID: 1252370823}
   - {fileID: 1092147258}
+  - {fileID: 1761096958}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1826591513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826591505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b6c9609dbac8b4b948990e7c4778b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 1826591510}
 --- !u!1 &1836759605
 GameObject:
   m_ObjectHideFlags: 0
@@ -11642,6 +11706,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2546672860565975545
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2546672859426337729, guid: f0a9706ac71f6db4a8b60fab466b2b83, type: 3}
+      propertyPath: m_Name
+      value: Arrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 2546672859426337730, guid: f0a9706ac71f6db4a8b60fab466b2b83, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2546672859426337730, guid: f0a9706ac71f6db4a8b60fab466b2b83, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2546672859426337730, guid: f0a9706ac71f6db4a8b60fab466b2b83, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 2546672859426337730, guid: f0a9706ac71f6db4a8b60fab466b2b83, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2546672859426337730, guid: f0a9706ac71f6db4a8b60fab466b2b83, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2546672859426337730, guid: f0a9706ac71f6db4a8b60fab466b2b83, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2546672859426337730, guid: f0a9706ac71f6db4a8b60fab466b2b83, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2546672859426337730, guid: f0a9706ac71f6db4a8b60fab466b2b83, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2546672859426337730, guid: f0a9706ac71f6db4a8b60fab466b2b83, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2546672859426337730, guid: f0a9706ac71f6db4a8b60fab466b2b83, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2546672859426337730, guid: f0a9706ac71f6db4a8b60fab466b2b83, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f0a9706ac71f6db4a8b60fab466b2b83, type: 3}
 --- !u!1 &4421940886179441253
 GameObject:
   m_ObjectHideFlags: 0
