@@ -1,5 +1,5 @@
-using UnityEngine;
 using TutorialBoss.Controller;
+using UnityEngine;
 
 namespace TutorialBoss.States.Jo
 {

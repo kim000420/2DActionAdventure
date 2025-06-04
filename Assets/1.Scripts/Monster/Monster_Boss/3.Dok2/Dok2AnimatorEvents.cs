@@ -8,8 +8,8 @@ namespace TutorialBoss.AnimEvents
     public class Dok2AnimatorEvents : MonoBehaviour
     {
         public TutorialBossStateController controller;
-        public HitboxTrigger Attack1_Hitbox; // 근접 공격 히트박스 (Unity 에디터에서 연결)
-        public HitboxTrigger Attack2_Hitbox;
+        public HitboxTrigger Hitbox_Attack1; // 근접 공격 히트박스 (Unity 에디터에서 연결)
+        public HitboxTrigger Hitbox_Attack2;
 
         private void Awake()
         {
@@ -22,12 +22,12 @@ namespace TutorialBoss.AnimEvents
         // 애니메이션 이벤트: 근접 공격 히트박스 활성화 (예: 공격 프레임 시작 시)
         public void EnableHitbox_Attack1()
         {
-            Attack1_Hitbox.gameObject.SetActive(true);
+            Hitbox_Attack1.gameObject.SetActive(true);
             StartCoroutine(DeactivateMeleeHitboxAfterDelay(0.3f));
         }
         public void EnableHitbox_Attack2()
         {
-            Attack2_Hitbox.gameObject.SetActive(true);
+            Hitbox_Attack2.gameObject.SetActive(true);
             StartCoroutine(DeactivateMeleeHitboxAfterDelay(0.3f));
         }
 
@@ -35,8 +35,8 @@ namespace TutorialBoss.AnimEvents
         private IEnumerator DeactivateMeleeHitboxAfterDelay(float delay)
         {
             yield return new WaitForSeconds(delay);
-            Attack1_Hitbox.gameObject.SetActive(false);
-            Attack2_Hitbox.gameObject.SetActive(false);
+            Hitbox_Attack1.gameObject.SetActive(false);
+            Hitbox_Attack2.gameObject.SetActive(false);
         }
 
         // 애니메이션 이벤트: 공격 애니메이션이 끝났을 때
@@ -48,7 +48,7 @@ namespace TutorialBoss.AnimEvents
 
         private IEnumerator WaitForAttackCooldownAndTransition()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.5f);
             controller.ChangeState(new Dok2ChaseState(controller));
         }
 

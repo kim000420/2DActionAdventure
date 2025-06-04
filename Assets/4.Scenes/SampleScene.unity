@@ -2386,7 +2386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &552580308
 Animator:
   serializedVersion: 5
@@ -2596,8 +2596,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 552580315}
-  Attack1_Hitbox: {fileID: 796932016}
-  Attack2_Hitbox: {fileID: 1810019095}
+  Hitbox_Attack1: {fileID: 0}
+  Hitbox_Attack2: {fileID: 0}
 --- !u!1 &565679990
 GameObject:
   m_ObjectHideFlags: 0
@@ -4735,7 +4735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &977373493
 Animator:
   serializedVersion: 5
@@ -4945,8 +4945,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 977373498}
-  hitbox_Attack1: {fileID: 1982079544}
-  hitbox_Attack2: {fileID: 1048885987}
+  Hitbox_Attack1: {fileID: 1982079544}
+  Hitbox_Attack2: {fileID: 1048885987}
 --- !u!1 &1013243716
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,14 +6,10 @@ namespace TutorialBoss.States.Dok2
 {
     public class Dok2AttackState : BaseTutorialBossState
     {
-        private bool isAttacking = false; // 현재 공격 애니메이션 중인지 여부
-
         public Dok2AttackState(TutorialBossStateController controller) : base(controller) { }
 
         public override void Enter()
         {
-            Debug.Log("[Dok2AttackState] Enter");
-            isAttacking = true;
             controller.rb.velocity = Vector2.zero; // 공격 중 이동 멈춤
 
             // 공격 쿨타임 중이 아니라면 공격 실행
@@ -46,7 +42,6 @@ namespace TutorialBoss.States.Dok2
 
         public override void Exit()
         {
-            isAttacking = false;
         }
     }
 }
