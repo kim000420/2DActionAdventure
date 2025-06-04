@@ -2386,7 +2386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &552580308
 Animator:
   serializedVersion: 5
@@ -2596,8 +2596,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 552580315}
-  Hitbox_Attack1: {fileID: 0}
-  Hitbox_Attack2: {fileID: 0}
+  Hitbox_Attack1: {fileID: 796932016}
+  Hitbox_Attack2: {fileID: 1810019095}
 --- !u!1 &565679990
 GameObject:
   m_ObjectHideFlags: 0
@@ -4735,7 +4735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &977373493
 Animator:
   serializedVersion: 5
@@ -4862,8 +4862,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.6826421, y: 0.46232408}
-    oldSize: {x: 3.5, y: 1.58}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.74, y: 1.38}
     newSize: {x: 0.74, y: 1.38}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
