@@ -31,6 +31,8 @@ AnimationClip:
       value: {fileID: 21300000, guid: d914daf9b6d9d354eaf1e1c27f5a40b6, type: 3}
     - time: 1.0666667
       value: {fileID: 21300000, guid: 0c4975bbb75e1d340ac1a7c10b8ae1a6, type: 3}
+    - time: 1.0833334
+      value: {fileID: 21300000, guid: a33c2d792a856a64cae94f39eb27e1ad, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -56,17 +58,18 @@ AnimationClip:
     - {fileID: 21300000, guid: 59c9b5470e27f5642a9da21301f49de7, type: 3}
     - {fileID: 21300000, guid: d914daf9b6d9d354eaf1e1c27f5a40b6, type: 3}
     - {fileID: 21300000, guid: 0c4975bbb75e1d340ac1a7c10b8ae1a6, type: 3}
+    - {fileID: 21300000, guid: a33c2d792a856a64cae94f39eb27e1ad, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.0833334
+    m_StopTime: 1.1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
@@ -80,4 +83,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.65
+    functionName: EnableHitbox_Attack1
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.0666667
+    functionName: OnAttackEnd
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

@@ -4,56 +4,57 @@ namespace TutorialBoss
 {
     public class TutorialBossStats : MonoBehaviour
     {
-        // 체력
+        [Header("체력")]
         public int maxHP = 100;
         public int currentHP = 100;
 
-        // 그로기 수치
-        public float currentGroggy = 0f;
+        [Header("그로기")]
         public float maxGroggy = 999f;
+        public float currentGroggy = 0f;
 
-        // 전투 범위
+        [Header("전투 범위")]
         public float detectRange = 5f;
         public float attackRange = 1.5f;
         public float escapeTriggerRange = 2.0f;
 
-        // 이동 관련
+        [Header("이동속도")]
         public float moveSpeed = 2.5f;
-
-        // 넉백 저항
-        public float knockbackResistance = 1f;
 
         private void Awake()
         {
             currentHP = maxHP;
+            currentGroggy = maxGroggy;
         }
 
         public void ApplyHit(int damage, int groggy, float knockback, Vector2 attackerPosition)
         {
+
+            var controller = GetComponent<TutorialBoss.Controller.TutorialBossStateController>();
             currentHP -= damage;
 
             if (currentHP <= 0)
             {
-                var controller = GetComponent<TutorialBoss.Controller.TutorialBossStateController>();
                 controller.ChangeState(new TutorialBoss.States.DieState(controller));
                 return;
             }
 
-            currentGroggy += groggy;
+            currentGroggy -= groggy;
 
-            if (currentGroggy >= maxGroggy)
+            if (currentGroggy <= 0)
             {
-                var controller = GetComponent<TutorialBoss.Controller.TutorialBossStateController>();
                 controller.ChangeState(new TutorialBoss.States.GroggyState(controller));
-                currentGroggy = 0;
                 return;
             }
 
+            //Dok2는 넉백을 받지 않음
+            if (controller.bossName == "Dok2") return;
+
+            //넉백 작동부분
             GetComponent<TutorialBoss.Controller.TutorialBossStateController>()
                 .ChangeState(new TutorialBoss.States.HitState(
                     GetComponent<TutorialBoss.Controller.TutorialBossStateController>(),
                     attackerPosition,
-                    knockback * knockbackResistance
+                    knockback
                 ));
         }
 

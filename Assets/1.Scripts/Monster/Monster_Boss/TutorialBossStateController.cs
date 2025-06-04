@@ -3,6 +3,7 @@ using TutorialBoss.States;
 using TutorialBoss.States.Jo;
 using System.Collections;
 using TutorialBoss.States.Bow;
+using TutorialBoss.States.Dok2;
 using TutorialBoss.AnimEvents;
 
 namespace TutorialBoss.Controller
@@ -16,31 +17,29 @@ namespace TutorialBoss.Controller
         public Animator animator;
         public Rigidbody2D rb;
         public Transform player;
-        public TutorialBossStats bossStats; // TutorialBossStats 추가
+        public TutorialBossStats bossStats;
 
         [Header("렌더링")]
         public SpriteRenderer spriteRenderer;
-        public float defaultLocalScaleX = -1f; // 기본 스프라이트가 왼쪽을 보고 있다면 -1f, 오른쪽이면 1f.
+        public float defaultLocalScaleX = -1f;
 
         [Header("기본 상태")]
-        public string bossName = "Jo"; // Jo, Bow, Dok2 중 하나로 설정
+        public string bossName = "Jo";
         public bool isDead = false;
         public bool isGroggy = false;
-        public bool isHitRecovery; // 피격 후 일정 시간 동안 비활성
+        public bool isHitRecovery;
 
         [Header("점프 상태")]
-        public bool isBowJumping = false; // Bow 보스의 점프 중 여부
-        public float bowJumpForce = 10f; // Bow 보스 점프 힘
-        public float bowJumpCooldown = 1f; // Bow 보스 점프 쿨타임 (또는 착지 후 대기 시간)
+        public bool isBowJumping = false;
+        public float bowJumpForce = 10f;
+        public float bowJumpCooldown = 1f;
+
+        [Header("Dok2 보스 관련")]
+        public int attack1Count = 0; // Attack1 사용 횟수 카운터
 
         [Header("Bow 보스 관련")]
         public Transform bowShootPoint; // Bow 보스가 화살을 발사할 위치
-        public float bowShotAngle = 0f; // Bow 보스 화살 발사 각도 (0은 수평)
-        public float bowEscapeDuration = 2f; // Bow 보스의 도망 지속 시간
-
-        public GameObject arrowPrefab; // 화살 프리팹을 유니티 에디터에서 연결
-        public float arrowAimHeightOffset = 0.5f; // 플레이어 위치에서 얼마나 위를 조준할지
-
+        public float bowEscapeDuration = 2f;
 
         [Header("공격 쿨타임")]
         public bool isAttackCooldown = false;
@@ -50,11 +49,10 @@ namespace TutorialBoss.Controller
         public Transform groundCheck;
         public LayerMask groundLayer;
         public float groundCheckRadius = 0.2f;
-        private bool wasGrounded; // 이전 프레임의 지면 상태 저장
+        private bool wasGrounded;
 
-        [Header("점프후 지면 감지 유예시간")]
-        public float jumpGracePeriod = 0.2f; // 점프 후 groundCheck를 무시할 시간
-        private float jumpGracePeriodTimer; // 유예 시간을 카운트할 타이머
+        public float jumpGracePeriod = 0.2f;
+        private float jumpGracePeriodTimer;
 
         [Header("벽 감지")]
         public Transform wallCheck;
@@ -65,10 +63,11 @@ namespace TutorialBoss.Controller
 
         private void Awake()
         {
+            animator = GetComponentInChildren<Animator>();
+            rb = GetComponent<Rigidbody2D>();
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             bossStats = GetComponent<TutorialBossStats>();
 
-            // "Player" 태그를 가진 오브젝트를 찾아 할당
             if (player == null)
             {
                 GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -83,7 +82,7 @@ namespace TutorialBoss.Controller
 
         private void Start()
         {
-            wasGrounded = IsGrounded();
+            wasGrounded = IsGroundedInternal();
             jumpGracePeriodTimer = 0f;
 
             switch (bossName)
@@ -95,7 +94,7 @@ namespace TutorialBoss.Controller
                     ChangeState(new BowEscapeState(this));
                     break;
                 default:
-                    Debug.LogWarning($"[Controller] Unknown boss name: {bossName}.");
+                    ChangeState(new Dok2ChaseState(this));
                     break;
             }
         }
@@ -108,14 +107,18 @@ namespace TutorialBoss.Controller
                 if (jumpGracePeriodTimer < 0) jumpGracePeriodTimer = 0;
             }
 
-            bool isCurrentlyGrounded = IsGrounded();
+            bool isCurrentlyGrounded = IsGroundedInternal();
+            if (isCurrentlyGrounded && !wasGrounded)
+            {
+                Debug.Log("[TutorialBossStateController] Boss Landed!");
+            }
             wasGrounded = isCurrentlyGrounded;
+
             currentState?.Execute();
         }
 
         public void ChangeState(ITutorialBossState newState)
         {
-
             if (currentState == newState) return;
 
             currentState?.Exit();
@@ -123,51 +126,62 @@ namespace TutorialBoss.Controller
             currentState.Enter();
         }
 
-        // 플레이어 반대 방향을 바라보도록 Scale 변경
+
         public void FaceAwayFromPlayer()
         {
             if (player == null) return;
             Vector2 dir = player.position - transform.position;
-            if (dir.x > 0) transform.localScale = new Vector3(Mathf.Abs(defaultLocalScaleX), transform.localScale.y, transform.localScale.z);
-            else if (dir.x < 0) transform.localScale = new Vector3(-Mathf.Abs(defaultLocalScaleX), transform.localScale.y, transform.localScale.z);
+            if (dir.x > 0)
+            {
+                transform.localScale = new Vector3(Mathf.Abs(defaultLocalScaleX), transform.localScale.y, transform.localScale.z);
+            }
+            else if (dir.x < 0)
+            {
+                transform.localScale = new Vector3(-Mathf.Abs(defaultLocalScaleX), transform.localScale.y, transform.localScale.z);
+            }
         }
-        // 플레이어 방향을 바라보도록 Scale 변경
+
         public void FaceToPlayer()
         {
             if (player == null) return;
             Vector2 dir = player.position - transform.position;
-            if (dir.x > 0) transform.localScale = new Vector3(-Mathf.Abs(defaultLocalScaleX), transform.localScale.y, transform.localScale.z);
-            else if (dir.x < 0) transform.localScale = new Vector3(Mathf.Abs(defaultLocalScaleX), transform.localScale.y, transform.localScale.z);
+            if (dir.x > 0)
+            {
+                transform.localScale = new Vector3(-Mathf.Abs(defaultLocalScaleX), transform.localScale.y, transform.localScale.z);
+            }
+            else if (dir.x < 0)
+            {
+                transform.localScale = new Vector3(Mathf.Abs(defaultLocalScaleX), transform.localScale.y, transform.localScale.z);
+            }
         }
 
-        // 지면 감지
         public bool IsGrounded()
         {
-            // 점프 유예 시간 동안에는 항상 false를 반환
             if (jumpGracePeriodTimer > 0)
             {
-                // Debug.Log($"[IsGrounded] Grace Period Active! Returning false. Remaining: {jumpGracePeriodTimer:F2}");
                 return false;
             }
             return IsGroundedInternal();
         }
-        // 실제 물리 감지를 수행하는 내부 함수
+
         private bool IsGroundedInternal()
         {
             if (groundCheck == null) return false;
             return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         }
 
-        // 점프 시 호출될 함수
         public void StartJumpGracePeriod()
         {
             jumpGracePeriodTimer = jumpGracePeriod;
+            Debug.Log($"[TutorialBossStateController] Jump Grace Period Started for {jumpGracePeriod:F2} seconds.");
         }
-        // 벽 감지
+
         public bool IsWallAhead()
         {
+            if (wallCheck == null) return false;
 
             float currentFacingDirection = Mathf.Sign(transform.localScale.x);
+
             RaycastHit2D[] hits = Physics2D.RaycastAll(wallCheck.position, Vector2.right * currentFacingDirection, wallCheckDistance, wallLayer);
 
             foreach (RaycastHit2D hit in hits)
@@ -181,26 +195,32 @@ namespace TutorialBoss.Controller
                         break;
                     }
                 }
-                if (!isOwnCollider) return true;
+
+                if (!isOwnCollider)
+                {
+                    Debug.Log($"[IsWallAhead] Wall detected! Hit collider: {hit.collider.name}, Layer: {LayerMask.LayerToName(hit.collider.gameObject.layer)}");
+                    return true;
+                }
             }
             return false;
         }
 
-        // 공격 쿨타임 시작
-        public void StartAttackCooldown(float cooldownTime)
+        public void StartAttackCooldown(float duration)
         {
-            if (attackCooldownCoroutine != null) StopCoroutine(attackCooldownCoroutine);
-            attackCooldownCoroutine = StartCoroutine(AttackCooldownRoutine(cooldownTime));
+            if (attackCooldownCoroutine != null)
+            {
+                StopCoroutine(attackCooldownCoroutine);
+            }
+            attackCooldownCoroutine = StartCoroutine(AttackCooldownRoutine(duration));
         }
 
-        private IEnumerator AttackCooldownRoutine(float cooldownTime)
+        private IEnumerator AttackCooldownRoutine(float duration)
         {
             isAttackCooldown = true;
-            yield return new WaitForSeconds(cooldownTime);
+            yield return new WaitForSeconds(duration);
             isAttackCooldown = false;
         }
 
-        // 유니티 에디터에서 Gizmos 시각화를 위한 함수
         private void OnDrawGizmosSelected()
         {
             if (groundCheck != null)
@@ -212,16 +232,22 @@ namespace TutorialBoss.Controller
             if (wallCheck != null)
             {
                 Gizmos.color = Color.blue;
-                float currentFacingDirection = Mathf.Sign(transform.localScale.x); // 보스가 바라보는 방향
+                float currentFacingDirection = Mathf.Sign(transform.localScale.x);
                 Gizmos.DrawRay(wallCheck.position, Vector3.right * currentFacingDirection * wallCheckDistance);
             }
 
-            if (bowShootPoint != null)
+            // ⭐ 변경: bowShootPoint Gizmos 그리기 로직에서 bowShotAngle 대신 실제 발사 방향 예측선 제거
+            if (bowShootPoint != null && bossName == "Bow")
             {
                 Gizmos.color = Color.magenta;
-                Vector2 shotDirection = Quaternion.Euler(0, 0, bowShotAngle) * Vector2.right;
-                shotDirection.x *= Mathf.Sign(transform.localScale.x);
-                Gizmos.DrawRay(bowShootPoint.position, shotDirection.normalized * 2f);
+                // ⭐ 변경: 플레이어 조준 각도 표시
+                if (player != null)
+                {
+                    Vector2 startPosition = bowShootPoint.position;
+                    Vector2 targetPosition = player.position; // + Vector2.up * (대략적인 arrowAimHeightOffset);
+                    Vector2 shootDirection = (targetPosition - startPosition).normalized;
+                    Gizmos.DrawRay(bowShootPoint.position, shootDirection * 2f);
+                }
             }
         }
     }

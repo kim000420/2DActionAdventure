@@ -1,5 +1,7 @@
 using UnityEngine;
 using TutorialBoss.Controller;
+using Monster.CommonStates;
+using TutorialBoss.States.Dok2;
 
 namespace TutorialBoss.States
 {
