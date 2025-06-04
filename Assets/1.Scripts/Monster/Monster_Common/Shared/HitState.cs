@@ -1,8 +1,9 @@
 using UnityEngine;
 using System.Collections; // Coroutine 사용을 위해 추가
 using CommonMonster.Controller; // CommonMonsterController 참조
-using CommonMonster.States; // BaseMonsterState 참조
+using CommonMonster.States;
 using CommonMonster.Stats;
+using CommonMonster.States.Groundfish;
 
 namespace CommonMonster.States.Common
 {
@@ -24,28 +25,30 @@ namespace CommonMonster.States.Common
         {
             // 1. 피격 애니메이션 재생
             // CommonMonsterController에 monsterName 변수가 설정되어 있어야 함
-            controller.animator.Play($"{controller.monsterName}_Hit");
+            switch(controller.monsterName)
+            {
+                case "Groundfish":
+                    break;
+                case "Lizardman":
+                    controller.animator.Play($"{controller.monsterName}_Hit");
+                    break;
+                case "Forg":
+                    controller.animator.Play($"{controller.monsterName}_Hit");
+                    break;
+            }    
 
             // 2. 넉백 적용
             if (controller.rb != null)
             {
-                // 현재 속도 초기화 (기존 이동에 넉백이 더해지는 것을 방지)
-                controller.rb.velocity = Vector2.zero;
-
                 // 넉백 방향 계산 (몬스터 위치 - 공격자 위치)
                 Vector2 knockbackDirection = ((Vector2)controller.transform.position - attackerPosition).normalized;
 
-                // 만약 방향이 계산되지 않았다면 (동일 위치), 기본 방향 (예: 왼쪽) 설정
-                if (knockbackDirection == Vector2.zero)
+                if (Mathf.Abs(knockbackDirection.y) < 0.2f) // y 방향이 너무 작으면
                 {
-                    knockbackDirection = Vector2.left;
+                    knockbackDirection.y = 0.2f * Mathf.Sign(knockbackDirection.y != 0 ? knockbackDirection.y : 1f); // 최소 0.2f의 y값 보정
                 }
-
-                // 수직 넉백 추가 (선택 사항: 몬스터가 위로 약간 튀어 오르는 효과)
-                // 필요에 따라 수직 넉백 힘을 조절하거나 제거할 수 있습니다.
-                // 예: knockbackDirection.y = 0.5f; (수평 넉백에 비해 수직 넉백 비중 조절)
-                // 만약 항상 수평 넉백만 원한다면 knockbackDirection.y = 0; 후 normalized
-
+                // 현재 속도 초기화 (기존 이동에 넉백이 더해지는 것을 방지)
+                controller.rb.velocity = Vector2.zero;
                 // 넉백 힘 적용
                 controller.rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
             }
@@ -69,15 +72,6 @@ namespace CommonMonster.States.Common
 
         public override void Exit()
         {
-            // 상태 종료 시 리지드바디 속도 초기화 (선택 사항: 넉백 후에도 움직임이 남을 수 있으므로)
-            if (controller.rb != null)
-            {
-                controller.rb.velocity = Vector2.zero;
-            }
-
-            // 피격 경직 플래그 해제 (코루틴에서 이미 해제되지만, 안전 장치)
-            controller.isHitRecovery = false;
-
             // 실행 중인 피격 코루틴이 있다면 강제로 중단
             if (hitRecoveryCoroutine != null)
             {
@@ -90,7 +84,7 @@ namespace CommonMonster.States.Common
         private IEnumerator HitRecoveryRoutine()
         {
             // 넉백 애니메이션 길이 또는 넉백 힘에 비례하여 경직 시간 조절
-            float recoveryDuration = Mathf.Max(0.2f, knockbackForce * 0.05f); // 최소 0.2초, 넉백 힘에 비례
+            float recoveryDuration = Mathf.Max(0.2f, knockbackForce * 0.1f); // 최소 0.2초, 넉백 힘에 비례
 
             yield return new WaitForSeconds(recoveryDuration);
 
@@ -100,8 +94,13 @@ namespace CommonMonster.States.Common
             // 몬스터 이름에 따라 적절한 다음 상태로 전환
             switch (controller.monsterName)
             {
-               // case 0:
-
+                case "Groundfish":
+                    controller.ChangeState(new GroundfishIdleState(controller));
+                    break;
+                case "Lizardman":
+                    break;
+                case "Forg":
+                    break;
             }
             hitRecoveryCoroutine = null; // 코루틴 참조 해제
         }

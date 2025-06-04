@@ -20,12 +20,8 @@ namespace CommonMonster.Stats
 
         [Header("생존 및 전투 스탯")]
         [Tooltip("몬스터의 최대 체력.")]
-        public float maxHp = 100f;
-        [HideInInspector] // 인스펙터에서 직접 수정하지 않고 코드에서 관리
-        public float currentHp; // 현재 체력
-
-        [Tooltip("몬스터의 기본 공격력.")]
-        public float attackDamage = 10f;
+        public int maxHp = 100;
+        public int currentHp; // 현재 체력
 
         [Tooltip("몬스터의 이동 속도.")]
         public float moveSpeed = 3f;
@@ -35,9 +31,8 @@ namespace CommonMonster.Stats
 
         [Header("그로기 스탯")]
         [Tooltip("몬스터가 그로기 상태에 빠지기 위해 필요한 최대 그로기 게이지.")]
-        public float maxGroggy = 10f;
-        [HideInInspector] // 인스펙터에서 직접 수정하지 않고 코드에서 관리
-        public float currentGroggy; // 현재 그로기 게이지 (피격 시 증가)
+        public int maxGroggy = 10;
+        public int currentGroggy; // 현재 그로기 게이지 (피격 시 증가)
 
         [Tooltip("그로기 상태가 지속되는 시간.")]
         public float groggyDuration = 3f;
@@ -63,15 +58,12 @@ namespace CommonMonster.Stats
         private void Awake()
         {
             currentHp = maxHp; // 게임 시작 시 현재 체력을 최대 체력으로 초기화
-            currentGroggy = 0f; // 그로기 게이지 초기화
+            currentGroggy = 0; // 그로기 게이지 초기화
         }
 
-        public void ApplyHit(float damage, float groggyAmount, float knockbackForce, Vector2 attackerPosition)
+        public void ApplyHit(int damage, int groggy, float knockbackForce, Vector2 attackerPosition)
         {
-            if (controller == null)
-            {
-                return;
-            }
+            var controller = GetComponent<CommonMonster.Controller.CommonMonsterController>();
             if (controller.isDead) return; // 이미 죽었다면 더 이상 피해를 받지 않음
 
             currentHp -= damage;
@@ -80,12 +72,12 @@ namespace CommonMonster.Stats
             if (currentHp <= 0)
             {
                 currentHp = 0; // 체력은 0 이하로 내려가지 않도록
-                // controller.ChangeState(new DieState(controller));
+                controller.ChangeState(new DieState(controller));
                 return; // 사망했으면 그로기/피격 로직은 수행하지 않음
             }
 
             // 그로기 게이지 증가
-            currentGroggy -= groggyAmount;
+            currentGroggy -= groggy;
 
             // 그로기 게이지 체크: 그로기 상태 전이 (사망 상태가 아니라면)
             if (currentGroggy <= 0 && !controller.isGroggy)

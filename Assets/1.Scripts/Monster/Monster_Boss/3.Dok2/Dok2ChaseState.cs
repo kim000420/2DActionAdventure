@@ -9,7 +9,6 @@ namespace TutorialBoss.States.Dok2
 
         public override void Enter()
         {
-            Debug.Log("[Dok2ChaseState] Enter");
             controller.animator.Play($"{controller.bossName}_Walk"); // Dok2_Run 애니메이션 재생
             controller.rb.velocity = Vector2.zero; // 이전 상태의 잔여 속도 초기화
         }

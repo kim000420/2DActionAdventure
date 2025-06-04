@@ -1,5 +1,6 @@
 using Monster.States;
 using UnityEngine;
+using CommonMonster.States;
 
 public class PlayerHitboxTrigger : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class PlayerHitboxTrigger : MonoBehaviour
 
         if (other.CompareTag("Enemy"))
         {
-            var monsterStats = other.GetComponent<MonsterStats>();
+            var commonMonsterStats = other.GetComponent<CommonMonster.Stats.CommonMonsterStats>();
             var bossStats = other.GetComponent<TutorialBoss.TutorialBossStats>();
             var attackerStats = transform.root.GetComponent<PlayerStats>();
 
@@ -46,9 +47,9 @@ public class PlayerHitboxTrigger : MonoBehaviour
                     Debug.Log("[크리티컬 Hit!] " + Mathf.RoundToInt(finalDamage));
                 }
 
-                if (monsterStats != null)
+                if (commonMonsterStats != null)
                 {
-                    monsterStats.ApplyHit(
+                    commonMonsterStats.ApplyHit(
                         Mathf.RoundToInt(finalDamage),
                         Mathf.RoundToInt(finalGroggy),
                         knockbackForce,

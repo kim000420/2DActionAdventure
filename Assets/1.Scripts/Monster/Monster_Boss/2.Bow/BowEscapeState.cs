@@ -21,6 +21,10 @@ namespace TutorialBoss.States.Bow
 
         public override void Execute()
         {
+            if (controller.player == null)
+            {
+                return; // 플레이어가 없으면 더 이상 진행하지 않음
+            }
             if (controller.isDead || controller.isGroggy || controller.isHitRecovery) return;
 
             float distanceToPlayer = Vector2.Distance(controller.transform.position, controller.player.position);

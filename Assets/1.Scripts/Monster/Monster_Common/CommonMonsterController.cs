@@ -3,6 +3,7 @@ using System.Collections;
 using CommonMonster.Stats;      // CommonMonsterStats 참조
 using CommonMonster.States;     // IMonsterState, BaseMonsterState 참조
 using CommonMonster.States.Common; // 공통 상태 참조 (Hit, Groggy, Die)
+using CommonMonster.States.Groundfish;
 
 namespace CommonMonster.Controller
 {
@@ -63,26 +64,30 @@ namespace CommonMonster.Controller
             if (monsterStats != null)
             {
                 monsterStats.currentHp = monsterStats.maxHp;
-                monsterStats.currentGroggyGauge = 0f;
+                monsterStats.currentGroggy = 0;
+            }
+            
+            // 몬스터 이름 초기화
+            if (string.IsNullOrEmpty(monsterName) || monsterName == "DefaultMonster")
+            {
+                monsterName = gameObject.name;
             }
         }
 
         private void Start()
         {
-            // monsterStats.monsterType에 따라 초기 상태 설정
-            // 이 예시에서는 일단 근거리 몬스터를 기본으로 ChaseState로 시작합니다.
-            // 다른 타입의 몬스터를 만들 때는 이 부분을 해당 몬스터의 기본 상태로 변경해야 합니다.
-            switch (monsterStats.monsterType)
+            switch (monsterName)
             {
-                case MonsterType.MeleeOnly:
-                case MonsterType.Hybrid:
-                case MonsterType.RangedOnly: // 원거리도 일단 ChaseState에서 플레이어 감지 후 공격
-                    //ChangeState(new MeleeMonsterChaseState(this)); // 예시: 모든 몬스터가 일단 MeleeMonsterChaseState로 시작하도록 (임시)
+                case "Groundfish":
+                    ChangeState(new GroundfishIdleState(this));
                     break;
-                default:
-                    Debug.LogWarning($"[CommonMonsterController] Unknown monster type: {monsterStats.monsterType}. No initial state set.");
+                case "Lizardman":
                     break;
+                case "Forg":
+                    break;
+
             }
+
         }
 
         private void Update()
