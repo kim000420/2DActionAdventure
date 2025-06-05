@@ -13,12 +13,20 @@ namespace CommonMonster.States.Common
 
         public override void Enter()
         {
-            Debug.Log($"[{controller.monsterName} DieState] Enter");
-
             controller.isDead = true; // 몬스터 사망 플래그 설정
             controller.rb.velocity = Vector2.zero; // 모든 움직임 멈춤
             controller.rb.bodyType = RigidbodyType2D.Kinematic; // 물리적 영향 무시 (더 이상 밀리지 않도록)
-            controller.animator.Play($"{controller.monsterName}_Die"); // 사망 애니메이션 재생
+
+            //groundfish는 die애니 없음
+            if (controller.monsterName == "Groundfish")
+            {
+
+            }
+            else
+            {
+                controller.animator.Play($"{controller.monsterName}_Die");// 사망 애니메이션 재생
+            }
+             
 
             // (선택 사항) 콜라이더 비활성화: 플레이어/다른 오브젝트와의 충돌 방지
             Collider2D monsterCollider = controller.GetComponent<Collider2D>();

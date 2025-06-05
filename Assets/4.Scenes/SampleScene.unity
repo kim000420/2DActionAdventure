@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterType: 0
-  maxHp: 50
+  maxHp: 20
   currentHp: 0
   moveSpeed: 3
   knockbackResistance: 1
@@ -337,7 +337,7 @@ MonoBehaviour:
   meleeAttackRange: 1.5
   rangedAttackRange: 6
   jumpForce: 6
-  jumpCooldown: 1
+  jumpCooldown: 2
 --- !u!4 &14298395
 Transform:
   m_ObjectHideFlags: 0
@@ -2644,7 +2644,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528212434}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.21, z: 0}
+  m_LocalPosition: {x: 0, y: -0.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

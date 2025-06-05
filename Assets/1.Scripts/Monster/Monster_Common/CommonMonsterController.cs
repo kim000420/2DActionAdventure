@@ -142,8 +142,11 @@ namespace CommonMonster.Controller
 
         private IEnumerator AttackCooldownRoutine(float cooldownTime)
         {
+
+            Debug.Log($"공격 쿨타임 시작");
             isAttackCooldown = true;
             yield return new WaitForSeconds(cooldownTime);
+            Debug.Log($"공격 쿨타임 종료");
             isAttackCooldown = false;
         }
 
