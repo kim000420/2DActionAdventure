@@ -42,11 +42,6 @@ namespace CommonMonster.States.Common
             {
                 // 넉백 방향 계산 (몬스터 위치 - 공격자 위치)
                 Vector2 knockbackDirection = ((Vector2)controller.transform.position - attackerPosition).normalized;
-
-                if (Mathf.Abs(knockbackDirection.y) < 0.2f) // y 방향이 너무 작으면
-                {
-                    knockbackDirection.y = 0.2f * Mathf.Sign(knockbackDirection.y != 0 ? knockbackDirection.y : 1f); // 최소 0.2f의 y값 보정
-                }
                 // 현재 속도 초기화 (기존 이동에 넉백이 더해지는 것을 방지)
                 controller.rb.velocity = Vector2.zero;
                 // 넉백 힘 적용

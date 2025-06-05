@@ -4,6 +4,8 @@ using CommonMonster.Stats;      // CommonMonsterStats 참조
 using CommonMonster.States;     // IMonsterState, BaseMonsterState 참조
 using CommonMonster.States.Common; // 공통 상태 참조 (Hit, Groggy, Die)
 using CommonMonster.States.Groundfish;
+using CommonMonster.States.Forg;
+//using CommonMonster.States.Lizardman;
 
 namespace CommonMonster.Controller
 {
@@ -40,9 +42,16 @@ namespace CommonMonster.Controller
         public Transform groundCheck;
         public LayerMask groundLayer;
         public float groundCheckRadius = 0.2f;
+        public bool isJumping = false;
         public Transform wallCheck;
         public LayerMask wallLayer;
         public float wallCheckDistance = 0.5f;
+
+        [Header("Forg 보스 관련")] // Forg 관련 추가
+        public Transform forgShootPoint; // Forg가 투사체를 발사할 위치
+        public GameObject forgProjectilePrefab; // Forg 투사체 프리팹
+        [Tooltip("Forg 투사체 발사 속도")]
+        public float forgProjectileSpeed = 10f;
 
         private void Awake()
         {
@@ -84,6 +93,7 @@ namespace CommonMonster.Controller
                 case "Lizardman":
                     break;
                 case "Forg":
+                    ChangeState(new ForgIdleState(this));
                     break;
 
             }
@@ -210,6 +220,21 @@ namespace CommonMonster.Controller
                 // 현재 몬스터의 localScale.x 방향으로 레이 그리기
                 float currentFacingDirection = Mathf.Sign(transform.localScale.x);
                 Gizmos.DrawRay(wallCheck.position, Vector3.right * currentFacingDirection * wallCheckDistance);
+            }
+            // Forg 투사체 발사 지점 Gizmos (Forg일 경우만)
+            if (forgShootPoint != null && monsterName == "Forg") // "Forg" 몬스터 이름으로 확인
+            {
+                Gizmos.color = Color.magenta;
+                Gizmos.DrawWireSphere(forgShootPoint.position, 0.1f); // 작은 구로 발사 지점 표시
+
+                // 플레이어 조준선 Gizmos
+                if (player != null)
+                {
+                    Vector2 startPosition = forgShootPoint.position;
+                    Vector2 targetPosition = player.position;
+                    Vector2 shootDirection = (targetPosition - startPosition).normalized;
+                    Gizmos.DrawRay(forgShootPoint.position, shootDirection * monsterStats.rangedAttackRange);
+                }
             }
         }
     }
