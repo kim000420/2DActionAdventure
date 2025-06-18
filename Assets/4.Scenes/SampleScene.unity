@@ -317,6 +317,7 @@ MonoBehaviour:
   forgShootPoint: {fileID: 0}
   forgProjectilePrefab: {fileID: 0}
   forgProjectileSpeed: 10
+  projectileArcFactor: 5
 --- !u!114 &14298394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,6 +574,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 178550664}
+  - component: {fileID: 178550669}
+  - component: {fileID: 178550668}
   - component: {fileID: 178550663}
   - component: {fileID: 178550667}
   - component: {fileID: 178550666}
@@ -583,7 +586,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &178550663
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -625,7 +628,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ff5bc51403f4c86449993f44ec4cf182, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -644,7 +647,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178550662}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.4, y: -2.43, z: 0}
+  m_LocalPosition: {x: -1.08, y: -2.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -681,15 +684,15 @@ BoxCollider2D:
   m_GameObject: {fileID: 178550662}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a532102698218054aa0edbd003cca7fa, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.3861386, y: 0.282353}
+    oldSize: {x: 2.02, y: 1.7}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -714,11 +717,74 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a532102698218054aa0edbd003cca7fa, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &178550668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178550662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff5f1304eba2864d896ce94c45bc2e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterType: 2
+  maxHp: 100
+  currentHp: 0
+  moveSpeed: 3
+  knockbackResistance: 1
+  maxGroggy: 10
+  currentGroggy: 0
+  groggyDuration: 3
+  detectionRange: 15
+  meleeAttackRange: 2.5
+  rangedAttackRange: 7
+  jumpForce: 8
+  jumpCooldown: 1
+--- !u!114 &178550669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178550662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e25e924b81c84c4ea9e8b917392f8af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterName: Lizardman
+  animator: {fileID: 178550665}
+  rb: {fileID: 178550667}
+  spriteRenderer: {fileID: 178550663}
+  player: {fileID: 0}
+  monsterStats: {fileID: 178550668}
+  defaultLocalScaleX: -1
+  isDead: 0
+  isGroggy: 0
+  isHitRecovery: 0
+  isAttackCooldown: 0
+  groundCheck: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  groundCheckRadius: 0.2
+  isJumping: 0
+  wallCheck: {fileID: 0}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  wallCheckDistance: 0.5
+  forgShootPoint: {fileID: 0}
+  forgProjectilePrefab: {fileID: 0}
+  forgProjectileSpeed: 10
+  projectileArcFactor: 5
 --- !u!1 &181187270
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,7 +1060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &234181297
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1170,6 +1236,7 @@ MonoBehaviour:
   forgShootPoint: {fileID: 1100216368}
   forgProjectilePrefab: {fileID: 109656464402566367, guid: bd39614f04f3ca44ca3c694985ed802e, type: 3}
   forgProjectileSpeed: 10
+  projectileArcFactor: 5
 --- !u!114 &234181303
 MonoBehaviour:
   m_ObjectHideFlags: 0

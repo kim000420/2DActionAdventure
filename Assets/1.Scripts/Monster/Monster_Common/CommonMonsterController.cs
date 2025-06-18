@@ -5,7 +5,7 @@ using CommonMonster.States;     // IMonsterState, BaseMonsterState 참조
 using CommonMonster.States.Common; // 공통 상태 참조 (Hit, Groggy, Die)
 using CommonMonster.States.Groundfish;
 using CommonMonster.States.Forg;
-//using CommonMonster.States.Lizardman;
+using CommonMonster.States.Lizardman;
 
 namespace CommonMonster.Controller
 {
@@ -52,6 +52,7 @@ namespace CommonMonster.Controller
         public GameObject forgProjectilePrefab; // Forg 투사체 프리팹
         [Tooltip("Forg 투사체 발사 속도")]
         public float forgProjectileSpeed = 10f;
+        public float projectileArcFactor = 5;
 
         private void Awake()
         {
@@ -91,6 +92,7 @@ namespace CommonMonster.Controller
                     ChangeState(new GroundfishIdleState(this));
                     break;
                 case "Lizardman":
+                    ChangeState(new LizardmanIdleState(this));
                     break;
                 case "Forg":
                     ChangeState(new ForgIdleState(this));
