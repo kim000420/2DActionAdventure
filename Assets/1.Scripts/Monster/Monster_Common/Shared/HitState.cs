@@ -1,19 +1,21 @@
-using UnityEngine;
-using System.Collections; // Coroutine »ç¿ëÀ» À§ÇØ Ãß°¡
-using CommonMonster.Controller; // CommonMonsterController ÂüÁ¶
+ï»¿using UnityEngine;
+using System.Collections; // Coroutine ì‚¬ìš©ì„ ìœ„í•´ ì¶”ê°€
+using CommonMonster.Controller; // CommonMonsterController ì°¸ì¡°
 using CommonMonster.States;
 using CommonMonster.Stats;
 using CommonMonster.States.Groundfish;
+using CommonMonster.States.Lizardman;
+using CommonMonster.States.Forg;
 
 namespace CommonMonster.States.Common
 {
     public class HitState : BaseMonsterState
     {
-        private Vector2 attackerPosition; // °ø°İÀÚÀÇ À§Ä¡
-        private float knockbackForce;     // Àû¿ëÇÒ ³Ë¹é Èû
-        private Coroutine hitRecoveryCoroutine; // ÇÇ°İ °æÁ÷ ÄÚ·çÆ¾ ÂüÁ¶
+        private Vector2 attackerPosition; // ê³µê²©ìì˜ ìœ„ì¹˜
+        private float knockbackForce;     // ì ìš©í•  ë„‰ë°± í˜
+        private Coroutine hitRecoveryCoroutine; // í”¼ê²© ê²½ì§ ì½”ë£¨í‹´ ì°¸ì¡°
 
-        // »ı¼ºÀÚ: ÄÁÆ®·Ñ·¯, °ø°İÀÚ À§Ä¡, ³Ë¹é ÈûÀ» ÀÎÀÚ·Î ¹ŞÀ½
+        // ìƒì„±ì: ì»¨íŠ¸ë¡¤ëŸ¬, ê³µê²©ì ìœ„ì¹˜, ë„‰ë°± í˜ì„ ì¸ìë¡œ ë°›ìŒ
         public HitState(CommonMonsterController controller, Vector2 attackerPosition, float knockbackForce)
             : base(controller)
         {
@@ -23,8 +25,8 @@ namespace CommonMonster.States.Common
 
         public override void Enter()
         {
-            // 1. ÇÇ°İ ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
-            // CommonMonsterController¿¡ monsterName º¯¼ö°¡ ¼³Á¤µÇ¾î ÀÖ¾î¾ß ÇÔ
+            // 1. í”¼ê²© ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
+            // CommonMonsterControllerì— monsterName ë³€ìˆ˜ê°€ ì„¤ì •ë˜ì–´ ìˆì–´ì•¼ í•¨
             switch(controller.monsterName)
             {
                 case "Groundfish":
@@ -37,37 +39,35 @@ namespace CommonMonster.States.Common
                     break;
             }    
 
-            // 2. ³Ë¹é Àû¿ë
+            // 2. ë„‰ë°± ì ìš©
             if (controller.rb != null)
             {
-                // ³Ë¹é ¹æÇâ °è»ê (¸ó½ºÅÍ À§Ä¡ - °ø°İÀÚ À§Ä¡)
+                // ë„‰ë°± ë°©í–¥ ê³„ì‚° (ëª¬ìŠ¤í„° ìœ„ì¹˜ - ê³µê²©ì ìœ„ì¹˜)
                 Vector2 knockbackDirection = ((Vector2)controller.transform.position - attackerPosition).normalized;
-                // ÇöÀç ¼Óµµ ÃÊ±âÈ­ (±âÁ¸ ÀÌµ¿¿¡ ³Ë¹éÀÌ ´õÇØÁö´Â °ÍÀ» ¹æÁö)
+                // í˜„ì¬ ì†ë„ ì´ˆê¸°í™” (ê¸°ì¡´ ì´ë™ì— ë„‰ë°±ì´ ë”í•´ì§€ëŠ” ê²ƒì„ ë°©ì§€)
                 controller.rb.velocity = Vector2.zero;
-                // ³Ë¹é Èû Àû¿ë
+                // ë„‰ë°± í˜ ì ìš©
                 controller.rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
             }
 
-            // 3. ÇÇ°İ °æÁ÷ ÄÚ·çÆ¾ ½ÃÀÛ
-            // ÀÌ¹Ì ½ÇÇà ÁßÀÎ ÄÚ·çÆ¾ÀÌ ÀÖ´Ù¸é Áß´ÜÇÏ°í »õ·Î ½ÃÀÛÇÏ¿© Áßº¹ ½ÇÇà ¹æÁö
-            if (controller.isHitRecovery) // ÀÌ¹Ì HitState¿¡ ÁøÀÔÇßÁö¸¸ (¿¹: Áßº¹ ÇÇ°İ), ÄÚ·çÆ¾ÀÌ »õ·Î ½ÃÀÛµÇÁö ¾Ê¾Ò´Ù¸é
+            // 3. í”¼ê²© ê²½ì§ ì½”ë£¨í‹´ ì‹œì‘
+            // ì´ë¯¸ ì‹¤í–‰ ì¤‘ì¸ ì½”ë£¨í‹´ì´ ìˆë‹¤ë©´ ì¤‘ë‹¨í•˜ê³  ìƒˆë¡œ ì‹œì‘í•˜ì—¬ ì¤‘ë³µ ì‹¤í–‰ ë°©ì§€
+            if (controller.isHitRecovery) // ì´ë¯¸ HitStateì— ì§„ì…í–ˆì§€ë§Œ (ì˜ˆ: ì¤‘ë³µ í”¼ê²©), ì½”ë£¨í‹´ì´ ìƒˆë¡œ ì‹œì‘ë˜ì§€ ì•Šì•˜ë‹¤ë©´
             {
                 if (hitRecoveryCoroutine != null) controller.StopCoroutine(hitRecoveryCoroutine);
             }
-            controller.isHitRecovery = true; // ÄÁÆ®·Ñ·¯ÀÇ ÇÇ°İ °æÁ÷ ÇÃ·¡±× ¼³Á¤
+            controller.isHitRecovery = true; // ì»¨íŠ¸ë¡¤ëŸ¬ì˜ í”¼ê²© ê²½ì§ í”Œë˜ê·¸ ì„¤ì •
             hitRecoveryCoroutine = controller.StartCoroutine(HitRecoveryRoutine());
         }
 
         public override void Execute()
         {
-            // HitState¿¡¼­´Â ÁÖ·Î ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı ¹× ³Ë¹é Ã³¸®°¡ Enter¿¡¼­ ³¡³ª°í,
-            // ÄÚ·çÆ¾¿¡ ÀÇÇØ »óÅÂ ÀüÈ¯ÀÌ ÀÌ·ç¾îÁö¹Ç·Î Execute¿¡¼­´Â Æ¯º°ÇÑ Áö¼Ó ·ÎÁ÷ÀÌ ¾øÀ» ¼ö ÀÖ½À´Ï´Ù.
-            // ÇÊ¿äÇÏ´Ù¸é Ãß°¡ÀûÀÎ ¾Ö´Ï¸ŞÀÌ¼Ç »óÅÂ È®ÀÎ, ÇÃ·¹ÀÌ¾î ÃßÀû Áß´Ü µîÀ» ³ÖÀ» ¼ö ÀÖ½À´Ï´Ù.
+
         }
 
         public override void Exit()
         {
-            // ½ÇÇà ÁßÀÎ ÇÇ°İ ÄÚ·çÆ¾ÀÌ ÀÖ´Ù¸é °­Á¦·Î Áß´Ü
+            // ì‹¤í–‰ ì¤‘ì¸ í”¼ê²© ì½”ë£¨í‹´ì´ ìˆë‹¤ë©´ ê°•ì œë¡œ ì¤‘ë‹¨
             if (hitRecoveryCoroutine != null)
             {
                 controller.StopCoroutine(hitRecoveryCoroutine);
@@ -75,29 +75,72 @@ namespace CommonMonster.States.Common
             }
         }
 
-        // ÇÇ°İ °æÁ÷ ½Ã°£ ÈÄ »óÅÂ¸¦ ¿ø·¡´ë·Î µ¹¸®´Â ÄÚ·çÆ¾
+        // í”¼ê²© ê²½ì§ ì‹œê°„ í›„ ìƒíƒœë¥¼ ì›ë˜ëŒ€ë¡œ ëŒë¦¬ëŠ” ì½”ë£¨í‹´
         private IEnumerator HitRecoveryRoutine()
         {
-            // ³Ë¹é ¾Ö´Ï¸ŞÀÌ¼Ç ±æÀÌ ¶Ç´Â ³Ë¹é Èû¿¡ ºñ·ÊÇÏ¿© °æÁ÷ ½Ã°£ Á¶Àı
-            float recoveryDuration = Mathf.Max(0.2f, knockbackForce * 0.1f); // ÃÖ¼Ò 0.2ÃÊ, ³Ë¹é Èû¿¡ ºñ·Ê
+            // ë„‰ë°± ë°©í–¥ ê³„ì‚° (ëª¬ìŠ¤í„° ìœ„ì¹˜ - ê³µê²©ì ìœ„ì¹˜)
+            Vector2 knockbackDirection = ((Vector2)controller.transform.position - attackerPosition).normalized;
+            // Xì¶• ë„‰ë°± ë°©í–¥ë§Œ ì‚¬ìš© (ìˆ˜ì§ ë„‰ë°±ì€ ì í”„ ê´€ë ¨ ë¡œì§ì—ì„œ ë³„ë„ ì²˜ë¦¬í•˜ê±°ë‚˜, ì•„ì˜ˆ ì—†ì• ëŠ” ê²½ìš°ê°€ ë§ìŒ)
+            knockbackDirection.y = 0;
+            knockbackDirection.Normalize(); // Xì¶•ë§Œ ë‚¨ê¸°ê³  ë‹¤ì‹œ ì •ê·œí™”
 
-            yield return new WaitForSeconds(recoveryDuration);
+            // â­ ë„‰ë°±ëŸ‰ ê³µì‹: ë„‰ë°±ëŸ‰ X 0.2 â­
+            float knockbackDistance = knockbackForce * 0.2f;
+            float knockbackDuration = 0.1f; // 0.1ì´ˆ ë™ì•ˆ ë„‰ë°± ì´ë™
+            float elapsedKnockbackTime = 0f;
 
-            // ÇÇ°İ °æÁ÷ ÇÃ·¡±× ÇØÁ¦
+            Vector2 initialPosition = controller.transform.position;
+            Vector2 targetKnockbackPosition = initialPosition + knockbackDirection * knockbackDistance;
+
+            controller.rb.velocity = Vector2.zero; // ë„‰ë°± ì‹œì‘ ì‹œ ê¸°ì¡´ ì†ë„ ì´ˆê¸°í™”
+
+            // 0.1ì´ˆ ë™ì•ˆ ë„‰ë°± ì´ë™
+            while (elapsedKnockbackTime < knockbackDuration)
+            {
+                // ì‹œê°„ì— ë”°ë¼ ë„‰ë°± ëª©í‘œ ìœ„ì¹˜ë¡œ ë³´ê°„
+                controller.rb.MovePosition(Vector2.Lerp(initialPosition, targetKnockbackPosition, elapsedKnockbackTime / knockbackDuration));
+                // Rigidbody2D.MovePositionì€ ë¬¼ë¦¬ ì—…ë°ì´íŠ¸ ì‚¬ì´ì—ì„œ í˜¸ì¶œë˜ì–´ì•¼ í•˜ë¯€ë¡œ WaitForFixedUpdate ì‚¬ìš©
+                yield return new WaitForFixedUpdate();
+                elapsedKnockbackTime += Time.fixedDeltaTime;
+            }
+            // ë„‰ë°± ì´ë™ì´ ëë‚œ í›„ ì •í™•í•œ ìœ„ì¹˜ë¡œ ì„¤ì •
+            controller.rb.MovePosition(targetKnockbackPosition);
+            controller.rb.velocity = Vector2.zero; // ë„‰ë°± í›„ ì†ë„ 0ìœ¼ë¡œ ì´ˆê¸°í™”
+
+
+            // â­ í”¼ê²© ê²½ì§ ì‹œê°„: ë„‰ë°±ëŸ‰ì— ë¹„ë¡€ (ë„‰ë°±ëŸ‰ * 0.2f) â­
+            // ìµœì†Œ ê²½ì§ ì‹œê°„ì„ ì„¤ì •í•˜ì—¬ ë„ˆë¬´ ì§§ê²Œ ëë‚˜ì§€ ì•Šë„ë¡ ë°©ì§€
+            float hitStunDuration = Mathf.Max(0.1f, knockbackForce * 0.4f);
+            Debug.Log($"[HitState] Hit Stun Duration: {hitStunDuration} seconds (Knockback Force: {knockbackForce})");
+
+            // ê²½ì§ ì‹œê°„ ë™ì•ˆ ëŒ€ê¸° (ë„‰ë°± ì´ë™ í›„ë¶€í„° ê²½ì§ ì‹œê°„ì´ ì‹œì‘ë¨)
+            yield return new WaitForSeconds(hitStunDuration);
+
+            // í”¼ê²© ê²½ì§ í”Œë˜ê·¸ í•´ì œ
             controller.isHitRecovery = false;
 
-            // ¸ó½ºÅÍ ÀÌ¸§¿¡ µû¶ó ÀûÀıÇÑ ´ÙÀ½ »óÅÂ·Î ÀüÈ¯
+            // ëª¬ìŠ¤í„° ì´ë¦„ì— ë”°ë¼ ì ì ˆí•œ ë‹¤ìŒ ìƒíƒœë¡œ ì „í™˜
+            // ê° ëª¬ìŠ¤í„°ì˜ Idle ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ ë° í•´ë‹¹ IdleStateë¡œ ì „í™˜
             switch (controller.monsterName)
             {
                 case "Groundfish":
+                    controller.animator.Play("Groundfish_Idle"); // Idle ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
                     controller.ChangeState(new GroundfishIdleState(controller));
                     break;
                 case "Lizardman":
+                    controller.animator.Play("Lizardman_Idle"); // Idle ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
+                    controller.ChangeState(new LizardmanIdleState(controller));
                     break;
                 case "Forg":
+                    controller.animator.Play("Forg_Idle"); // Idle ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
+                    controller.ChangeState(new ForgIdleState(controller));
+                    break;
+                default:
+                    controller.rb.velocity = Vector2.zero; // í˜¹ì‹œ ëª¨ë¥¼ ì”ì—¬ ì†ë„ ì œê±°
                     break;
             }
-            hitRecoveryCoroutine = null; // ÄÚ·çÆ¾ ÂüÁ¶ ÇØÁ¦
+            controller.rb.velocity = Vector2.zero;
+            hitRecoveryCoroutine = null; // ì½”ë£¨í‹´ ì°¸ì¡° í•´ì œ
         }
     }
 }

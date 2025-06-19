@@ -145,7 +145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &14298388
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -317,7 +317,6 @@ MonoBehaviour:
   forgShootPoint: {fileID: 0}
   forgProjectilePrefab: {fileID: 0}
   forgProjectileSpeed: 10
-  projectileArcFactor: 5
 --- !u!114 &14298394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,7 +818,6 @@ MonoBehaviour:
   forgShootPoint: {fileID: 67262474}
   forgProjectilePrefab: {fileID: 109656464402566367, guid: bd39614f04f3ca44ca3c694985ed802e, type: 3}
   forgProjectileSpeed: 10
-  projectileArcFactor: 5
 --- !u!114 &178550670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1110,7 +1108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &234181297
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1286,7 +1284,6 @@ MonoBehaviour:
   forgShootPoint: {fileID: 1100216368}
   forgProjectilePrefab: {fileID: 109656464402566367, guid: bd39614f04f3ca44ca3c694985ed802e, type: 3}
   forgProjectileSpeed: 10
-  projectileArcFactor: 5
 --- !u!114 &234181303
 MonoBehaviour:
   m_ObjectHideFlags: 0
