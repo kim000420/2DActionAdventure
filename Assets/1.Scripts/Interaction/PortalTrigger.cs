@@ -1,12 +1,15 @@
 using UnityEngine;
+
 public class PortalTrigger : MonoBehaviour, IInteractable
 {
     [Header("Portal Settings")]
     [SerializeField] private string targetSceneName;
     [SerializeField] private string targetSpawnPointName;
 
-    public void Interact()
+    public void Interact(PlayerStateController controller)
     {
+        controller.RequestStateChange(PlayerState.Interacting);
+
         if (!string.IsNullOrEmpty(targetSceneName) && !string.IsNullOrEmpty(targetSpawnPointName))
         {
             Debug.Log($"[PortalTrigger] 이동: {targetSceneName}, {targetSpawnPointName}");
@@ -16,5 +19,7 @@ public class PortalTrigger : MonoBehaviour, IInteractable
         {
             Debug.LogWarning("[PortalTrigger] 설정값이 비어 있어 이동할 수 없습니다.");
         }
+
+        controller.RequestStateChange(PlayerState.Idle); // 바로 복귀
     }
 }

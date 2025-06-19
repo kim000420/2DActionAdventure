@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class DialogueUIManager : MonoBehaviour
@@ -7,6 +7,8 @@ public class DialogueUIManager : MonoBehaviour
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI dialogueText;
+
+    public System.Action onDialogueEnd;
 
     private DialogueLine[] currentLines;
     private int currentIndex = 0;
@@ -48,5 +50,10 @@ public class DialogueUIManager : MonoBehaviour
     {
         isDialogueActive = false;
         dialoguePanel.SetActive(false);
+
+
+        // 대화 종료 후 콜백 호출
+        onDialogueEnd?.Invoke();
+        onDialogueEnd = null; // 호출 후 초기화 (메모리 안전성)
     }
 }

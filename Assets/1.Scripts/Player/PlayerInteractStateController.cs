@@ -6,6 +6,7 @@ public class PlayerInteractStateController : MonoBehaviour
     [SerializeField] private LayerMask interactableLayer;
 
     private PlayerStateController stateController;
+    private IInteractable currentInteractable;
 
     private void Awake()
     {
@@ -15,31 +16,28 @@ public class PlayerInteractStateController : MonoBehaviour
     private void Update()
     {
         if (!stateController.IsControllable()) return;
-        if (currentPortal != null && Input.GetKeyDown(KeyCode.D))
+
+        if (currentInteractable != null && Input.GetKeyDown(KeyCode.D))
         {
-            stateController.RequestStateChange(PlayerState.Interacting);
-            currentPortal.Interact();
-            stateController.RequestStateChange(PlayerState.Idle);
+            currentInteractable.Interact(stateController);
         }
     }
-    private PortalTrigger currentPortal;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out PortalTrigger portal))
+        if (other.TryGetComponent(out IInteractable interactable))
         {
-            currentPortal = portal;
-            Debug.Log("[Portal] 접근 가능");
+            currentInteractable = interactable;
+            Debug.Log("[Interact] 접근 가능");
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.TryGetComponent(out PortalTrigger portal) && portal == currentPortal)
+        if (other.TryGetComponent(out IInteractable interactable) && interactable == currentInteractable)
         {
-            currentPortal = null;
-            Debug.Log("[Portal] 벗어남");
+            currentInteractable = null;
+            Debug.Log("[Interact] 벗어남");
         }
     }
-
 }

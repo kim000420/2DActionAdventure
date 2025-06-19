@@ -5146,9 +5146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0ac94b38d086246a1b9b1b0a54a060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
+  dialogueLines:
   - speaker: Nunna
-    text: "\u314E\u3147"
+    text: "\u314E\u3147\u3147"
 --- !u!61 &1042280140
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5159,7 +5159,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -5235,7 +5235,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042280138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.49, y: -2.12, z: 0}
+  m_LocalPosition: {x: 3.87, y: -2.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11619,7 +11619,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5451790470900974992, guid: 4127f4488d784d3408fe5f4a7764be9a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5451790470900975004, guid: 4127f4488d784d3408fe5f4a7764be9a, type: 3}
       propertyPath: m_RootOrder
