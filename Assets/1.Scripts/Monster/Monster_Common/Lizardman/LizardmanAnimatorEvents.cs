@@ -63,12 +63,8 @@ namespace CommonMonster.AnimEvents.Lizardman
         // 히트박스를 일정 시간 후 비활성화하는 코루틴 (재사용)
         private IEnumerator DeactivateHitboxAfterDelay(GameObject hitbox, float delay)
         {
-            yield return new WaitForSeconds(delay);
-            if (hitbox != null && hitbox.activeSelf)
-            {
-                hitbox.SetActive(false);
-                Debug.Log($"[LizardmanAnimatorEvents] Hitbox deactivated: {hitbox.name}");
-            }
+            yield return new WaitForSeconds(delay); 
+            hitbox.SetActive(false);
         }
 
         // --- 원거리 공격 (RangedAttackState) 관련 이벤트 ---
@@ -81,9 +77,7 @@ namespace CommonMonster.AnimEvents.Lizardman
                 // CommonMonsterController의 투사체 관련 필드를 전달
                 rangedState.LaunchFireball(
                     controller.forgProjectilePrefab,
-                    controller.forgShootPoint,
-                    controller.forgProjectileSpeed,
-                    controller.projectileArcFactor
+                    controller.forgShootPoint
                 );
             }
         }

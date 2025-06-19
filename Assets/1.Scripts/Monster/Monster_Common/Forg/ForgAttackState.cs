@@ -105,12 +105,6 @@ namespace CommonMonster.States.Forg
             int directionX = x > 0 ? 1 : -1;
             x = Mathf.Abs(x); // x는 항상 양수로 계산
 
-            // g는 Unity의 Physics2D.gravity.y이므로 음수입니다.
-            // 여기서는 중력의 크기만 사용하기 위해 양수로 변환합니다.
-            // 하지만 실제 물리 계산에서는 음수 중력을 사용해야 합니다.
-            // 그래서 수식에 직접 -gravity를 넣어서 양수로 만듭니다.
-            // 혹은 g를 양수로 받은 후, V_y = V0 * sin(theta) + 0.5 * (-g) * t^2 로 바꿔서 사용
-
             // 공식에 맞게 중력 가속도 G는 양수로 정의 (Unity의 Physics2D.gravity.y는 보통 음수)
             float g = Mathf.Abs(gravity);
 
@@ -148,7 +142,7 @@ namespace CommonMonster.States.Forg
             // 공격 쿨타임 시작
             controller.StartAttackCooldown(attackCooldown);
 
-            // 공격 애니메이션이 끝나고 쿨타임이 시작되면 추적 상태로 돌아감
+            // 공격 애니메이션이 끝나고 쿨타임이 시작되면 idle 상태로 돌아감
             controller.ChangeState(new ForgIdleState(controller));
         }
     }

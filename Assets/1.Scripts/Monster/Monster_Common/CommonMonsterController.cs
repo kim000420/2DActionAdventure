@@ -52,7 +52,6 @@ namespace CommonMonster.Controller
         public GameObject forgProjectilePrefab; // Forg 투사체 프리팹
         [Tooltip("Forg 투사체 발사 속도")]
         public float forgProjectileSpeed = 10f;
-        public float projectileArcFactor = 5;
 
         private void Awake()
         {

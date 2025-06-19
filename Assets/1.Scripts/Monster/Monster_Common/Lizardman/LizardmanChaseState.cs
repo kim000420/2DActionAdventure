@@ -15,7 +15,7 @@ namespace CommonMonster.States.Lizardman
             Debug.Log("[LizardmanChaseState] Entering Chase State.");
             // Lizardman의 Run 애니메이션 재생
             // CommonMonsterController의 monsterName을 "Lizardman"으로 설정해야 함
-            controller.animator.Play("Lizardman_Run");
+            controller.animator.Play("Lizardman_Walk");
         }
 
         public override void Execute()
@@ -40,8 +40,6 @@ namespace CommonMonster.States.Lizardman
             }
 
             // 2. 플레이어를 향해 이동 및 방향 전환
-            // CommonMonsterController의 FaceToPlayer()와 moveSpeed를 사용
-            // 플레이어의 x 위치를 기준으로 몬스터의 방향을 설정하고 이동
             float directionToPlayerX = Mathf.Sign(controller.player.position.x - controller.transform.position.x);
             controller.rb.velocity = new Vector2(directionToPlayerX * controller.monsterStats.moveSpeed, controller.rb.velocity.y);
             controller.FaceToPlayer(); // 스프라이트 방향 전환
