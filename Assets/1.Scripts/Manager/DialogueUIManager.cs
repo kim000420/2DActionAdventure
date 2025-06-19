@@ -4,16 +4,31 @@ using TMPro;
 public class DialogueUIManager : MonoBehaviour
 {
     [Header("UI Components")]
-    [SerializeField] private GameObject dialoguePanel;
+    [SerializeField] private GameObject dialoguePanel; // 말풍선 배경
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI dialogueText;
 
+    [SerializeField] private GameObject choiceGroup; // 선택지 영역 (활성/비활성)
+    [SerializeField] private TextMeshProUGUI choiceText1;
+    [SerializeField] private TextMeshProUGUI choiceText2;
+    private int selectedIndex = 0;
+    [Header("Speech Bubble")]
+    [SerializeField] private GameObject speechBubbleObject;       // 씬에 존재하는 말풍선 오브젝트
+    [SerializeField] private TextMeshProUGUI speechBubbleText;
+
     public System.Action onDialogueEnd;
 
-    private DialogueLine[] currentLines;
-    private int currentIndex = 0;
-
+    private DialogueEntry[] currentLines;
+    public int currentIndex;
     private bool isDialogueActive = false;
+    private bool isBusy = false;
+
+    private void Awake()
+    {
+        dialoguePanel.SetActive(false);
+        if (speechBubbleObject != null)
+            speechBubbleObject.SetActive(false);
+    }
 
     private void Update()
     {
@@ -23,10 +38,12 @@ public class DialogueUIManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(DialogueLine[] lines)
+    public void StartDialogue(DialogueEntry[] lines, Transform _)
     {
+        if (isBusy) return;
+        isBusy = true;
         currentLines = lines;
-        currentIndex = 0;
+        currentIndex = -1;
         isDialogueActive = true;
         dialoguePanel.SetActive(true);
 
@@ -41,9 +58,11 @@ public class DialogueUIManager : MonoBehaviour
             return;
         }
 
-        nameText.text = currentLines[currentIndex].speaker;
-        dialogueText.text = currentLines[currentIndex].text;
-        currentIndex++;
+        var line = currentLines[currentIndex++];
+        nameText.text = $"[{line.speaker}]";
+        dialogueText.text = line.text;
+
+        ShowBubbleAt(line.positionTarget, line.text);
     }
 
     public void EndDialogue()
@@ -51,9 +70,33 @@ public class DialogueUIManager : MonoBehaviour
         isDialogueActive = false;
         dialoguePanel.SetActive(false);
 
+        if (speechBubbleObject != null)
+            speechBubbleObject.SetActive(false);
 
-        // 대화 종료 후 콜백 호출
         onDialogueEnd?.Invoke();
-        onDialogueEnd = null; // 호출 후 초기화 (메모리 안전성)
+        onDialogueEnd = null;
+
+        isBusy = false;
+    }
+
+    private void ShowBubbleAt(string targetName, string text)
+    {
+        GameObject target = GameObject.Find(targetName);
+        if (target == null)
+        {
+            Debug.LogWarning($"[DialogueUI] '{targetName}'을 찾을 수 없습니다.");
+            return;
+        }
+
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(target.transform.position);
+
+        if (speechBubbleObject != null)
+        {
+            speechBubbleObject.transform.position = screenPos;
+            speechBubbleObject.SetActive(true);
+
+            if (speechBubbleText != null)
+                speechBubbleText.text = text;
+        }
     }
 }

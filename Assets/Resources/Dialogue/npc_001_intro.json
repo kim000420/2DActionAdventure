@@ -1,0 +1,22 @@
+{
+  "lines": [
+    {
+      "speaker": "엘리",
+      "speakerId": "NPC_Nunna",
+      "text": "처음 보는 얼굴이네?",
+      "positionTarget": "NPC_Nunna/HeadAnchor"
+    },
+    {
+      "speaker": "엘리",
+      "speakerId": "NPC_Nunna",
+      "text": "이 마을에 온 걸 환영해!",
+      "positionTarget": "NPC_Nunna/HeadAnchor"
+    },
+    {
+      "speaker": "나",
+      "speakerId": "player",
+      "text": "고마워. 무사히 도착했어.",
+      "positionTarget": "Player/HeadAnchor"
+    }
+  ]
+}

@@ -22,7 +22,7 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
         }
 
         var ui = GameManager.Instance.GetComponent<DialogueUIManager>();
-        ui.StartDialogue(data.lines);
+        ui.StartDialogue(data.lines, this.transform);
         ui.onDialogueEnd = () =>
         {
             controller.RequestStateChange(PlayerState.Idle);

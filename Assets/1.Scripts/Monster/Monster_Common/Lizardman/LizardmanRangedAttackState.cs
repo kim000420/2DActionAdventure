@@ -9,7 +9,6 @@ namespace CommonMonster.States.Lizardman
 {
     public class LizardmanRangedAttackState : BaseMonsterState
     {
-        private bool isPerformingJumpAttack = false;
         private Coroutine jumpAttackCoroutine;
 
         [Header("Fireball Settings")] // Fireball 관련 설정 ⭐
@@ -29,14 +28,12 @@ namespace CommonMonster.States.Lizardman
             if (Random.value < 0.5f)
             {
                 Debug.Log("[LizardmanRangedAttackState] Performing Fireball Attack.");
-                controller.animator.Play("Lizardman_Fireball"); // Fireball 애니메이션 재생
-                isPerformingJumpAttack = false;
+                controller.animator.Play("Lizardman_Fireball"); // Fireball 애니메이션 재생\
             }
             else
             {
                 Debug.Log("[LizardmanRangedAttackState] Performing Jump Attack.");
                 jumpAttackCoroutine = controller.StartCoroutine(HandleJumpAttackRoutine());
-                isPerformingJumpAttack = true;
             }
         }
 
@@ -52,8 +49,6 @@ namespace CommonMonster.States.Lizardman
         public override void Exit()
         {
             Debug.Log("[LizardmanRangedAttackState] Exiting Ranged Attack State.");
-
-            isPerformingJumpAttack = false;
 
             if (jumpAttackCoroutine != null)
             {

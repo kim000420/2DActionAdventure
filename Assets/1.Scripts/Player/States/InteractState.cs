@@ -7,7 +7,10 @@ public class InteractState : IPlayerState
     {
         Debug.Log("[State] Enter Interact");
         // 상호작용 애니메이션 트리거 등
-        // controller.Animator.SetTrigger("Interact");  (있다면)
+        if (controller.TryGetComponent(out Rigidbody2D rb))
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
     public void Update(PlayerStateController controller)
