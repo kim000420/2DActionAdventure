@@ -1,0 +1,58 @@
+{
+  "lines": [
+    {
+      "speaker": "[수상한 외부인]",
+      "speakerId": "NPC_Webuin",
+      "text": "윽....",
+      "positionTarget": "NPC_Webuin/HeadAnchor"
+    },
+    {
+      "speaker": "[수상한 외부인]",
+      "speakerId": "NPC_Webuin",
+      "text": "죽는줄 알았네",
+      "positionTarget": "NPC_Webuin/HeadAnchor"
+    },
+    {
+      "speaker": "[수상한 외부인]",
+      "speakerId": "NPC_Webuin",
+      "text": "니가 오기전에 추적자가 날 죽이러 왔었어",
+      "positionTarget": "NPC_Webuin/HeadAnchor"
+    },
+    {
+      "speaker": "[수상한 외부인]",
+      "speakerId": "NPC_Webuin",
+      "text": "이제부터 나는 숨어 다닐꺼야",
+      "positionTarget": "NPC_Webuin/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "그러면 정보는 언제 주고받게?",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "[수상한 외부인]",
+      "speakerId": "NPC_Webuin",
+      "text": "어차피 종종 만나게 될꺼야",
+      "positionTarget": "NPC_Webuin/HeadAnchor"
+    },
+    {
+      "speaker": "[수상한 외부인]",
+      "speakerId": "NPC_Webuin",
+      "text": "가기전에 정보를 하나 주자면, 가기쉬른 강가 근처에서\n이상한 소리가 난다고 들었어.",
+      "positionTarget": "NPC_Webuin/HeadAnchor"
+    },
+    {
+      "speaker": "[수상한 외부인]",
+      "speakerId": "NPC_Webuin",
+      "text": "어쩌면 그곳에 발전기가 있을지도 몰라 \n그곳을 한번 조사해줘",
+      "positionTarget": "NPC_Webuin/HeadAnchor"
+    },
+    {
+      "speaker": "[수상한 외부인]",
+      "speakerId": "NPC_Webuin",
+      "text": "어쨌든 난 간다. 몸 조심해",
+      "positionTarget": "NPC_Webuin/HeadAnchor"
+    }
+  ]
+}

@@ -888,7 +888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   conditionalDialogues:
   - conditionKey: Default
-    dialoguePath: 
+    dialoguePath: Dialogue/MainStroy_001.json
 --- !u!61 &6897421435031312029
 BoxCollider2D:
   m_ObjectHideFlags: 0

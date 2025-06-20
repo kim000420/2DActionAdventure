@@ -1,0 +1,34 @@
+{
+  "lines": [
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "이번 상대는 활잽이로군",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "당연한 얘기지만, 멀어지면 불리하다.\n멀어질 틈을 주지마",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "아까 배운 것들을 적극 활용해서 전투에 임해라!",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[길드마스터]",
+      "speakerId": "NPC_GuildMaster",
+      "text": "본선 4조 대련을 시작하겠다.",
+      "positionTarget": "NPC_GuildMaster/HeadAnchor"
+    },
+    {
+      "speaker": "[길드마스터]",
+      "speakerId": "NPC_GuildMaster",
+      "text": "시   작!",
+      "positionTarget": "NPC_GuildMaster/HeadAnchor"
+    }
+  ]
+}

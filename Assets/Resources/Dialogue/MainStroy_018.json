@@ -1,0 +1,58 @@
+{
+  "lines": [
+    {
+      "speaker": "[엄마]",
+      "speakerId": "NPC_Mom",
+      "text": "준용아!",
+      "positionTarget": "NPC_Mom/HeadAnchor"
+    },
+    {
+      "speaker": "[엄마]",
+      "speakerId": "NPC_Mom",
+      "text": "요즘 마을 밖에 몬스터들이 나와 위험하다는구나",
+      "positionTarget": "NPC_Mom/HeadAnchor"
+    },
+    {
+      "speaker": "[엄마]",
+      "speakerId": "NPC_Mom",
+      "text": "마을 밖으로 나갈 일 생기거든\n몸 조심하렴",
+      "positionTarget": "NPC_Mom/HeadAnchor"
+    },
+    {
+      "speaker": "[엄마]",
+      "speakerId": "NPC_Mom",
+      "text": "참, 그리고...",
+      "positionTarget": "NPC_Mom/HeadAnchor"
+    },
+    {
+      "speaker": "[엄마]",
+      "speakerId": "NPC_Mom",
+      "text": "받으렴",
+      "positionTarget": "NPC_Mom/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "(계란말이를 받았다.)",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "[엄마]",
+      "speakerId": "NPC_Mom",
+      "text": "오랜만에 만들어 봤는데",
+      "positionTarget": "NPC_Mom/HeadAnchor"
+    },
+    {
+      "speaker": "[엄마]",
+      "speakerId": "NPC_Mom",
+      "text": "배고플때 먹도록 하렴",
+      "positionTarget": "NPC_Mom/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "('E'를 이용해 음식을 먹을 수 있다.)",
+      "positionTarget": "Player/HeadAnchor"
+    }
+  ]
+}

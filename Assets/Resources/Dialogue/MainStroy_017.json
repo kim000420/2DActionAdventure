@@ -1,0 +1,40 @@
+{
+  "lines": [
+    {
+      "speaker": "[엄마]",
+      "speakerId": "NPC_Mom",
+      "text": "토너먼트는 어떻게 됐어?\n몇 등 했니?",
+      "positionTarget": "NPC_Mom/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "우승 했어요!",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "[엄마]",
+      "speakerId": "NPC_Mom",
+      "text": "와, 우승이라고?",
+      "positionTarget": "NPC_Mom/HeadAnchor"
+    },
+    {
+      "speaker": "[엄마]",
+      "speakerId": "NPC_Mom",
+      "text": "이럴 줄 알았으면 구경이나 하러 갔을텐데!",
+      "positionTarget": "NPC_Mom/HeadAnchor"
+    },
+    {
+      "speaker": "[엄마]",
+      "speakerId": "NPC_Mom",
+      "text": "너도 이제 할배리스 길드 소속이 되겠구나",
+      "positionTarget": "NPC_Mom/HeadAnchor"
+    },
+    {
+      "speaker": "[엄마]",
+      "speakerId": "NPC_Mom",
+      "text": "너무 무리하진 말고,\n오늘은 피곤할테니 푹 쉬렴",
+      "positionTarget": "NPC_Mom/HeadAnchor"
+    }
+  ]
+}

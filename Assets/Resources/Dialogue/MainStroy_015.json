@@ -1,0 +1,46 @@
+{
+  "lines": [
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "조준용!",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "우승 축하한다!\n역시 니가 해낼 줄 알았어!",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "속이 다 시원하더구나! 으하하하핳하",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "어? 물론 내가 가르친 수습생이 \n토너먼트에서 우승해서 좋다는 뜻이지",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "절대 Dok2가 된통 당하는 꼴을 봐서 \n시원하다는게 아니야",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "...",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "어쨌든 오늘 고생 많았다.\n오늘은 집에가서 푹 쉬거라",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    }
+  ]
+}

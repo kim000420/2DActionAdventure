@@ -1,0 +1,82 @@
+{
+  "lines": [
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "첫 시합치곤 괜찮았다.",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "약속대로 전투의 기본을 알려주도록 하지,\n간단하니 어렵지 않게 익힐 수 있을거다.",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "우선 첫번째!\n가드다!",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "가드중엔 공격을 당해도 생명력이 깍이지 않지,\n대신 상대방의 공격력 만큼 스테미나가 감소한다.",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "물론 가드가 만능은 아니야, 언젠가 만나게 될 적들 중엔\n가드가 불가능한 공격을 하는 경우도 존재한다!",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "가드를 사용하는 요령은...\n'↑'키를 누르고 있는 것이다.",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "두번째는 회피다!",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "앞서 말했듯이 가드는 만능이 아니다!\n막을 수 없는 공격도 있다는 얘기야.",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "그럴땐 앉아 숙이거나, 굴러서\n상대방의 뒤로 넘어가 피할 수 있다!",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "앉기를 사용하는 요령은...\n'↓'키를 누르고 있는 것이다.",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "구르기는 그냥 달리는 도중\n앉으면 발동된다.",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "시간이 됐으니 교육은 이쯤 하도록 하고..\n시험장으로 가보도록 해라.",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "니가 이번 토너먼트에서\n'Dok2'랑 맞붙기를 기대하고 있으마",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    }
+  ]
+}

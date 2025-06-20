@@ -1,0 +1,46 @@
+{
+  "lines": [
+    {
+      "speaker": "[엄마]",
+      "speakerId": "NPC_Mom",
+      "text": "아침부터 어딜 그렇게 급하게 가는거니?\n아침인사 정도는 해야지",
+      "positionTarget": "NPC_Mom/HeadAnchor"
+    },
+    {
+      "speaker": "[엄마]",
+      "speakerId": "NPC_Mom",
+      "text": "...아 참!",
+      "positionTarget": "NPC_Mom/HeadAnchor"
+    },
+    {
+      "speaker": "[엄마]",
+      "speakerId": "NPC_Mom",
+      "text": "오늘이 길드 토너먼트 날이구나.",
+      "positionTarget": "NPC_Mom/HeadAnchor"
+    },
+    {
+      "speaker": "[엄마]",
+      "speakerId": "NPC_Mom",
+      "text": "시간이 벌써 그렇게 됐네.\n엄마가 응원하러 갈까?",
+      "positionTarget": "NPC_Mom/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "...",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "[엄마]",
+      "speakerId": "NPC_Mom",
+      "text": "뭐? 됐다구?\n단호하네 ㅎㅎ단호박인줄",
+      "positionTarget": "NPC_Mom/HeadAnchor"
+    },
+    {
+      "speaker": "[엄마]",
+      "speakerId": "NPC_Mom",
+      "text": "알겠으니 조심히 다녀오렴.",
+      "positionTarget": "NPC_Mom/HeadAnchor"
+    }
+  ]
+}

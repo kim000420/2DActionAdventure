@@ -1,0 +1,94 @@
+{
+  "lines": [
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "이번 상대는 Dok2다",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "Dok2는 맷집이 존나쌔다!\n체력이 엄청나지!",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "일반적인 공격은 잘 안먹히겠지만 저런 갑옷을\n입고있으면 언젠가 지쳐 쓰러지기 마련이다.",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "그때를 노려 극딜을 해 이자식아!!",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "...",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "...",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "후후 드디어 너랑 Dok2가 붙는구나!",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "너라면 이길 수 있을거다!\n...아니, 이겨야만 해.",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "엉? 왜이리 Dok2를 싫어하냐고?",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "저새낀 뭔가... 싸가지가 없어\n날 봐도 인사를 안한다니까",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "교관인 내가 수습생을 줘팰순 없으니\n날 대신해서 니가 혼쭐을 내줘라!!!!!!!!!!!!",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "(꼰대새끼...)",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "[길드마스터]",
+      "speakerId": "NPC_GuildMaster",
+      "text": "둘 다 결승까지 올라오느라 수고 많았다!",
+      "positionTarget": "NPC_GuildMaster/HeadAnchor"
+    },
+    {
+      "speaker": "[길드마스터]",
+      "speakerId": "NPC_GuildMaster",
+      "text": "이제 결승을 시작하겠다!",
+      "positionTarget": "NPC_GuildMaster/HeadAnchor"
+    },
+    {
+      "speaker": "[길드마스터]",
+      "speakerId": "NPC_GuildMaster",
+      "text": "시   작!",
+      "positionTarget": "NPC_GuildMaster/HeadAnchor"
+    }
+  ]
+}

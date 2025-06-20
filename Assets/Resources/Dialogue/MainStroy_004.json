@@ -1,0 +1,34 @@
+{
+  "lines": [
+    {
+      "speaker": "[안내맨]",
+      "speakerId": "NPC_Tellguy",
+      "text": "오 드디어 왔네",
+      "positionTarget": "NPC_Tellguy/HeadAnchor"
+    },
+    {
+      "speaker": "[안내맨]",
+      "speakerId": "NPC_Tellguy",
+      "text": "게시판 가서 대진표 확인하고 와",
+      "positionTarget": "NPC_Tellguy/HeadAnchor"
+    },
+    {
+      "speaker": "[안내맨]",
+      "speakerId": "NPC_Tellguy",
+      "text": "대진표 확인 했어?",
+      "positionTarget": "NPC_Tellguy/HeadAnchor"
+    },
+    {
+      "speaker": "[안내맨]",
+      "speakerId": "NPC_Tellguy",
+      "text": "다들 이미 대련장에 있다.\n곧 니차례니까 준비해",
+      "positionTarget": "NPC_Tellguy/HeadAnchor"
+    },
+    {
+      "speaker": "[안내맨]",
+      "speakerId": "NPC_Tellguy",
+      "text": "얼른 대련장으로 가라",
+      "positionTarget": "NPC_Tellguy/HeadAnchor"
+    }
+  ]
+}

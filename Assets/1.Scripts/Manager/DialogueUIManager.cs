@@ -84,7 +84,8 @@ public class DialogueUIManager : MonoBehaviour
             return;
         }
 
-        var line = currentLines[currentIndex++];
+        var line = currentLines[currentIndex]; 
+        currentIndex++;
         if (line.choices != null && line.choices.Length == 2)
         {
             dialoguePanel.SetActive(false);

@@ -1,0 +1,16 @@
+{
+  "lines": [
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "늦었군 조준용",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "어서 가서 출첵해라",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    }
+  ]
+}

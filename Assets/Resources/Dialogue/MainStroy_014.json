@@ -1,0 +1,34 @@
+{
+  "lines": [
+    {
+      "speaker": "[길드마스터]",
+      "speakerId": "NPC_GuildMaster",
+      "text": "제 14회 길드 승급 토너먼트의 우승자는...\n조준용!",
+      "positionTarget": "NPC_GuildMaster/HeadAnchor"
+    },
+    {
+      "speaker": "[길드마스터]",
+      "speakerId": "NPC_GuildMaster",
+      "text": "음, 정말 멋진 실력이었다.\n수습생이라곤 상상도 못하겠군",
+      "positionTarget": "NPC_GuildMaster/HeadAnchor"
+    },
+    {
+      "speaker": "[길드마스터]",
+      "speakerId": "NPC_GuildMaster",
+      "text": "그 어리숙해 보이던 꼬맹이가\n철용성이라 불리는 Dok2를 이길 줄이야!",
+      "positionTarget": "NPC_GuildMaster/HeadAnchor"
+    },
+    {
+      "speaker": "[길드마스터]",
+      "speakerId": "NPC_GuildMaster",
+      "text": "다시한번 축하한다.\n너도 이제 정식으로 우리 길드원이야",
+      "positionTarget": "NPC_GuildMaster/HeadAnchor"
+    },
+    {
+      "speaker": "[길드마스터]",
+      "speakerId": "NPC_GuildMaster",
+      "text": "오늘은 피곤할테니 집에 가서 쉬어라.\n아직 3,4위전이 남았으니 결과는 내일 게시판에 걸어두마.",
+      "positionTarget": "NPC_GuildMaster/HeadAnchor"
+    }
+  ]
+}

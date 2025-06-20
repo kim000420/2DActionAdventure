@@ -1,0 +1,113 @@
+{
+  "lines": [
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "몇번 이겼다고 자만하면 안된다!",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "이렇게 말은 해도 나도 너한테 엄청 기대하고 있으니까",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "'Dok2'보다는 제대로 된 놈 같다는 말이지\n뭐..., 실력은 조금 못따라가지만",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "이번엔 새로운 기술을 알려주마.\n발차기 라는 것이다.",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "후후.. 처음 듣겠지?",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "이 기술은 모아둔 힘을 발 끝에 모아\n힘껏 내지르는 기술이다.",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "총 3번까지 연속으로 사용하며\n강한 데미지와 그로기데미지를 줄 수 있지!",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "알고있는데...\n모르는척 하자",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "'발차기'는 'Q'를 눌러 사용할 수 있다.",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "스테미너를 많이 쓰니까 조심하자.",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "다음으로 서브웨펀이다.",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "장착한 무기 마다 다른 효과를 가지고 있지.",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "특정 상황마다 효과적인 서브 웨펀을 사용한다면\n전투에서 불필요한 체력 소모를 줄일 수 있을거다!",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "그리고...,\n너 돈 많냐?",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "그렇지 않다면 서브웨펀을\n마구마구 사용하는건 어려울꺼다!",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "필요한 상황에 적절히 사용하도록 해라!",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "서브웨펀을 사용하는 요령은...\n'W'를 눌러 사용 할 수 있다!",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "바로 다음 시함이 시작될 것 같군,\n어서 가서 준비해라.",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    }
+  ]
+}
+`

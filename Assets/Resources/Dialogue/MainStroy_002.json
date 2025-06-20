@@ -1,0 +1,16 @@
+{
+  "lines": [
+    {
+      "speaker": "[수상한 외부인]",
+      "speakerId": "NPC_Webuin",
+      "text": "이런... 목격자가 있으면 위험한데.",
+      "positionTarget": "NPC_Webuin/HeadAnchor"
+    },
+    {
+      "speaker": "[수상한 외부인]",
+      "speakerId": "NPC_Webuin",
+      "text": "큭큭! 미안하지만 죽어줘야겠다!",
+      "positionTarget": "NPC_Webuin/HeadAnchor"
+    }
+  ]
+}
