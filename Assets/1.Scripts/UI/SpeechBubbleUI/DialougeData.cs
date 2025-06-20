@@ -12,4 +12,5 @@ public class DialogueEntry
     public string text;
     public string positionTarget;
     public string[] choices;
+    public string[] choiceEvents;
 }

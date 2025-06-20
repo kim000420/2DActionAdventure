@@ -1,0 +1,16 @@
+{
+  "lines": [
+    {
+      "speaker": "엘리",
+      "text": "유어 웰컴 (너는 잘 오다)",
+      "positionTarget": "NPC_Nunna/HeadAnchor",
+      "choices": [ "[ 길이나 안내해 ]", "[ 에효.. ]" ],
+      "choiceEvents": [ "ExploreStart", "ExploreSkip" ]
+    },
+    {
+      "speaker": "엘리",
+      "text": "좋아! 내가 길을 안내해줄게.",
+      "positionTarget": "NPC_Nunna/HeadAnchor"
+    }
+  ]
+}

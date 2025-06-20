@@ -5,13 +5,19 @@ public class DialogueUIManager : MonoBehaviour
 {
     [Header("UI Components")]
     [SerializeField] private GameObject dialoguePanel; // 말풍선 배경
-    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI D_nameText;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    
+    [Header("Choice UI")]
+    
+    [SerializeField] private GameObject choicePanel;
+    [SerializeField] private TextMeshProUGUI C_nameText;// 🔸 선택지 전체 Panel
+    [SerializeField] private TextMeshProUGUI askText;            // 🔸 질문 텍스트
+    [SerializeField] private TextMeshProUGUI choiceTextA;        // 🔸 왼쪽 선택지
+    [SerializeField] private TextMeshProUGUI choiceTextB;        // 🔸 오른쪽 선택지
 
-    [SerializeField] private GameObject choiceGroup; // 선택지 영역 (활성/비활성)
-    [SerializeField] private TextMeshProUGUI choiceText1;
-    [SerializeField] private TextMeshProUGUI choiceText2;
-    private int selectedIndex = 0;
+    private int selectedIndex = 0;                               // 🔸 현재 선택 중인 항목 (0 또는 1)
+
     [Header("Speech Bubble")]
     [SerializeField] private GameObject speechBubbleObject;       // 씬에 존재하는 말풍선 오브젝트
     [SerializeField] private TextMeshProUGUI speechBubbleText;
@@ -32,7 +38,27 @@ public class DialogueUIManager : MonoBehaviour
 
     private void Update()
     {
-        if (isDialogueActive && Input.GetKeyDown(KeyCode.D))
+        if (!isDialogueActive) return;
+
+        // 🔸 선택지 상태 입력 처리
+        if (choicePanel.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                selectedIndex = 0;
+                UpdateChoiceVisual();
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                selectedIndex = 1;
+                UpdateChoiceVisual();
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                HandleChoiceSelection();
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
         {
             ShowNextLine();
         }
@@ -59,10 +85,30 @@ public class DialogueUIManager : MonoBehaviour
         }
 
         var line = currentLines[currentIndex++];
-        nameText.text = $"[{line.speaker}]";
-        dialogueText.text = line.text;
+        if (line.choices != null && line.choices.Length == 2)
+        {
+            dialoguePanel.SetActive(false);
+            choicePanel.SetActive(true);
 
-        ShowBubbleAt(line.positionTarget, line.text);
+            selectedIndex = 0;
+
+            C_nameText.text = $"[{line.speaker}]";  // 선택지에도 화자 표시
+            askText.text = line.text;
+            choiceTextA.text = line.choices[0];
+            choiceTextB.text = line.choices[1];
+
+            UpdateChoiceVisual();
+        }
+        else
+        {
+            dialoguePanel.SetActive(true);
+            choicePanel.SetActive(false);
+
+            D_nameText.text = $"[{line.speaker}]";
+            dialogueText.text = line.text;
+
+            ShowBubbleAt(line.positionTarget, line.text);
+        }
     }
 
     public void EndDialogue()
@@ -99,4 +145,30 @@ public class DialogueUIManager : MonoBehaviour
                 speechBubbleText.text = text;
         }
     }
+    private void UpdateChoiceVisual()
+    {
+        // 글씨 굵기 + 색상 예시 (선택된 항목 강조)
+        choiceTextA.fontStyle = selectedIndex == 0 ? FontStyles.Bold : FontStyles.Normal;
+        choiceTextB.fontStyle = selectedIndex == 1 ? FontStyles.Bold : FontStyles.Normal;
+
+        choiceTextA.color = selectedIndex == 0 ? Color.white : Color.gray;
+        choiceTextB.color = selectedIndex == 1 ? Color.white : Color.gray;
+    }
+    private void HandleChoiceSelection()
+    {
+        Debug.Log($"선택한 항목: {selectedIndex} - {currentLines[currentIndex].choices[selectedIndex]}");
+        
+        var entry = currentLines[currentIndex];
+
+        // 🔸 선택된 이벤트 ID 실행
+        if (entry.choiceEvents != null && selectedIndex < entry.choiceEvents.Length)
+        {
+            string eventId = entry.choiceEvents[selectedIndex];
+            DialogueEventManager.Instance?.Trigger(eventId);
+        }
+
+        choicePanel.SetActive(false);
+        ShowNextLine(); // 다음 대사로 진행
+    }
+
 }
