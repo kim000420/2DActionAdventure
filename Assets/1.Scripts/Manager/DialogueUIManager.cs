@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityEditor.IMGUI.Controls;
+using System.Collections;
 
 public class DialogueUIManager : MonoBehaviour
 {
@@ -78,6 +79,7 @@ public class DialogueUIManager : MonoBehaviour
         dialoguePanel.SetActive(true);
 
         onEndEventId = null;
+        activeBranchId = null;
 
         ShowNextLine();
     }
@@ -86,17 +88,23 @@ public class DialogueUIManager : MonoBehaviour
     {
         currentIndex++;
 
+        Debug.Log($"[Dialogue] ShowNextLine → Index: {currentIndex}, ActiveBranch: {activeBranchId}");
+
         //  분기 조건에 맞는 다음 라인 찾기
         while (currentIndex < currentLines.Length)
         {
             var line = currentLines[currentIndex];
 
+            Debug.Log($"[Dialogue] Checking line {currentIndex} (branchId: {line.branchId})");
+
             bool isBranchMatch =
-                    string.IsNullOrEmpty(line.branchId) || // 일반 대사
+                    string.IsNullOrEmpty(line.branchId) && activeBranchId == null || // 일반 대사
                     (activeBranchId != null && line.branchId == activeBranchId); // 선택지 분기 대사
 
             if (isBranchMatch)
                 break;
+
+            currentIndex++;
         }
 
         if (currentIndex >= currentLines.Length)
@@ -208,12 +216,16 @@ public class DialogueUIManager : MonoBehaviour
         }
 
         choicePanel.SetActive(false);
-        ShowNextLine(); // 다음 대사로 진행
+        StartCoroutine(ContinueAfterChoiceDelay());
     }
     public void SetOnEndEvent(string eventId)
     {
         onEndEventId = eventId;
     }
 
-
+    private IEnumerator ContinueAfterChoiceDelay()
+    {
+        yield return new WaitForSeconds(0.25f); // 0.2~0.5s 추천
+        ShowNextLine();
+    }
 }

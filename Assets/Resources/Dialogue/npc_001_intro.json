@@ -3,10 +3,21 @@
     {
       "speaker": "엘리",
       "speakerId": "NPC_Nunna",
-      "text": "유어 웰컴 (너는 잘 오다)",
+      "text": "안녕1111111?",
+      "positionTarget": "NPC_Nunna/HeadAnchor"
+    },
+    {
+      "speaker": "엘리",
+      "speakerId": "NPC_Nunna",
+      "text": "안녕22222?",
+      "positionTarget": "NPC_Nunna/HeadAnchor"
+    },
+    {
+      "speaker": "엘리",
+      "speakerId": "NPC_Nunna",
       "positionTarget": "NPC_Nunna/HeadAnchor",
       "choices": [ "[ 길이나 안내해 ]", "[ 에효.. ]" ],
-      "choiceEvents": [ "", "ExploreSkip" ],
+      "choiceEvents": [ null, "ExploreSkip" ],
       "branchIds": [ "Branch_Yes", "Branch_No" ]
     },
 
