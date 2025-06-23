@@ -5438,8 +5438,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   conditionalDialogues:
-  - conditionKey: 
-    dialoguePath: 
+  - conditionKey: Default
+    dialoguePath: Dialogue/MainStory_001
   - conditionKey: 
     dialoguePath: 
 --- !u!61 &1042280140
