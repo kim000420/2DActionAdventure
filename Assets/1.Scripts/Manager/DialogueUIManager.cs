@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEditor.IMGUI.Controls;
 
 public class DialogueUIManager : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class DialogueUIManager : MonoBehaviour
     public System.Action onDialogueEnd;
 
     private DialogueEntry[] currentLines;
+    public string onEndEventId; // 대화 종료 후 실행할 트리거 ID
+    public string activeBranchId = null; // 현재 진행중인 분기 ID
+
     public int currentIndex;
     private bool isDialogueActive = false;
     private bool isBusy = false;
@@ -73,30 +77,48 @@ public class DialogueUIManager : MonoBehaviour
         isDialogueActive = true;
         dialoguePanel.SetActive(true);
 
+        onEndEventId = null;
+
         ShowNextLine();
     }
 
     private void ShowNextLine()
     {
+        currentIndex++;
+
+        //  분기 조건에 맞는 다음 라인 찾기
+        while (currentIndex < currentLines.Length)
+        {
+            var line = currentLines[currentIndex];
+
+            bool isBranchMatch =
+                    string.IsNullOrEmpty(line.branchId) || // 일반 대사
+                    (activeBranchId != null && line.branchId == activeBranchId); // 선택지 분기 대사
+
+            if (isBranchMatch)
+                break;
+        }
+
         if (currentIndex >= currentLines.Length)
         {
             EndDialogue();
             return;
         }
 
-        var line = currentLines[currentIndex]; 
-        currentIndex++;
-        if (line.choices != null && line.choices.Length == 2)
+
+        var entry = currentLines[currentIndex];
+
+        if (entry.choices != null && entry.choices.Length == 2)
         {
             dialoguePanel.SetActive(false);
             choicePanel.SetActive(true);
 
             selectedIndex = 0;
 
-            C_nameText.text = $"[{line.speaker}]";  // 선택지에도 화자 표시
-            askText.text = line.text;
-            choiceTextA.text = line.choices[0];
-            choiceTextB.text = line.choices[1];
+            C_nameText.text = $"[{entry.speaker}]";  // 선택지에도 화자 표시
+            askText.text = entry.text;
+            choiceTextA.text = entry.choices[0];
+            choiceTextB.text = entry.choices[1];
 
             UpdateChoiceVisual();
         }
@@ -105,10 +127,10 @@ public class DialogueUIManager : MonoBehaviour
             dialoguePanel.SetActive(true);
             choicePanel.SetActive(false);
 
-            D_nameText.text = $"[{line.speaker}]";
-            dialogueText.text = line.text;
+            D_nameText.text = $"[{entry.speaker}]";
+            dialogueText.text = entry.text;
 
-            ShowBubbleAt(line.positionTarget, line.text);
+            ShowBubbleAt(entry.positionTarget, entry.text);
         }
     }
 
@@ -124,6 +146,11 @@ public class DialogueUIManager : MonoBehaviour
         onDialogueEnd = null;
 
         isBusy = false;
+
+        if (!string.IsNullOrEmpty(onEndEventId))
+        {
+            DialogueEventManager.Instance?.Trigger(onEndEventId);
+        }
     }
 
     private void ShowBubbleAt(string targetName, string text)
@@ -157,19 +184,36 @@ public class DialogueUIManager : MonoBehaviour
     }
     private void HandleChoiceSelection()
     {
-        Debug.Log($"선택한 항목: {selectedIndex} - {currentLines[currentIndex].choices[selectedIndex]}");
-        
+        if (currentLines == null || currentIndex >= currentLines.Length)
+        {
+            Debug.LogWarning("[Dialogue] 잘못된 선택지 처리 시도");
+            return;
+        }
+
         var entry = currentLines[currentIndex];
 
-        // 🔸 선택된 이벤트 ID 실행
+        Debug.Log($"선택한 항목: {selectedIndex} - {entry.choices[selectedIndex]}");
+
+        // 트리거 실행
         if (entry.choiceEvents != null && selectedIndex < entry.choiceEvents.Length)
         {
             string eventId = entry.choiceEvents[selectedIndex];
             DialogueEventManager.Instance?.Trigger(eventId);
         }
 
+        // 분기 지정
+        if (entry.branchIds != null && selectedIndex < entry.branchIds.Length)
+        {
+            activeBranchId = entry.branchIds[selectedIndex];
+        }
+
         choicePanel.SetActive(false);
         ShowNextLine(); // 다음 대사로 진행
     }
+    public void SetOnEndEvent(string eventId)
+    {
+        onEndEventId = eventId;
+    }
+
 
 }

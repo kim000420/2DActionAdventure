@@ -3,20 +3,34 @@
     {
       "speaker": "엘리",
       "speakerId": "NPC_Nunna",
-      "text": "처음 보는 얼굴이네?",
-      "positionTarget": "NPC_Nunna/HeadAnchor"
+      "text": "유어 웰컴 (너는 잘 오다)",
+      "positionTarget": "NPC_Nunna/HeadAnchor",
+      "choices": [ "[ 길이나 안내해 ]", "[ 에효.. ]" ],
+      "choiceEvents": [ "", "ExploreSkip" ],
+      "branchIds": [ "Branch_Yes", "Branch_No" ]
     },
+
     {
+      "branchId": "Branch_Yes",
       "speaker": "엘리",
       "speakerId": "NPC_Nunna",
-      "text": "이 마을에 온 걸 환영해!",
+      "text": "그래!",
+      "positionTarget": "NPC_Nunna/HeadAnchor"
+    },
+
+    {
+      "branchId": "Branch_No",
+      "speaker": "엘리",
+      "speakerId": "NPC_Nunna",
+      "text": "하.. 역시 시골에서 왔구나?",
       "positionTarget": "NPC_Nunna/HeadAnchor"
     },
     {
-      "speaker": "나",
-      "speakerId": "player",
-      "text": "고마워. 무사히 도착했어.",
-      "positionTarget": "Player/HeadAnchor"
+      "branchId": "Branch_No",
+      "speaker": "엘리",
+      "speakerId": "NPC_Nunna",
+      "text": "에휴.. 따라오긴 해.",
+      "positionTarget": "NPC_Nunna/HeadAnchor"
     }
   ]
 }

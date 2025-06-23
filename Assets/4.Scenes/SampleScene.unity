@@ -2660,7 +2660,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &510973933
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3923,7 +3923,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &705254025
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4478,11 +4478,12 @@ GameObject:
   m_Component:
   - component: {fileID: 846956230}
   - component: {fileID: 846956231}
+  - component: {fileID: 846956237}
+  - component: {fileID: 846956235}
   - component: {fileID: 846956232}
   - component: {fileID: 846956234}
   - component: {fileID: 846956233}
   - component: {fileID: 846956236}
-  - component: {fileID: 846956235}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4583,6 +4584,8 @@ MonoBehaviour:
   choiceTextB: {fileID: 448298401}
   speechBubbleObject: {fileID: 705254024}
   speechBubbleText: {fileID: 191563319}
+  onEndEventId: 
+  activeBranchId: 
   currentIndex: -1
 --- !u!114 &846956236
 MonoBehaviour:
@@ -4596,6 +4599,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e3e3f1b30b0a18479b40ebb9c6156af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTalkContext: Default
+--- !u!114 &846956237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846956228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94a34ed6e1435e345b49807e0d92d5d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentStoryStage: Default
 --- !u!1 &890721059
 GameObject:
   m_ObjectHideFlags: 0
@@ -5437,11 +5454,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0ac94b38d086246a1b9b1b0a54a060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conditionalDialogues:
-  - conditionKey: Default
-    dialoguePath: Dialogue/MainStory_001
-  - conditionKey: 
-    dialoguePath: 
+  conditionTable:
+  - storyStage: Default
+    talkContext: Default
+    dialoguePath: Dialogue/npc_001_intro
 --- !u!61 &1042280140
 BoxCollider2D:
   m_ObjectHideFlags: 0
