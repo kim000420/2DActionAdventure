@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -6,6 +7,8 @@ public class GameManager : MonoBehaviour
 
     [Header("전역 참조")]
     public SceneTransitionManager sceneTransitionManager;
+
+    private GameObject player;
 
     private void Awake()
     {
@@ -18,8 +21,22 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
 
-        // 필수 매니저 구성 확인
         EnsureSceneTransitionManager();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        RefreshPlayerReference();
     }
 
     private void EnsureSceneTransitionManager()
@@ -32,7 +49,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // 테스트용: 게임 강제 리스폰 트리거
+    // ✅ Player 등록 (플레이어가 직접 호출할 수 있음)
+    public void RegisterPlayer(GameObject playerObj)
+    {
+        this.player = playerObj;
+    }
+
+    // ✅ Player 자동 탐색 (태그 기반 또는 이름 기반)
+    public void RefreshPlayerReference()
+    {
+        player = GameObject.FindWithTag("Player");
+
+        if (player == null)
+        {
+            Debug.LogWarning("[GameManager] 'Player' 태그를 가진 오브젝트를 찾지 못했습니다.");
+        }
+    }
+
+    // ✅ Player에 붙은 컴포넌트를 안전하게 가져오기
+    public T GetPlayerComponent<T>() where T : Component
+    {
+        return player != null ? player.GetComponent<T>() : null;
+    }
+
+    // ✅ 강제 리스폰 예제
     public void ForceRespawn(string sceneName, string spawnID)
     {
         if (sceneTransitionManager != null)

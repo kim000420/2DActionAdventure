@@ -25,6 +25,17 @@ public class GameEventManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void Start()
+    {
+        LoadState();
+
+        if (string.IsNullOrEmpty(currentStoryStage) || currentStoryStage == "Default")
+        {
+            SetCurrentStoryStage("Start_intro");
+            Debug.Log("[GameEvent] 초기 스토리 상태 설정됨: Start_intro");
+        }
+    }
+
 
     //  현재 스토리 상태 조회
     public string GetCurrentStoryStage()
@@ -55,6 +66,19 @@ public class GameEventManager : MonoBehaviour
     {
         SetFlag(key, !GetFlag(key));
     }
+
+    // 정수 저장
+    public void SetInt(string key, int value)
+    {
+        PlayerPrefs.SetInt(key, value);
+    }
+
+    // 정수 불러오기
+    public int GetInt(string key)
+    {
+        return PlayerPrefs.GetInt(key, 0); // 기본값 0
+    }
+
 
     //  저장
     public void SaveState()

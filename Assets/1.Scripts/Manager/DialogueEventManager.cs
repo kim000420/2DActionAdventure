@@ -39,9 +39,18 @@ public class DialogueEventManager : MonoBehaviour
     public void Trigger(string eventId)
     {
         Debug.Log($"[DialogueEvent] Triggered: {eventId}");
-
+        
         switch (eventId)
         {
+            case "Start_intro":
+                var target = GameObject.Find("StartTriggerObj");
+                var trigger = target.GetComponent<DialogueTrigger>();
+                trigger?.TryStartDialogue();
+                break;
+            case "Start_intro_end":
+                GameEventManager.Instance.SetCurrentStoryStage("Start_intro_end");
+                break;
+
             case "QuestStart":
                 GameEventManager.Instance.SetFlag("Quest_Started", true);
                 SetTalkContext("QuestAccepted");

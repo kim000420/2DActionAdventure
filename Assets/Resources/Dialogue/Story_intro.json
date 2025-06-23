@@ -1,0 +1,29 @@
+{
+  "onEndEvent": "Start_intro_end",
+  "lines": [
+    {
+      "speaker": "조준용",
+      "speakerId": "NPC_Nunna",
+      "text": "...",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "조준용",
+      "speakerId": "NPC_Nunna",
+      "text": "...",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "조준용",
+      "speakerId": "NPC_Nunna",
+      "text": "벌써 아침인가..?",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "조준용",
+      "speakerId": "NPC_Nunna",
+      "text": "엄마한테 가보자",
+      "positionTarget": "Player/HeadAnchor"
+    }
+  ]
+}
