@@ -85,7 +85,7 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
         StoryExclamationController exclamationController = GetComponent<StoryExclamationController>();
         if (exclamationController != null)
         {
-            exclamationController.gameObject.SetActive(false); // 느낌표 오브젝트 비활성화 (전체 ExclamationMark 오브젝트를 비활성화)
+            exclamationController.exclamationIcon.SetActive(false); // 느낌표 오브젝트 비활성화 (전체 ExclamationMark 오브젝트를 비활성화)
             Debug.Log($"[Exclamation] {gameObject.name} 대화 시작, 느낌표 비활성화.");
         }
 

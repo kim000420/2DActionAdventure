@@ -164,8 +164,6 @@ GameObject:
   m_Component:
   - component: {fileID: 105612860}
   - component: {fileID: 105612859}
-  - component: {fileID: 105612858}
-  - component: {fileID: 105612857}
   - component: {fileID: 105612856}
   m_Layer: 12
   m_Name: PortalTrigger
@@ -188,46 +186,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnID: P_g2_g4
   spawnType: 2
---- !u!114 &105612857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105612855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6005b248ea882974b89ac3ef4f8ad473, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetSceneName: Village_halbe_Guild2
-  targetSpawnPointName: P_g4_g2
---- !u!61 &105612858
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105612855}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!212 &105612859
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -288,7 +246,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105612855}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: -4.83, z: 0}
+  m_LocalPosition: {x: -5.75, y: -5.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -333,17 +291,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3494455698648994840, guid: 22286399e3880eb45889d38b2577fd85, type: 3}
+      propertyPath: onDeathEventId
+      value: MS_014_MDT
+      objectReference: {fileID: 0}
+    - target: {fileID: -3494455698648994840, guid: 22286399e3880eb45889d38b2577fd85, type: 3}
+      propertyPath: requiredStoryStage
+      value: ST_013
+      objectReference: {fileID: 0}
+    - target: {fileID: 2341433326061821748, guid: 22286399e3880eb45889d38b2577fd85, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2001383601}
     - target: {fileID: 2341433326061821751, guid: 22286399e3880eb45889d38b2577fd85, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2341433326061821751, guid: 22286399e3880eb45889d38b2577fd85, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.80205
+      value: 8.95
       objectReference: {fileID: 0}
     - target: {fileID: 2341433326061821751, guid: 22286399e3880eb45889d38b2577fd85, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.29271412
+      value: -4.02
       objectReference: {fileID: 0}
     - target: {fileID: 2341433326061821751, guid: 22286399e3880eb45889d38b2577fd85, type: 3}
       propertyPath: m_LocalPosition.z
@@ -355,15 +325,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2341433326061821751, guid: 22286399e3880eb45889d38b2577fd85, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2341433326061821751, guid: 22286399e3880eb45889d38b2577fd85, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2341433326061821751, guid: 22286399e3880eb45889d38b2577fd85, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2341433326061821751, guid: 22286399e3880eb45889d38b2577fd85, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -390,6 +360,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2588990131868072340, guid: 3b95c881156e4b545aede5cdac204883, type: 3}
+      propertyPath: onDeathEventId
+      value: MS_006_MDT
+      objectReference: {fileID: 0}
+    - target: {fileID: 2588990131868072340, guid: 3b95c881156e4b545aede5cdac204883, type: 3}
+      propertyPath: requiredStoryStage
+      value: ST_005
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188413977835238038, guid: 3b95c881156e4b545aede5cdac204883, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2001383601}
+    - target: {fileID: 9188413977835238038, guid: 3b95c881156e4b545aede5cdac204883, type: 3}
+      propertyPath: bossStats
+      value: 
+      objectReference: {fileID: 1100927501}
     - target: {fileID: 9188413977835238040, guid: 3b95c881156e4b545aede5cdac204883, type: 3}
       propertyPath: m_Name
       value: Jo
@@ -404,11 +390,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9188413977835238043, guid: 3b95c881156e4b545aede5cdac204883, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.80205
+      value: 11.53
       objectReference: {fileID: 0}
     - target: {fileID: 9188413977835238043, guid: 3b95c881156e4b545aede5cdac204883, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.29271412
+      value: -4.19
       objectReference: {fileID: 0}
     - target: {fileID: 9188413977835238043, guid: 3b95c881156e4b545aede5cdac204883, type: 3}
       propertyPath: m_LocalPosition.z
@@ -444,6 +430,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b95c881156e4b545aede5cdac204883, type: 3}
+--- !u!114 &1100927501 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9188413977835238039, guid: 3b95c881156e4b545aede5cdac204883, type: 3}
+  m_PrefabInstance: {fileID: 1100927500}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2424de90553606644a64638163080105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1299361433
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,7 +451,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1299361437}
   - component: {fileID: 1299361436}
-  - component: {fileID: 1299361435}
   - component: {fileID: 1299361434}
   m_Layer: 0
   m_Name: NPC_Gyogan
@@ -479,32 +475,6 @@ MonoBehaviour:
   - storyStage: Start_
     talkContext: 
     dialoguePath: 
---- !u!61 &1299361435
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1299361433}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 1.52}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.32, y: 1.4}
-  m_EdgeRadius: 0
 --- !u!212 &1299361436
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -580,21 +550,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 76381352271686402, guid: c1154396de699ed438643b7606294743, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2001383601}
     - target: {fileID: 76381352271686405, guid: c1154396de699ed438643b7606294743, type: 3}
       propertyPath: m_Name
       value: Bow
       objectReference: {fileID: 0}
     - target: {fileID: 76381352271686412, guid: c1154396de699ed438643b7606294743, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 76381352271686412, guid: c1154396de699ed438643b7606294743, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.80205
+      value: 10.27
       objectReference: {fileID: 0}
     - target: {fileID: 76381352271686412, guid: c1154396de699ed438643b7606294743, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.29271412
+      value: -4.13
       objectReference: {fileID: 0}
     - target: {fileID: 76381352271686412, guid: c1154396de699ed438643b7606294743, type: 3}
       propertyPath: m_LocalPosition.z
@@ -687,6 +661,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4127f4488d784d3408fe5f4a7764be9a, type: 3}
+--- !u!4 &2001383601 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5451790470900975004, guid: 4127f4488d784d3408fe5f4a7764be9a, type: 3}
+  m_PrefabInstance: {fileID: 2001383600}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &249250627285669643
 Transform:
   m_ObjectHideFlags: 0
@@ -727,7 +706,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2073449833121814937}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.43165272, y: 1.3054475, z: 14.951639}
+  m_LocalPosition: {x: 0, y: 1.86, z: 14.951639}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1180,32 +1159,6 @@ Transform:
   m_Father: {fileID: 3988111599865405405}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &5319500771558192965
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8958789519100063292}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.36, y: 1.6}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.32, y: 1.4}
-  m_EdgeRadius: 0
 --- !u!1 &5510024239578525464
 GameObject:
   m_ObjectHideFlags: 0
@@ -1303,7 +1256,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7657712656458173080}
   - component: {fileID: 3576272963002865952}
-  - component: {fileID: 5319500771558192965}
   - component: {fileID: 6985984033968380921}
   m_Layer: 0
   m_Name: NPC_GuildMaster

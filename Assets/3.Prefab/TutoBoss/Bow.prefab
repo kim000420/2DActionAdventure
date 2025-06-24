@@ -71,6 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 76381352271686412}
+  - component: {fileID: 4491816921060755043}
   - component: {fileID: 76381352271686403}
   - component: {fileID: 76381352271686402}
   - component: {fileID: 76381352271686413}
@@ -103,6 +104,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4491816921060755043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76381352271686405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 593e54374bef90f49849ad9012caeead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredStoryStage: Story3
+  onDeathEventId: AfterMonsterDefeated
 --- !u!114 &76381352271686403
 MonoBehaviour:
   m_ObjectHideFlags: 0

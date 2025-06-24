@@ -4,6 +4,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    public bool IsDialoguePlaying { get; private set; }
+    public void SetDialogueState(bool isPlaying)
+    {
+        IsDialoguePlaying = isPlaying;
+    }
 
     [Header("전역 참조")]
     public SceneTransitionManager sceneTransitionManager;

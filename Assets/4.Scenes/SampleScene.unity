@@ -10372,8 +10372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a6a990907543a46a8df5821cbb9780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredStoryKey: 
-  requiredStoryValue: 0
+  storyStage: Story_Progress
   triggerOnlyOnce: 1
   dialogueTrigger: {fileID: 1829607548}
 --- !u!4 &1829607550
@@ -12608,7 +12607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneEvents:
-  - requiredStoryStage: 
+  - storyStage: 
     eventId: 
 --- !u!1 &7863083908642556190
 GameObject:

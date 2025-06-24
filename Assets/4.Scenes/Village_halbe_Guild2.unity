@@ -276,8 +276,6 @@ GameObject:
   m_Component:
   - component: {fileID: 864235006}
   - component: {fileID: 864235005}
-  - component: {fileID: 864235004}
-  - component: {fileID: 864235003}
   - component: {fileID: 864235002}
   m_Layer: 12
   m_Name: Portal_Guild4
@@ -299,47 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnID: P_g4_g2
-  spawnType: 2
---- !u!114 &864235003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 864235001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6005b248ea882974b89ac3ef4f8ad473, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetSceneName: Village_halbe_Guild4
-  targetSpawnPointName: P_g2_g4
---- !u!61 &864235004
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 864235001}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  spawnType: 3
 --- !u!212 &864235005
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1625,7 +1583,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.32, y: 1.4}
+  m_Size: {x: 0.87, y: 1.4}
   m_EdgeRadius: 0
 --- !u!1 &5510024239578525464
 GameObject:
@@ -1668,7 +1626,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.32, y: 1.4}
+  m_Size: {x: 1.32, y: 1.4}
   m_EdgeRadius: 0
 --- !u!61 &5734602791946736507
 BoxCollider2D:
@@ -1694,7 +1652,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.32, y: 1.4}
+  m_Size: {x: 0.73, y: 1.4}
   m_EdgeRadius: 0
 --- !u!61 &6674483470587597428
 BoxCollider2D:
@@ -1720,7 +1678,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.32, y: 1.4}
+  m_Size: {x: 0.53, y: 1.4}
   m_EdgeRadius: 0
 --- !u!4 &7117429583976253965
 Transform:
@@ -1754,6 +1712,9 @@ MonoBehaviour:
   - storyStage: ST_003
     talkContext: Default
     dialoguePath: Dialogue/MainStory_004
+  - storyStage: ST_011
+    talkContext: Default
+    dialoguePath: Dialogue/MainStory_012
   - storyStage: ST_011
     talkContext: Default
     dialoguePath: Dialogue/MainStory_012

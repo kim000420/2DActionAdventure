@@ -687,7 +687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   conditionTable:
-  - storyStage: ST_002_1
+  - storyStage: ST_002_GetClock
     talkContext: Default
     dialoguePath: Dialogue/MainStory_003
   - storyStage: ST_006
@@ -1056,6 +1056,7 @@ GameObject:
   - component: {fileID: 2415338091488789950}
   - component: {fileID: 8818559803262866950}
   - component: {fileID: 149183800528566371}
+  - component: {fileID: 8818559803262866951}
   - component: {fileID: 3113002552198124767}
   m_Layer: 0
   m_Name: NPC_Gyogan
@@ -1252,3 +1253,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8818559803262866951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4005014804743364890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd02e5d8bb0953d4d8cdea31dda4d31a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exclamationIcon: {fileID: 1318444706}
+  requiredStoryStages:
+  - ST_002_GetClock
+  - ST_006
+  - ST_010
+  - ST_014
+  dialogueTrigger: {fileID: 3113002552198124767}

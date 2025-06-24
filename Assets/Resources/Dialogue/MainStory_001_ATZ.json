@@ -1,0 +1,28 @@
+{
+  "lines": [
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "...",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "...",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "...",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "숲에서 이상한 소리가\n들린 것 같은데..?",
+      "positionTarget": "Player/HeadAnchor"
+    }
+  ]
+}

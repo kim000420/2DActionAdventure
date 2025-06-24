@@ -29,18 +29,51 @@ public class AutoTriggerZone : MonoBehaviour
     [Header("대화 트리거")]
     public DialogueTrigger dialogueTrigger;  // 연결된 DialogueTrigger
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Player")) return;
-        if (alreadyTriggered) return;
+        Debug.Log($"[AutoTriggerZone] 충돌 감지됨: {other.name}");
+        if (!other.CompareTag("Player"))
+        {
+            Debug.Log("[AutoTriggerZone] 태그가 Player가 아님 → 무시됨");
+            return;
+        }
+
+        if (alreadyTriggered)
+        {
+            Debug.Log("[AutoTriggerZone] 이미 트리거됨 → 무시됨");
+            return;
+        }
+
+        if (GameManager.Instance.IsDialoguePlaying)
+        {
+            Debug.Log("[AutoTriggerZone] 대화 중 상태이므로 실행하지 않음");
+            return;
+        }
+
 
         string current = GameEventManager.Instance.GetCurrentStoryStage();
+        Debug.Log($"[AutoTriggerZone] 현재 스토리: {current}, 요구 스토리: {storyStage}");
 
         if (current == storyStage)
         {
+            if (dialogueTrigger == null)
+            {
+                Debug.LogError("[AutoTriggerZone] DialogueTrigger가 연결되지 않았습니다!");
+                return;
+            }
+
+            Debug.Log("[AutoTriggerZone] 조건 일치 → 대화 실행 시도");
             dialogueTrigger.TryStartDialogue();
+
             if (triggerOnlyOnce)
+            {
                 alreadyTriggered = true;
+                Debug.Log("[AutoTriggerZone] 트리거 1회 설정이므로, 재실행 방지됨");
+            }
+        }
+        else
+        {
+            Debug.Log("[AutoTriggerZone] 스토리 조건 불일치 → 대화 실행 안 함");
         }
     }
 }

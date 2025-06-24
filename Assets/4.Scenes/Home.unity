@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 668211345}
   - component: {fileID: 668211346}
   m_Layer: 0
-  m_Name: UI_Hummm
+  m_Name: UI_Hummm_img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -712,7 +712,7 @@ MonoBehaviour:
   conditionTable:
   - storyStage: ST_intro
     talkContext: Default
-    dialoguePath: Dialogue/MainStory_001
+    dialoguePath: Dialogue/MainStory_intro
 --- !u!1 &1648642262
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,7 +1083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   conditionTable:
-  - storyStage: MS_intro
+  - storyStage: ST_intro
     talkContext: Default
     dialoguePath: Dialogue/MainStory_001
 --- !u!61 &6897421435031312029

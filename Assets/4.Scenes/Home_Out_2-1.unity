@@ -530,7 +530,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1877622734}
   - component: {fileID: 1877622733}
-  - component: {fileID: 1877622732}
   - component: {fileID: 1877622731}
   m_Layer: 0
   m_Name: TriggerZone2
@@ -565,22 +564,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1877622732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877622730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f0ac94b38d086246a1b9b1b0a54a060, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  conditionTable:
-  - storyStage: ST_015
-    talkContext: Default
-    dialoguePath: Dialogue/MainStory_016_ATZ
 --- !u!114 &1877622733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,7 +578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyStage: ST_015
   triggerOnlyOnce: 1
-  dialogueTrigger: {fileID: 1877622732}
+  dialogueTrigger: {fileID: 743078328523598932}
 --- !u!4 &1877622734
 Transform:
   m_ObjectHideFlags: 0
@@ -778,6 +761,57 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &743078328523598932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743078328523598934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f0ac94b38d086246a1b9b1b0a54a060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conditionTable:
+  - storyStage: ST_001
+    talkContext: Default
+    dialoguePath: Dialogue/MainStory_001_ATZ
+  - storyStage: ST_015
+    talkContext: Default
+    dialoguePath: Dialogue/MainStory_016_ATZ
+--- !u!1 &743078328523598934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 743078328523598935}
+  - component: {fileID: 743078328523598932}
+  m_Layer: 0
+  m_Name: StartTriggerObj
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &743078328523598935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743078328523598934}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.43165272, y: 1.3054475, z: 14.951639}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3353532740850864802
 Transform:
   m_ObjectHideFlags: 0
@@ -1124,22 +1158,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4669323912710378266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4669323912710378269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f0ac94b38d086246a1b9b1b0a54a060, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  conditionTable:
-  - storyStage: ST_001
-    talkContext: Default
-    dialoguePath: Dialogue/MainStory_001_1
 --- !u!114 &4669323912710378267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,7 +1172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyStage: ST_001
   triggerOnlyOnce: 1
-  dialogueTrigger: {fileID: 4669323912710378266}
+  dialogueTrigger: {fileID: 743078328523598932}
 --- !u!1 &4669323912710378269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,7 +1183,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4669323912710378264}
   - component: {fileID: 4669323912710378267}
-  - component: {fileID: 4669323912710378266}
   - component: {fileID: 646984766160920304}
   m_Layer: 0
   m_Name: TriggerZone1

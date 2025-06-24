@@ -11,7 +11,7 @@ using System.Collections.Generic; // List를 사용하기 위해 추가
 public class StoryExclamationController : MonoBehaviour
 {
     [Header("느낌표 아이콘 설정")]
-    [SerializeField] private GameObject exclamationIcon; // 활성화/비활성화할 느낌표 아이콘 오브젝트
+    [SerializeField] public GameObject exclamationIcon; // 활성화/비활성화할 느낌표 아이콘 오브젝트
 
     [Header("느낌표 표시 조건")]
     [Tooltip("느낌표가 활성화될 스토리 단계 목록입니다. 비어있거나 'Default'를 포함하면 항상 활성화됩니다.")]

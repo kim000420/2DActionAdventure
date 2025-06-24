@@ -171,7 +171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &576434254
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -255,7 +255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &685157932
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1003,6 +1003,9 @@ MonoBehaviour:
   - storyStage: ST_001
     talkContext: Default
     dialoguePath: Dialogue/MainStory_002
+  - storyStage: ST_015
+    talkContext: Default
+    dialoguePath: Dialogue/MainStory_016
 --- !u!61 &4526009207026819542
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1127,7 +1130,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exclamationIcon: {fileID: 576434253}
   requiredStoryStages:
-  - 
+  - ST_001
+  - ST_015
   dialogueTrigger: {fileID: 4050033858618124141}
 --- !u!4 &8214725321984878668
 Transform:
@@ -1154,6 +1158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8214725321984878668}
   - component: {fileID: 8214725321984878671}
+  - component: {fileID: 8214725321984878672}
   m_Layer: 0
   m_Name: StartTriggerObj
   m_TagString: Untagged
@@ -1174,12 +1179,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   conditionTable:
-  - storyStage: ST_001_1
+  - storyStage: ST_02_MDT
     talkContext: Default
-    dialoguePath: Dialogue/MainStory_002
-  - storyStage: ST_002
-    talkContext: Default
-    dialoguePath: Dialogue/MainStory_002_1
+    dialoguePath: Dialogue/MainStory_002_GetClock
+--- !u!114 &8214725321984878672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8214725321984878669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd02e5d8bb0953d4d8cdea31dda4d31a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exclamationIcon: {fileID: 2635640126762586792}
+  requiredStoryStages:
+  - ST_001
+  - ST_015
+  dialogueTrigger: {fileID: 4050033858618124141}
 --- !u!1 &8573117627532160059
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,7 +1210,6 @@ GameObject:
   - component: {fileID: 8573117627532160062}
   - component: {fileID: 8573117627532160063}
   - component: {fileID: 8573117627532160061}
-  - component: {fileID: 8573117627532160060}
   - component: {fileID: 4526009207026819542}
   m_Layer: 0
   m_Name: Item_Clock
@@ -1200,22 +1218,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8573117627532160060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8573117627532160059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f0ac94b38d086246a1b9b1b0a54a060, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  conditionTable:
-  - storyStage: Default
-    talkContext: Default
-    dialoguePath: 
 --- !u!114 &8573117627532160061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1228,9 +1230,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a6a990907543a46a8df5821cbb9780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storyStage: Story_Progress
+  storyStage: ST_002_MDT
   triggerOnlyOnce: 1
-  dialogueTrigger: {fileID: 8573117627532160060}
+  dialogueTrigger: {fileID: 8214725321984878671}
 --- !u!4 &8573117627532160062
 Transform:
   m_ObjectHideFlags: 0
@@ -1239,7 +1241,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8573117627532160059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.87, y: -4.78, z: 0}
+  m_LocalPosition: {x: -0.41, y: -4.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1261,5 +1263,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   exclamationIcon: {fileID: 685157931}
   requiredStoryStages:
-  - 
-  dialogueTrigger: {fileID: 8573117627532160060}
+  - ST_002_MDT
+  dialogueTrigger: {fileID: 8214725321984878671}

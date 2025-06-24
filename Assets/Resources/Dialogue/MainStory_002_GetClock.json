@@ -1,0 +1,29 @@
+{
+  "onEndEvent": "MS_002_ATZ",
+  "lines": [
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "...",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "...",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "(시계를 주웠다.)",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "흠....\n일단 챙겨두자. ",
+      "positionTarget": "Player/HeadAnchor"
+    }
+  ]
+}

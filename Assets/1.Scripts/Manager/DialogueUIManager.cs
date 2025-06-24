@@ -81,6 +81,7 @@ public class DialogueUIManager : MonoBehaviour
         onEndEventId = null;
         activeBranchId = null;
 
+        GameManager.Instance.SetDialogueState(false);
         ShowNextLine();
     }
 
@@ -123,7 +124,7 @@ public class DialogueUIManager : MonoBehaviour
 
             selectedIndex = 0;
 
-            C_nameText.text = $"[{entry.speaker}]";  // 선택지에도 화자 표시
+            C_nameText.text = $"{entry.speaker}";  // 선택지에도 화자 표시
             askText.text = entry.text;
             choiceTextA.text = entry.choices[0];
             choiceTextB.text = entry.choices[1];
@@ -135,7 +136,7 @@ public class DialogueUIManager : MonoBehaviour
             dialoguePanel.SetActive(true);
             choicePanel.SetActive(false);
 
-            D_nameText.text = $"[{entry.speaker}]";
+            D_nameText.text = $"{entry.speaker}";
             dialogueText.text = entry.text;
 
             ShowBubbleAt(entry.positionTarget, entry.text);
@@ -150,6 +151,7 @@ public class DialogueUIManager : MonoBehaviour
         if (speechBubbleObject != null)
             speechBubbleObject.SetActive(false);
 
+
         onDialogueEnd?.Invoke();
         onDialogueEnd = null;
 
@@ -157,7 +159,12 @@ public class DialogueUIManager : MonoBehaviour
 
         if (!string.IsNullOrEmpty(onEndEventId))
         {
-            DialogueEventManager.Instance?.Trigger(onEndEventId);
+            StartCoroutine(DelayedTrigger(onEndEventId));
+        }
+        else
+        {
+            // 이벤트 없이 종료된 경우 여기서 대화 상태 해제
+            GameManager.Instance.SetDialogueState(false);
         }
     }
 
@@ -227,5 +234,11 @@ public class DialogueUIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.25f); // 0.2~0.5s 추천
         ShowNextLine();
+    }
+    private IEnumerator DelayedTrigger(string eventId)
+    {
+        yield return null; // 한 프레임 대기
+        DialogueEventManager.Instance?.Trigger(eventId);
+        GameManager.Instance.SetDialogueState(false);
     }
 }

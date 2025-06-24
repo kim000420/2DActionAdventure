@@ -47,6 +47,7 @@ public class GameEventManager : MonoBehaviour
     public void SetCurrentStoryStage(string stage)
     {
         currentStoryStage = stage;
+        RefreshAllExclamations();
     }
 
     //  특정 이벤트 플래그 저장

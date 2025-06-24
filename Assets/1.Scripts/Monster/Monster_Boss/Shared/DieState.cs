@@ -27,6 +27,13 @@ namespace TutorialBoss.States
         private IEnumerator DieEndDelay()
         {
             yield return new WaitForSeconds(1.5f);
+
+            var deathTrigger = controller.GetComponent<MonsterDeathTrigger>();
+            if (deathTrigger != null)
+            {
+                deathTrigger.OnMonsterDie();
+            }
+
             controller.gameObject.SetActive(false);
         }
     }
