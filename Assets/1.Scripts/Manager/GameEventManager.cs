@@ -31,8 +31,8 @@ public class GameEventManager : MonoBehaviour
 
         if (string.IsNullOrEmpty(currentStoryStage) || currentStoryStage == "Default")
         {
-            SetCurrentStoryStage("Start_intro");
-            Debug.Log("[GameEvent] 초기 스토리 상태 설정됨: Start_intro");
+            SetCurrentStoryStage("ST_intro");
+            Debug.Log("[GameEvent] 초기 스토리 상태 설정됨: ST_intro");
         }
     }
 
@@ -93,5 +93,18 @@ public class GameEventManager : MonoBehaviour
     {
         currentStoryStage = PlayerPrefs.GetString("CurrentStoryStage", "Default");
         // 선택적으로 flags 불러오기 구현 가능
+    }
+
+    public void RefreshAllExclamations()
+    {
+        // 씬의 모든 StoryExclamationController 컴포넌트를 찾음
+        // 주의: 씬에 오브젝트가 많을 경우 성능에 영향을 줄 수 있으나,
+        // 느낌표는 일반적으로 NPC에만 부착되므로 큰 문제 없을 것입니다.
+        StoryExclamationController[] controllers = FindObjectsOfType<StoryExclamationController>();
+        foreach (StoryExclamationController controller in controllers)
+        {
+            controller.RefreshExclamationState();
+        }
+        Debug.Log("[GameEvent] 모든 NPC 느낌표 상태 갱신 완료.");
     }
 }

@@ -1,4 +1,5 @@
 {
+  "onEndEvent": "MS_010",
   "lines": [
     {
       "speaker": "[길드마스터]",

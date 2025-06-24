@@ -1,4 +1,5 @@
 {
+  "onEndEvent": "MS_005_EnableJo",
   "lines": [
     {
       "speaker": "[길드마스터]",

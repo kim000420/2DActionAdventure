@@ -23,9 +23,12 @@ using UnityEngine;
 [System.Serializable]
 public class DialogueConditionEntry
 {
+    [Header("조건 - 현재 스토리 진행상황")]
     public string storyStage;      // 예: "Story1", "Default"
+    [Header("선택지 선택 상황 ")]
     public string talkContext;     // 예: "QuestDeclinedOnce", "Default"
-    public string dialoguePath;    // Resources 내 JSON 경로
+    [Header("대사 json 경로")]
+    public string dialoguePath = "Dialogue";    // Resources 내 JSON 경로
 }
 
 public class DialogueTrigger : MonoBehaviour, IInteractable
@@ -34,6 +37,11 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
     [SerializeField] private List<DialogueConditionEntry> conditionTable;
 
     private bool isPlaying = false;
+
+    public bool IsPlaying()
+    {
+        return isPlaying;
+    }
 
     public void Interact(PlayerStateController controller)
     {
@@ -74,10 +82,20 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
         playerController.RequestStateChange(PlayerState.Interacting);
         isPlaying = true;
 
+        StoryExclamationController exclamationController = GetComponent<StoryExclamationController>();
+        if (exclamationController != null)
+        {
+            exclamationController.gameObject.SetActive(false); // 느낌표 오브젝트 비활성화 (전체 ExclamationMark 오브젝트를 비활성화)
+            Debug.Log($"[Exclamation] {gameObject.name} 대화 시작, 느낌표 비활성화.");
+        }
+
         ui.onDialogueEnd = () =>
         {
             playerController.RequestStateChange(PlayerState.Idle);
             isPlaying = false;
+
+            // 느낌표 갱신
+            GameEventManager.Instance?.RefreshAllExclamations();
         };
     }
 

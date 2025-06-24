@@ -1,5 +1,5 @@
 {
-  "onEndEvent": "Start_intro_end",
+  "onEndEvent": "MS_intro",
   "lines": [
     {
       "speaker": "조준용",

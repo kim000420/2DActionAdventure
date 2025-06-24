@@ -42,5 +42,7 @@ public class SceneStartEventTrigger : MonoBehaviour
                 break;
             }
         }
+        // 느낌표 갱신
+        GameEventManager.Instance?.RefreshAllExclamations();
     }
 }
