@@ -159,13 +159,12 @@ public class DialogueUIManager : MonoBehaviour
 
         if (!string.IsNullOrEmpty(onEndEventId))
         {
-            StartCoroutine(DelayedTrigger(onEndEventId));
+            DialogueEventManager.Instance?.Trigger(onEndEventId);
         }
-        else
-        {
-            // 이벤트 없이 종료된 경우 여기서 대화 상태 해제
-            GameManager.Instance.SetDialogueState(false);
-        }
+
+        GameManager.Instance.GetPlayerComponent<PlayerInteractStateController>()?.ResetInteractCooldown();
+
+        StartCoroutine(DelayedDialogueStateOff());
     }
 
     private void ShowBubbleAt(string targetName, string text)
@@ -223,22 +222,16 @@ public class DialogueUIManager : MonoBehaviour
         }
 
         choicePanel.SetActive(false);
-        StartCoroutine(ContinueAfterChoiceDelay());
+        ShowNextLine();
     }
     public void SetOnEndEvent(string eventId)
     {
         onEndEventId = eventId;
     }
-
-    private IEnumerator ContinueAfterChoiceDelay()
+    private IEnumerator DelayedDialogueStateOff()
     {
-        yield return new WaitForSeconds(0.25f); // 0.2~0.5s 추천
-        ShowNextLine();
-    }
-    private IEnumerator DelayedTrigger(string eventId)
-    {
-        yield return null; // 한 프레임 대기
-        DialogueEventManager.Instance?.Trigger(eventId);
+        yield return new WaitForSeconds(0.3f);
         GameManager.Instance.SetDialogueState(false);
     }
+
 }

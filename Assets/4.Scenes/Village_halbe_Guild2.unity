@@ -1715,9 +1715,6 @@ MonoBehaviour:
   - storyStage: ST_011
     talkContext: Default
     dialoguePath: Dialogue/MainStory_012
-  - storyStage: ST_011
-    talkContext: Default
-    dialoguePath: Dialogue/MainStory_012
 --- !u!114 &7400817613530136519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1882,9 +1879,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7954638681465207002}
   - component: {fileID: 3855184520751737698}
-  - component: {fileID: 5616988664019485959}
-  - component: {fileID: 7264895389715605947}
   - component: {fileID: 8679886946388991103}
+  - component: {fileID: 7264895389715605947}
+  - component: {fileID: 5616988664019485959}
   m_Layer: 0
   m_Name: NPC_Tellguy
   m_TagString: Untagged

@@ -4484,6 +4484,8 @@ GameObject:
   - component: {fileID: 846956234}
   - component: {fileID: 846956233}
   - component: {fileID: 846956236}
+  - component: {fileID: 846956239}
+  - component: {fileID: 846956238}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4613,6 +4615,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentStoryStage: Default
+--- !u!114 &846956238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846956228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcafc702dbbf83d42bcc76fe7e69136f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jo: {fileID: 0}
+  dok2: {fileID: 0}
+  bow: {fileID: 0}
+--- !u!114 &846956239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846956228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5338ca710f67a374e84fd4c7e20de4a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossUIRoot: {fileID: 1876940651}
+  hpBar: {fileID: 1075862907}
+  groggyBar: {fileID: 1132690322}
 --- !u!1 &890721059
 GameObject:
   m_ObjectHideFlags: 0
@@ -10563,7 +10595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b29b5bf2a78b5f24ea182820a50f96dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossUI: {fileID: 1876940653}
+  bossUI: {fileID: 0}
   maxHP: 500
   currentHP: 0
   maxGroggy: 100
@@ -10925,7 +10957,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1876940652}
-  - component: {fileID: 1876940653}
   m_Layer: 5
   m_Name: 'BossUI '
   m_TagString: Untagged
@@ -10956,21 +10987,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 508.8593, y: 59.1599}
   m_Pivot: {x: 0.5, y: 0}
---- !u!114 &1876940653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1876940651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5338ca710f67a374e84fd4c7e20de4a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossUIRoot: {fileID: 1876940651}
-  hpBar: {fileID: 1075862907}
-  groggyBar: {fileID: 1132690322}
 --- !u!1 &1889659997
 GameObject:
   m_ObjectHideFlags: 0
@@ -12609,6 +12625,7 @@ MonoBehaviour:
   sceneEvents:
   - storyStage: 
     eventId: 
+    delaySeconds: 0.5
 --- !u!1 &7863083908642556190
 GameObject:
   m_ObjectHideFlags: 0

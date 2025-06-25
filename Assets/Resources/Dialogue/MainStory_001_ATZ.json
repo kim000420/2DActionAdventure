@@ -9,19 +9,19 @@
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "...",
+      "text": "... ...?",
       "positionTarget": "Player/HeadAnchor"
     },
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "...",
+      "text": "숲에서 이상한 소리가\n들린것 같은데..?",
       "positionTarget": "Player/HeadAnchor"
     },
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "숲에서 이상한 소리가\n들린 것 같은데..?",
+      "text": "(숲으로 들어가보자)",
       "positionTarget": "Player/HeadAnchor"
     }
   ]

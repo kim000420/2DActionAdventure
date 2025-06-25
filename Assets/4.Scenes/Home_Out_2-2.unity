@@ -1006,6 +1006,9 @@ MonoBehaviour:
   - storyStage: ST_015
     talkContext: Default
     dialoguePath: Dialogue/MainStory_016
+  - storyStage: ST_018
+    talkContext: Default
+    dialoguePath: Dialogue/MainStory_019
 --- !u!61 &4526009207026819542
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1047,6 +1050,7 @@ MonoBehaviour:
   sceneEvents:
   - storyStage: ST_001_1
     eventId: MS_002
+    delaySeconds: 0.5
 --- !u!1 &6972042145552995658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,6 +1136,7 @@ MonoBehaviour:
   requiredStoryStages:
   - ST_001
   - ST_015
+  - ST_015
   dialogueTrigger: {fileID: 4050033858618124141}
 --- !u!4 &8214725321984878668
 Transform:
@@ -1179,7 +1184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   conditionTable:
-  - storyStage: ST_02_MDT
+  - storyStage: ST_002_MDT
     talkContext: Default
     dialoguePath: Dialogue/MainStory_002_GetClock
 --- !u!114 &8214725321984878672

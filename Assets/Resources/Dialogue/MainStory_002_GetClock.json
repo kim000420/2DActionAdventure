@@ -10,12 +10,6 @@
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "...",
-      "positionTarget": "Player/HeadAnchor"
-    },
-    {
-      "speaker": "[조준용]",
-      "speakerId": "Player",
       "text": "(시계를 주웠다.)",
       "positionTarget": "Player/HeadAnchor"
     },

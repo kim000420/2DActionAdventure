@@ -80,7 +80,17 @@ public class PlayerMotor : MonoBehaviour
         if (isOverridingMovement)
         {
             return; // ✅ Roll 중이면 기존 움직임 무시
+        }    
+        
+        // ✅ Interact 상태도 이동 중단
+        var stateController = GetComponent<PlayerStateController>();
+        if (stateController != null && stateController.CurrentState == PlayerState.Interacting)
+        {
+            rb.velocity = new Vector2(0f, rb.velocity.y); // 수평 이동 중단
+            currentVelocityX = 0f;
+            return;
         }
+
         float targetSpeed = inputX * moveSpeed;
 
         if (Mathf.Sign(targetSpeed) != Mathf.Sign(currentVelocityX) && Mathf.Abs(currentVelocityX) > 0.01f && Mathf.Abs(inputX) > 0.01f)

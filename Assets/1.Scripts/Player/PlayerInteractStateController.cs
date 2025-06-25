@@ -8,6 +8,9 @@ public class PlayerInteractStateController : MonoBehaviour
     private PlayerStateController stateController;
     private IInteractable currentInteractable;
 
+    private float lastInteractTime = -999f;
+    [SerializeField] private float interactCooldown = 0.3f;
+
     private void Awake()
     {
         stateController = GetComponent<PlayerStateController>();
@@ -19,6 +22,10 @@ public class PlayerInteractStateController : MonoBehaviour
 
         if (currentInteractable != null && Input.GetKeyDown(KeyCode.D))
         {
+            if (Time.time - lastInteractTime < interactCooldown)
+                return;
+
+            lastInteractTime = Time.time;
             currentInteractable.Interact(stateController);
         }
     }
@@ -40,4 +47,9 @@ public class PlayerInteractStateController : MonoBehaviour
             Debug.Log("[Interact] ¹þ¾î³²");
         }
     }
+    public void ResetInteractCooldown()
+    {
+        lastInteractTime = Time.time;
+    }
+
 }

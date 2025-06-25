@@ -79,7 +79,7 @@ public class DialogueEventManager : MonoBehaviour
 
             // 씬 전환시 혼잣말
             case "MS_intro":
-                // StartTriggerObl 오브젝트를 찾음
+                // 씬 전환시 StartTriggerObl 오브젝트를 찾고 대화 실행
                 TryStartDialogueByObjectName("StartTriggerObj");
                 break;
 
@@ -120,21 +120,20 @@ public class DialogueEventManager : MonoBehaviour
 
             // 안내맨 대화 이후 - 대련장으로 가라.  
             case "MS_004":
-                GameManager.Instance.sceneTransitionManager.RespawnToScene("Village_halbe_Guild4", "P_g2_g4");
                 GameEventManager.Instance.SetCurrentStoryStage("ST_004");
-
+                GameManager.Instance.sceneTransitionManager.RespawnToScene("Village_halbe_Guild4", "P_g2_g4");
                 break;
 
             // 씬전환
             case "MS_005_SET":
-                //대련장 대화 불러오기
-                GameEventManager.Instance.SetCurrentStoryStage("ST_005");
+                TryStartDialogueByObjectName("StartTriggerObj");
                 break;
 
             // 죠 활성화 이벤트
             case "MS_005":
+                GameEventManager.Instance.SetCurrentStoryStage("ST_005");
                 //죠 활성화
-                SetBossActive("Jo", true);
+                BossManager.Instance.SetBossActive("Jo", true);
                 break;
 
             // 죠 사망
@@ -163,21 +162,22 @@ public class DialogueEventManager : MonoBehaviour
 
             // 쿨눈나와 대화 - 시험장으로 진짜 ㄱㄱ.  
             case "MS_008":
-                GameManager.Instance.sceneTransitionManager.RespawnToScene("Village_halbe_Guild4", "P_g2_g4");
                 GameEventManager.Instance.SetCurrentStoryStage("ST_008");
+                GameManager.Instance.sceneTransitionManager.RespawnToScene("Village_halbe_Guild4", "P_g2_g4");
                 //텔포
                 break;
 
             // 씬 전환 대화 
             case "MS_009_SET":
-                GameEventManager.Instance.SetCurrentStoryStage("ST_008");
+                TryStartDialogueByObjectName("StartTriggerObj");
                 //텔포
                 break;
 
             // 보우 활성화
             case "MS_009":
-                SetBossActive("Bow", true);
                 GameEventManager.Instance.SetCurrentStoryStage("ST_009");
+                //보우 활성화
+                BossManager.Instance.SetBossActive("Bow", true);
                 break;
 
             // 보우 사망 
@@ -206,20 +206,21 @@ public class DialogueEventManager : MonoBehaviour
 
             // 안내맨 대화 이후 - 대련장 입장해라.  
             case "MS_012":
-                GameManager.Instance.sceneTransitionManager.RespawnToScene("Village_halbe_Guild4", "P_g2_g4");
                 GameEventManager.Instance.SetCurrentStoryStage("ST_012");
+                GameManager.Instance.sceneTransitionManager.RespawnToScene("Village_halbe_Guild4", "P_g2_g4");
                 //텔포
                 break;
 
             // 씬전환
             case "MS_013_SET":
-                GameEventManager.Instance.SetCurrentStoryStage("ST_013");
+                TryStartDialogueByObjectName("StartTriggerObj");
                 break;
 
             // Dok2활성.  
             case "MS_013":
-                SetBossActive("Dok2", true);
                 GameEventManager.Instance.SetCurrentStoryStage("ST_013");
+                //죠 활성화
+                BossManager.Instance.SetBossActive("Dok2", true);
                 break;
 
             // Dok2 사망

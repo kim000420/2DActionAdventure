@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// 🎯 SceneStartEventTrigger.cs
@@ -24,6 +25,7 @@ public class SceneStartEventTrigger : MonoBehaviour
     {
         public string storyStage;   // 조건 예: "Story2_Started"
         public string eventId;              // 실행할 트리거 ID
+        public float delaySeconds = 0.5f; // 딜레이 시간
     }
 
     [Header("스토리 조건별 시작 이벤트")]
@@ -31,17 +33,41 @@ public class SceneStartEventTrigger : MonoBehaviour
 
     private void Start()
     {
+        RegisterBossesInScene();
+        StartCoroutine(TriggerSceneEventWithDelay());
+    }
+    private void RegisterBossesInScene()
+    {
+        BossManager.Instance.ClearBosses();
+
+        var bosses = Resources.FindObjectsOfTypeAll<BossComponent>();
+
+        foreach (var boss in bosses)
+        {
+            if (!boss.gameObject.scene.IsValid()) continue; // 프리팹 제외
+            string id = boss.GetBossId();
+            BossManager.Instance.RegisterBoss(id, boss.gameObject);
+        }
+
+        Debug.Log($"[SceneStart] {bosses.Length}명의 보스 등록 완료");
+    }
+    private IEnumerator TriggerSceneEventWithDelay()
+    {
         string currentStage = GameEventManager.Instance.GetCurrentStoryStage();
 
         foreach (var entry in sceneEvents)
         {
             if (entry.storyStage == currentStage)
             {
-                Debug.Log($"[SceneEvent] {entry.eventId} 실행됨 (조건: {entry.storyStage})");
+                if (entry.delaySeconds > 0)
+                    yield return new WaitForSeconds(entry.delaySeconds);
+
+                Debug.Log($"[SceneEvent] {entry.eventId} 실행됨 (조건: {entry.storyStage}, 딜레이: {entry.delaySeconds}s)");
                 DialogueEventManager.Instance?.Trigger(entry.eventId);
                 break;
             }
         }
+
         // 느낌표 갱신
         GameEventManager.Instance?.RefreshAllExclamations();
     }

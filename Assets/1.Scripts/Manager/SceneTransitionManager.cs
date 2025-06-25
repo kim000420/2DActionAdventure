@@ -51,6 +51,8 @@ public class SceneTransitionManager : MonoBehaviour
             if (point.spawnID == targetSpawnPoint)
             {
                 player.transform.position = point.transform.position;
+                // 느낌표 갱신
+                GameEventManager.Instance?.RefreshAllExclamations();
                 Debug.Log($"[Spawn] '{targetSpawnPoint}' 위치로 이동 완료");
                 break;
             }
