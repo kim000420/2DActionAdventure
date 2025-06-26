@@ -10,25 +10,25 @@
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "(만약 그녀석의 말이 진실이라면)",
+      "text": "zzz",
       "positionTarget": "Player/HeadAnchor"
     },
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "(그렇게 둘 수는 없다.)",
+      "text": "zz..zzzZZZ",
       "positionTarget": "Player/HeadAnchor"
     },
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "ㅍ",
+      "text": "!",
       "positionTarget": "Player/HeadAnchor"
     },
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "(숲으로 들어가보자)",
+      "text": "분명 그녀석이\n오늘 숲으로 오라고 헀었지..",
       "positionTarget": "Player/HeadAnchor"
     }
   ]
