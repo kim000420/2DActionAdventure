@@ -93,15 +93,19 @@ public class DialogueEventManager : MonoBehaviour
 
             // 숲에서 무슨 소리가 나는데?   
 
+            case "MS_002_SET":
+                TryStartDialogueByObjectName("StartTriggerObj");
+                break;
 
             // 수상한 외부인 조우 - 주거랏!!. 수상한외부인과 전투  
             case "MS_002":
-                GameEventManager.Instance.SetCurrentStoryStage("ST_002_MDT");
+                GameEventManager.Instance.SetCurrentStoryStage("ST_002");
+                BossManager.Instance.SetBossActive("Webuin", true);
                 break;
 
             // 수상한 외부인 사망
             case "MS_002_MDT":
-                GameEventManager.Instance.SetCurrentStoryStage("ST_002");
+                GameEventManager.Instance.SetCurrentStoryStage("ST_002_MDT");
                 break;
 
             // 시계 겟도다제
