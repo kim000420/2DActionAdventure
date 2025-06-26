@@ -4,6 +4,7 @@ using TutorialBoss.States.Jo;
 using System.Collections;
 using TutorialBoss.States.Bow;
 using TutorialBoss.States.Dok2;
+using TutorialBoss.States.Webuin;
 using TutorialBoss.AnimEvents;
 
 namespace TutorialBoss.Controller
@@ -93,8 +94,11 @@ namespace TutorialBoss.Controller
                 case "Bow":
                     ChangeState(new BowEscapeState(this));
                     break;
-                default:
+                case "Dok2":
                     ChangeState(new Dok2ChaseState(this));
+                    break;
+                case "Webuin":
+                    ChangeState(new WebuinChaseState(this));
                     break;
             }
         }

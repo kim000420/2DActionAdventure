@@ -1,3 +1,4 @@
+using TutorialBoss.States;
 using UnityEngine;
 
 namespace TutorialBoss
@@ -30,6 +31,9 @@ namespace TutorialBoss
         {
 
             var controller = GetComponent<TutorialBoss.Controller.TutorialBossStateController>();
+            //이미 죽었다면 실행 안함
+            if (controller.isDead) return;
+
             currentHP -= damage;
 
             if (currentHP <= 0)
