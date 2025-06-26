@@ -1,27 +1,28 @@
 {
+  "onEndEvent": "MS_018_ATZ",
   "lines": [
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "?",
+      "text": "(힘든 하루였다.)",
       "positionTarget": "Player/HeadAnchor"
     },
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "!!!",
+      "text": "(만약 그녀석의 말이 진실이라면)",
       "positionTarget": "Player/HeadAnchor"
     },
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "아침의 그녀석인가?",
+      "text": "(그렇게 둘 수는 없다.)",
       "positionTarget": "Player/HeadAnchor"
     },
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "이번에는 도망가게 두지 않을꺼야",
+      "text": "ㅍ",
       "positionTarget": "Player/HeadAnchor"
     },
     {

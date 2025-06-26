@@ -3,6 +3,7 @@ using System.Collections;
 using TutorialBoss.Controller;
 using TutorialBoss.States.Jo;
 using TutorialBoss.States.Bow;
+using TutorialBoss.States.Webuin;
 
 namespace TutorialBoss.States
 {
@@ -49,11 +50,14 @@ namespace TutorialBoss.States
                 case "Jo":
                     controller.StartCoroutine(HitRecovery());
                     controller.ChangeState(new JoIdleState(controller));
-                     // ✅ 여기서 호출
                     break;
-                case "Bow": // ✅ Bow 보스 피격 후 EscapeState로 복귀
+                case "Bow":
                     controller.StartCoroutine(HitRecovery());
                     controller.ChangeState(new BowEscapeState(controller));
+                    break;
+                case "Webuin":
+                    controller.StartCoroutine(HitRecovery());
+                    controller.ChangeState(new WebuinChaseState(controller));
                     break;
             }
         }

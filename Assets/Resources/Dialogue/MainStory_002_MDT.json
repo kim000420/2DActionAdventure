@@ -10,19 +10,13 @@
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "...",
-      "positionTarget": "Player/HeadAnchor"
-    },
-    {
-      "speaker": "[조준용]",
-      "speakerId": "Player",
       "text": "(시계를 주웠다.)",
       "positionTarget": "Player/HeadAnchor"
     },
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "흠....\n일단 챙겨두자. ",
+      "text": "수상한 녀석..\n또 오면 가만두지 않겠어",
       "positionTarget": "Player/HeadAnchor"
     }
   ]

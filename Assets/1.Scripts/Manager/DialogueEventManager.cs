@@ -260,13 +260,15 @@ public class DialogueEventManager : MonoBehaviour
                 GameEventManager.Instance.SetCurrentStoryStage("ST_016");
                 break;
 
-
-
-
-
             // 엄마 대화 이후 - 잘자렴~ 
             case "MS_017":
                 GameEventManager.Instance.SetCurrentStoryStage("ST_017");
+                break;
+
+            // 
+            case "MS_018_ATZ":
+                TryStartDialogueByObjectName("StartTriggerObj");
+                GameEventManager.Instance.SetCurrentStoryStage("ST_018_ATZ");
                 break;
 
             // 얼리버드 기상 엄마 대화 이후 - 계란말이 머겅.  
