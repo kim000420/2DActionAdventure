@@ -171,6 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneName: Home_Out_2-1
   targetSpawnPointName: P_main_homeout2-1
+  portalType: 0
 --- !u!61 &16817149
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -312,6 +313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneName: Village_halbe_Guild1
   targetSpawnPointName: P_main_g1
+  portalType: 1
 --- !u!61 &461235603
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -453,6 +455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneName: Village_halbe_House1
   targetSpawnPointName: P_main_h1
+  portalType: 1
 --- !u!61 &962654088
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -651,6 +654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneName: Village_halbe_House2
   targetSpawnPointName: P_main_h2
+  portalType: 1
 --- !u!61 &1170316119
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -792,6 +796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneName: Dungeon_JogatunWood1
   targetSpawnPointName: P_main_d1
+  portalType: 1
 --- !u!61 &1242401553
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -933,6 +938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneName: Village_halbe_House3
   targetSpawnPointName: P_main_h3
+  portalType: 1
 --- !u!61 &1923386574
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1163,9 +1169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0ac94b38d086246a1b9b1b0a54a060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conditionalDialogues:
-  - conditionKey: Default
-    dialoguePath: 
+  conditionTable: []
 --- !u!1 &1205156957095169348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1357,9 +1361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0ac94b38d086246a1b9b1b0a54a060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conditionalDialogues:
-  - conditionKey: Default
-    dialoguePath: 
+  conditionTable: []
 --- !u!114 &3122376851447372863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1372,9 +1374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0ac94b38d086246a1b9b1b0a54a060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conditionalDialogues:
-  - conditionKey: Default
-    dialoguePath: 
+  conditionTable: []
 --- !u!212 &3426485927650002304
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1838,9 +1838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0ac94b38d086246a1b9b1b0a54a060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conditionalDialogues:
-  - conditionKey: Default
-    dialoguePath: 
+  conditionTable: []
 --- !u!114 &5419392908894577375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1853,9 +1851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0ac94b38d086246a1b9b1b0a54a060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conditionalDialogues:
-  - conditionKey: Default
-    dialoguePath: 
+  conditionTable: []
 --- !u!1 &6246931427324355383
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,6 +2170,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0ac94b38d086246a1b9b1b0a54a060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conditionalDialogues:
-  - conditionKey: Default
-    dialoguePath: 
+  conditionTable: []

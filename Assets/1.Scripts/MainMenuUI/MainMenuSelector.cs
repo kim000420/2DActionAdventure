@@ -27,7 +27,7 @@ public class MainMenuSelector : MonoBehaviour
             UpdateArrowPosition();
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             ExecuteEvents.Execute(buttons[currentIndex].gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
         }

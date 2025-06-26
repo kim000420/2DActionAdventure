@@ -171,6 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneName: Home_OUT_2-1
   targetSpawnPointName: P_homeout1_homeout2-1
+  portalType: 0
 --- !u!61 &302515143
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -427,6 +428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneName: Home
   targetSpawnPointName: P_homeout1_home
+  portalType: 1
 --- !u!61 &1761354687
 BoxCollider2D:
   m_ObjectHideFlags: 0

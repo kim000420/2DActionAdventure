@@ -16,7 +16,6 @@ public class SceneTransitionManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     public void TransitionToScene(string sceneName, string spawnPoint)
