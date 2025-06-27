@@ -28,7 +28,13 @@
     {
       "speaker": "[훈련 교관]",
       "speakerId": "NPC_Gyogan",
-      "text": "물론 가드가 만능은 아니야, 언젠가 만나게 될 적들 중엔\n가드가 불가능한 공격을 하는 경우도 존재한다!",
+      "text": "물론 가드가 만능은 아니야",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "언젠가 만나게 될 적들 중엔\n가드가 불가능한 공격을 하는 경우도 존재한다!",
       "positionTarget": "NPC_Gyogan/HeadAnchor"
     },
     {

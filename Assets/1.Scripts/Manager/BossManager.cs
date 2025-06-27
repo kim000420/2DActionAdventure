@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using TutorialBoss;
 
 public class BossManager : MonoBehaviour
 {
@@ -16,6 +18,22 @@ public class BossManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        var bosses = GameObject.FindObjectsOfType<TutorialBossStats>();
+        foreach (var boss in bosses)
+        {
+            if (boss.bossUI != null)
+            {
+                boss.bossUI.ShowUI();
+                Debug.Log("[BossManager] 씬 로드 후 보스 UI 자동 연결됨");
+            }
+        }
     }
 
     public void RegisterBoss(string id, GameObject boss)

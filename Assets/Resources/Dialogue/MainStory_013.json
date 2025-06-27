@@ -34,7 +34,7 @@
     {
       "speaker": "[훈련 교관]",
       "speakerId": "NPC_Gyogan",
-      "text": "...",
+      "text": "... ...",
       "positionTarget": "NPC_Gyogan/HeadAnchor"
     },
     {
@@ -58,14 +58,32 @@
     {
       "speaker": "[훈련 교관]",
       "speakerId": "NPC_Gyogan",
-      "text": "저새낀 뭔가... 싸가지가 없어\n날 봐도 인사를 안한다니까",
+      "text": "저새낀 뭔가... 싸가지가 없어",
       "positionTarget": "NPC_Gyogan/HeadAnchor"
     },
     {
       "speaker": "[훈련 교관]",
       "speakerId": "NPC_Gyogan",
-      "text": "교관인 내가 수습생을 줘팰순 없으니\n날 대신해서 니가 혼쭐을 내줘라!!!!!!!!!!!!",
+      "text": "날 봐도 인사를 안한다니까!",
       "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "교관인 내가 수습생을 줘팰순 없으니",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
+      "text": "날 대신해서 니가 혼쭐을 내줘라!!!!!!!!!!!!",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "...",
+      "positionTarget": "Player/HeadAnchor"
     },
     {
       "speaker": "[조준용]",

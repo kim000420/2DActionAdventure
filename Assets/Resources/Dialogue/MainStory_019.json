@@ -40,7 +40,13 @@
     {
       "speaker": "[수상한 외부인]",
       "speakerId": "NPC_Webuin",
-      "text": "가기전에 정보를 하나 주자면, 가기쉬른 강가 근처에서\n이상한 소리가 난다고 들었어.",
+      "text": "가기전에 정보를 하나 주자면",
+      "positionTarget": "NPC_Webuin/HeadAnchor"
+    },
+    {
+      "speaker": "[수상한 외부인]",
+      "speakerId": "NPC_Webuin",
+      "text": "가기쉬른 강가 근처에서\n이상한 소리가 난다고 들었어.",
       "positionTarget": "NPC_Webuin/HeadAnchor"
     },
     {

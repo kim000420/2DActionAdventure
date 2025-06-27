@@ -267,8 +267,8 @@ public class DialogueEventManager : MonoBehaviour
 
             // 
             case "MS_018_ATZ":
-                TryStartDialogueByObjectName("StartTriggerObj");
                 GameEventManager.Instance.SetCurrentStoryStage("ST_018_ATZ");
+                TryStartDialogueByObjectName("StartTriggerObj");
                 break;
 
             // 얼리버드 기상 엄마 대화 이후 - 계란말이 머겅.  

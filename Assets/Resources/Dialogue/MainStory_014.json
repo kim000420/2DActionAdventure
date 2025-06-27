@@ -28,7 +28,13 @@
     {
       "speaker": "[길드마스터]",
       "speakerId": "NPC_GuildMaster",
-      "text": "오늘은 피곤할테니 집에 가서 쉬어라.\n아직 3,4위전이 남았으니 결과는 내일 게시판에 걸어두마.",
+      "text": "아직 3,4위전이 남았으니 결과는 내일 게시판에 걸어두마.",
+      "positionTarget": "NPC_GuildMaster/HeadAnchor"
+    },
+    {
+      "speaker": "[길드마스터]",
+      "speakerId": "NPC_GuildMaster",
+      "text": "오늘은 피곤할테니 집에 가서 쉬어라.",
       "positionTarget": "NPC_GuildMaster/HeadAnchor"
     }
   ]

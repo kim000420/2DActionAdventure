@@ -17,13 +17,13 @@ namespace TutorialBoss.AnimEvents
         public void EnableHitbox_Attack1() 
         {
             Hitbox_Attack1.SetActive(true);
-            StartCoroutine(DeactivateMeleeHitboxAfterDelay(0.3f));
+            StartCoroutine(DeactivateMeleeHitboxAfterDelay(0.1f));
         }
 
         public void EnableHitbox_Attack2()
         {
             Hitbox_Attack2.SetActive(true);
-            StartCoroutine(DeactivateMeleeHitboxAfterDelay(0.3f));
+            StartCoroutine(DeactivateMeleeHitboxAfterDelay(0.1f));
         }
 
         private IEnumerator DeactivateMeleeHitboxAfterDelay(float delay)

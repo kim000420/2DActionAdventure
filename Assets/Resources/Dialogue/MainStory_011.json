@@ -10,7 +10,7 @@
     {
       "speaker": "[훈련 교관]",
       "speakerId": "NPC_Gyogan",
-      "text": "이렇게 말은 해도 나도 너한테 엄청 기대하고 있으니까",
+      "text": "이렇게 말은 하지만\n나도 너한테 엄청 기대하고 있으니까",
       "positionTarget": "NPC_Gyogan/HeadAnchor"
     },
     {
@@ -32,6 +32,12 @@
       "positionTarget": "NPC_Gyogan/HeadAnchor"
     },
     {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "(이전에 태권도를 배웠어서 잘 알고있다만..)",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
       "speaker": "[훈련 교관]",
       "speakerId": "NPC_Gyogan",
       "text": "이 기술은 모아둔 힘을 발 끝에 모아\n힘껏 내지르는 기술이다.",
@@ -46,19 +52,13 @@
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "알고있는데...\n모르는척 하자",
+      "text": "('발차기'는 'Q'를 눌러 사용할 수 있다.)",
       "positionTarget": "Player/HeadAnchor"
     },
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "'발차기'는 'Q'를 눌러 사용할 수 있다.",
-      "positionTarget": "Player/HeadAnchor"
-    },
-    {
-      "speaker": "[조준용]",
-      "speakerId": "Player",
-      "text": "스테미너를 많이 쓰니까 조심하자.",
+      "text": "(스테미너를 많이 쓰니까 조심하자.)",
       "positionTarget": "Player/HeadAnchor"
     },
     {

@@ -30,7 +30,7 @@ namespace TutorialBoss.States.Bow
             float distanceToPlayer = Vector2.Distance(controller.transform.position, controller.player.position);
 
             // 플레이어 반대 방향으로 이동
-            Vector2 escapeDirection = (controller.transform.position - controller.player.position).normalized;
+            Vector2 escapeDirection = controller.transform.position - controller.player.position;
             controller.rb.velocity = new Vector2(escapeDirection.x * controller.bossStats.moveSpeed, controller.rb.velocity.y);
             controller.FaceAwayFromPlayer(); // 도망치는 방향을 바라보도록
 

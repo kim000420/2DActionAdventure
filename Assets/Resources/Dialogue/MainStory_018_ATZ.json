@@ -16,19 +16,25 @@
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "zz..zzzZZZ",
+      "text": "zzz..zzzZZZ",
       "positionTarget": "Player/HeadAnchor"
     },
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "!",
+      "text": "zz..zzzZZ..ZZZZZZ",
       "positionTarget": "Player/HeadAnchor"
     },
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "분명 그녀석이\n오늘 숲으로 오라고 헀었지..",
+      "text": "(아침이다.)",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "분명 그녀석이\n오늘 숲으로 오라고 했었지..",
       "positionTarget": "Player/HeadAnchor"
     }
   ]

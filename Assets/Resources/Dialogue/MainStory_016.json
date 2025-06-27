@@ -70,7 +70,7 @@
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "(통칭 '박사'..., 이 섬에서 그를 모르는 사람은 없을 것이다.)",
+      "text": "(통칭 '박사'...,\n이 섬에서 그를 모르는 사람은 없을 것이다.)",
       "positionTarget": "Player/HeadAnchor"
     },
     {
@@ -82,7 +82,7 @@
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "(부모리스 아일랜드에서 가장 영향력 있는 사람중 하나이다.)",
+      "text": "(부모리스 아일랜드에서\n가장 영향력 있는 사람중 하나이다.)",
       "positionTarget": "Player/HeadAnchor"
     },
     {
@@ -94,13 +94,13 @@
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "(가끔 애미ㅣㄹ스 시티에 매번 새로운 발명품을 들고 나타나며)",
+      "text": "(가끔 애미리스 시티에\n매번 새로운 발명품을 들고 나타나며)",
       "positionTarget": "Player/HeadAnchor"
     },
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "(6년전부터 부모리스 아일랜드의 과학수준을 눈부시게 발전시킨 위인이다.)",
+      "text": "(6년전부터 부모리스 아일랜드의 과학수준을\n눈부시게 발전시킨 위인이다.)",
       "positionTarget": "Player/HeadAnchor"
     },
     {
@@ -130,7 +130,7 @@
     {
       "speaker": "[수상한 외부인]",
       "speakerId": "NPC_Webuin",
-      "text": "후우...,\n\n난 박사의 조수로, 13일 후 미래에서 왔다.",
+      "text": "후우...,\n난 박사의 조수로, 13일 후 미래에서 왔다.",
       "positionTarget": "NPC_Webuin/HeadAnchor"
     },
     {
@@ -142,13 +142,25 @@
     {
       "speaker": "[수상한 외부인]",
       "speakerId": "NPC_Webuin",
-      "text": "그 시계엔 시간을 거스르는 힘이 있어.\n사용할 수만 있다면 얼마든지 과거로 갈 수 있는 거지!",
+      "text": "그 시계엔 시간을 거스르는 힘이 있어.",
       "positionTarget": "NPC_Webuin/HeadAnchor"
     },
     {
       "speaker": "[수상한 외부인]",
       "speakerId": "NPC_Webuin",
-      "text": "앞으로 13일뒤, 박사가 만들던 무기의 오작동으로 인해\n섬은 큰 폭발에 휩싸이고",
+      "text": "사용할 수만 있다면\n얼마든지 과거로 갈 수 있는 거지!",
+      "positionTarget": "NPC_Webuin/HeadAnchor"
+    },
+    {
+      "speaker": "[수상한 외부인]",
+      "speakerId": "NPC_Webuin",
+      "text": "앞으로 13일뒤",
+      "positionTarget": "NPC_Webuin/HeadAnchor"
+    },
+    {
+      "speaker": "[수상한 외부인]",
+      "speakerId": "NPC_Webuin",
+      "text": "박사가 만들던 무기의 오작동으로 인해\n섬은 큰 폭발에 휩싸이고",
       "positionTarget": "NPC_Webuin/HeadAnchor"
     },
     {
@@ -196,7 +208,13 @@
     {
       "speaker": "[수상한 외부인]",
       "speakerId": "NPC_Webuin",
-      "text": "바로 그 시계를 통해 끊임없이 시간을 거슬러 연구를 반복한거지.\n성공할 떄 까지 말이야",
+      "text": "바로 그 시계를 통해\n끊임없이 시간을 거슬러 연구를 반복한거지.",
+      "positionTarget": "NPC_Webuin/HeadAnchor"
+    },
+    {
+      "speaker": "[수상한 외부인]",
+      "speakerId": "NPC_Webuin",
+      "text": "성공할 떄 까지 말이야",
       "positionTarget": "NPC_Webuin/HeadAnchor"
     },
     {
@@ -262,7 +280,7 @@
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "(하암....)",
+      "text": "... ... ...",
       "positionTarget": "Player/HeadAnchor"
     },
     {
@@ -364,7 +382,13 @@
     {
       "speaker": "[수상한 외부인]",
       "speakerId": "NPC_Webuin",
-      "text": "기계장치들이 있는 장소는 기억 나는대로 바로 알려줄게.\n내일 다시 여기로 찾아와줘",
+      "text": "기계장치들이 있는 장소는\n기억 나는대로 바로 알려줄게.",
+      "positionTarget": "NPC_Webuin/HeadAnchor"
+    },
+    {
+      "speaker": "[수상한 외부인]",
+      "speakerId": "NPC_Webuin",
+      "text": "내일 다시 여기로 찾아와줘",
       "positionTarget": "NPC_Webuin/HeadAnchor"
     },
     {

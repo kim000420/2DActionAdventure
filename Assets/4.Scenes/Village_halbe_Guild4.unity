@@ -553,14 +553,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2424de90553606644a64638163080105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
+  maxHP: 200
   currentHP: 100
   maxGroggy: 999
   currentGroggy: 0
   detectRange: 5
   attackRange: 20
   escapeTriggerRange: 5
-  moveSpeed: 4
+  moveSpeed: 5
 --- !u!114 &76381351378781921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -980,7 +980,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.48126557, g: 0.74870497, b: 0.9716981, a: 0.2901961}
+  m_Color: {r: 0.48126557, g: 0.74870497, b: 0.9716981, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1110,7 +1110,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.82498866, g: 0.5707547, b: 1, a: 0.34117648}
+  m_Color: {r: 0.82498866, g: 0.5707547, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1391,9 +1391,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2424de90553606644a64638163080105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 300
+  maxHP: 250
   currentHP: 0
-  maxGroggy: 80
+  maxGroggy: 50
   currentGroggy: 0
   detectRange: 20
   attackRange: 2.5
@@ -2127,7 +2127,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2256,7 +2256,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2496,7 +2496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2424de90553606644a64638163080105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
+  maxHP: 180
   currentHP: 100
   maxGroggy: 999
   currentGroggy: 0

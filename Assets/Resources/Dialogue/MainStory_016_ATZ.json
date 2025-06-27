@@ -1,15 +1,15 @@
 {
   "lines": [
     {
-      "speaker": "[조준용]",
-      "speakerId": "Player",
-      "text": "?",
-      "positionTarget": "Player/HeadAnchor"
+      "speaker": "풀숲",
+      "speakerId": "Portal_homeout2-1",
+      "text": "부스럭 부스럭",
+      "positionTarget": "Portal_homeout2-1/HeadAnchor"
     },
     {
       "speaker": "[조준용]",
       "speakerId": "Player",
-      "text": "!!!",
+      "text": "설마",
       "positionTarget": "Player/HeadAnchor"
     },
     {

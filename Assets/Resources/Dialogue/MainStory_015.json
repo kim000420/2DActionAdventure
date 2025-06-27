@@ -42,6 +42,24 @@
       "speakerId": "NPC_Gyogan",
       "text": "어쨌든 오늘 고생 많았다.\n오늘은 집에가서 푹 쉬거라",
       "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "(에휴)",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "(저런것도 어른이라고...)",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "(어서 집으로 가서 쉬자)",
+      "positionTarget": "Player/HeadAnchor"
     }
   ]
 }

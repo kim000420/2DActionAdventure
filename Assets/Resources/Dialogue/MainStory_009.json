@@ -4,6 +4,12 @@
     {
       "speaker": "[훈련 교관]",
       "speakerId": "NPC_Gyogan",
+      "text": "왔냐?",
+      "positionTarget": "NPC_Gyogan/HeadAnchor"
+    },
+    {
+      "speaker": "[훈련 교관]",
+      "speakerId": "NPC_Gyogan",
       "text": "이번 상대는 활잽이로군",
       "positionTarget": "NPC_Gyogan/HeadAnchor"
     },
@@ -30,6 +36,12 @@
       "speakerId": "NPC_GuildMaster",
       "text": "시   작!",
       "positionTarget": "NPC_GuildMaster/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "(가드와 구르기를 적극적으로 사용해보자)",
+      "positionTarget": "Player/HeadAnchor"
     }
   ]
 }

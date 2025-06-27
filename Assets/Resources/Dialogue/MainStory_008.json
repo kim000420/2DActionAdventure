@@ -10,7 +10,13 @@
     {
       "speaker": "[쿨눈나]",
       "speakerId": "NPC_CoolNunna",
-      "text": "전투의 흐름을 주도하기 위해선, 화려한 기술보다는\n기본적인 낙법이나 콤비네이션을 먼저 익혀두는게 좋아.",
+      "text": "전투의 흐름을 주도하기 위해서는",
+      "positionTarget": "NPC_CoolNunna/HeadAnchor"
+    },
+    {
+      "speaker": "[쿨눈나]",
+      "speakerId": "NPC_CoolNunna",
+      "text": "화려한 기술보다는\n기본적인 낙법이나 콤비네이션을 먼저 익혀두는게 좋아.",
       "positionTarget": "NPC_CoolNunna/HeadAnchor"
     },
     {
@@ -32,10 +38,28 @@
       "positionTarget": "NPC_CoolNunna/HeadAnchor"
     },
     {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "...",
+      "positionTarget": "Player/HeadAnchor"
+    },
+    {
       "speaker": "[쿨눈나]",
       "speakerId": "NPC_CoolNunna",
       "text": "힝...",
       "positionTarget": "NPC_CoolNunna/HeadAnchor"
+    },
+    {
+      "speaker": "[안내맨]",
+      "speakerId": "NPC_Tellguy",
+      "text": "이봐 조준용!",
+      "positionTarget": "NPC_Tellguy/HeadAnchor"
+    },
+    {
+      "speaker": "[조준용]",
+      "speakerId": "Player",
+      "text": "?",
+      "positionTarget": "Player/HeadAnchor"
     },
     {
       "speaker": "[안내맨]",

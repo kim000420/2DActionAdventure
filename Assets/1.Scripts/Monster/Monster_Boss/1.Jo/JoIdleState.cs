@@ -19,9 +19,9 @@ namespace TutorialBoss.States.Jo
 
         public override void Execute()
         {
-            if (controller.isDead || controller.isGroggy)
-                return;
-
+            // 보스의 죽음, 그로기, 피격 경직 상태에서는 상태 전이 로직을 실행하지 않습니다.
+            if (controller.isDead || controller.isGroggy || controller.isHitRecovery) return;
+            
             float distance = Vector2.Distance(controller.transform.position, controller.player.position);
 
             if (distance <= stats.detectRange && !controller.isAttackCooldown)

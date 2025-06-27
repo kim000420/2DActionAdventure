@@ -5,6 +5,8 @@ namespace TutorialBoss
 {
     public class TutorialBossStats : MonoBehaviour
     {
+        public BossUIManager bossUI;
+
         [Header("Ã¼·Â")]
         public int maxHP = 100;
         public int currentHP = 100;
@@ -26,6 +28,18 @@ namespace TutorialBoss
             currentHP = maxHP;
             currentGroggy = maxGroggy;
         }
+        private void OnEnable()
+        {
+            var controller = GetComponent<TutorialBoss.Controller.TutorialBossStateController>();
+            if (controller != null)
+            {
+                string bossId = controller.bossName; // Jo, Bow, Dok2 µî
+                BossManager.Instance?.RegisterBoss(bossId, gameObject);
+            }
+
+            bossUI?.ShowUI();
+            UpdateUI();
+        }
 
         public void ApplyHit(int damage, int groggy, float knockback, Vector2 attackerPosition)
         {
@@ -35,14 +49,17 @@ namespace TutorialBoss
             if (controller.isDead) return;
 
             currentHP -= damage;
+            UpdateUI();
 
             if (currentHP <= 0)
             {
+                bossUI?.HideUI();
                 controller.ChangeState(new TutorialBoss.States.DieState(controller));
                 return;
             }
 
             currentGroggy -= groggy;
+            UpdateUI();
 
             if (currentGroggy <= 0)
             {
@@ -60,6 +77,12 @@ namespace TutorialBoss
                     attackerPosition,
                     knockback
                 ));
+        }
+
+        private void UpdateUI()
+        {
+            bossUI?.UpdateHP((float)currentHP / maxHP);
+            bossUI?.UpdateGroggy((float)currentGroggy / maxGroggy);
         }
 
         private void OnDrawGizmosSelected()

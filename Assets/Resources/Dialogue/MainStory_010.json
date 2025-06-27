@@ -4,7 +4,13 @@
     {
       "speaker": "[길드마스터]",
       "speakerId": "NPC_GuildMaster",
-      "text": "음, 4조의 승자는 조준용!",
+      "text": "여기까지!!!",
+      "positionTarget": "NPC_GuildMaster/HeadAnchor"
+    },
+    {
+      "speaker": "[길드마스터]",
+      "speakerId": "NPC_GuildMaster",
+      "text": "4조의 승자는 조준용!",
       "positionTarget": "NPC_GuildMaster/HeadAnchor"
     },
     {
