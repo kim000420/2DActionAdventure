@@ -139,9 +139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114236c9f27625843b47a228098c2053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageMultiplier: 1
+  damageMultiplier: 1.2
   groggyMultiplier: 7
-  knockbackForce: 1
+  knockbackForce: 3
 --- !u!212 &1652923885790673287
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageMultiplier: 1
-  groggyMultiplier: 1
+  groggyMultiplier: 4
   knockbackForce: 1
 --- !u!212 &1732213826814421616
 SpriteRenderer:
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageMultiplier: 1
-  groggyMultiplier: 1
+  groggyMultiplier: 2
   knockbackForce: 1
 --- !u!212 &2992442283929077828
 SpriteRenderer:
@@ -521,8 +521,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageMultiplier: 1.3
-  groggyMultiplier: 3
-  knockbackForce: 5
+  groggyMultiplier: 5
+  knockbackForce: 2.5
 --- !u!212 &3486891367316972095
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -647,9 +647,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114236c9f27625843b47a228098c2053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageMultiplier: 1
+  damageMultiplier: 1.2
   groggyMultiplier: 8
-  knockbackForce: 1
+  knockbackForce: 3
 --- !u!212 &4031378344210666804
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1107,7 +1107,7 @@ Transform:
   m_GameObject: {fileID: 7491278405319437163}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0031, y: 0.6, z: 0}
-  m_LocalScale: {x: 2.1493998, y: 1.27, z: 1}
+  m_LocalScale: {x: 3.57, y: 1.27, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5451790470900975004}
@@ -1126,8 +1126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageMultiplier: 1.5
-  groggyMultiplier: 5
-  knockbackForce: 5
+  groggyMultiplier: 8
+  knockbackForce: 6
 --- !u!212 &7491278405319437164
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1233,8 +1233,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8838156137876479968}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.175, y: 0.9367, z: 0}
-  m_LocalScale: {x: 1.9466863, y: 1.8270806, z: 1}
+  m_LocalPosition: {x: 0.175, y: 0.6488, z: 0}
+  m_LocalScale: {x: 1.9466863, y: 1.2513674, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5451790470900975004}
@@ -1252,9 +1252,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114236c9f27625843b47a228098c2053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageMultiplier: 2
+  damageMultiplier: 1.8
   groggyMultiplier: 10
-  knockbackForce: 1
+  knockbackForce: 8
 --- !u!212 &8838156137876479982
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1360,8 +1360,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9172431121463469746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.91, y: 0.64, z: 0}
-  m_LocalScale: {x: 3.4164171, y: 1.2735169, z: 1}
+  m_LocalPosition: {x: 1.6745, y: 0.64, z: 0}
+  m_LocalScale: {x: 3.887541, y: 1.2735169, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5451790470900975004}
@@ -1379,9 +1379,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114236c9f27625843b47a228098c2053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageMultiplier: 1
-  groggyMultiplier: 1
-  knockbackForce: 5
+  damageMultiplier: 2
+  groggyMultiplier: 10
+  knockbackForce: 8
 --- !u!212 &9172431121463469745
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1507,7 +1507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageMultiplier: 1
-  groggyMultiplier: 1
+  groggyMultiplier: 2
   knockbackForce: 1
 --- !u!212 &9174847447014719319
 SpriteRenderer:

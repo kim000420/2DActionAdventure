@@ -553,6 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2424de90553606644a64638163080105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossUI: {fileID: 0}
   maxHP: 200
   currentHP: 100
   maxGroggy: 999
@@ -1318,7 +1319,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a532102698218054aa0edbd003cca7fa, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -1391,6 +1392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2424de90553606644a64638163080105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossUI: {fileID: 0}
   maxHP: 250
   currentHP: 0
   maxGroggy: 50
@@ -2496,6 +2498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2424de90553606644a64638163080105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossUI: {fileID: 0}
   maxHP: 180
   currentHP: 100
   maxGroggy: 999

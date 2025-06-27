@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using TMPro;
-using UnityEditor.IMGUI.Controls;
 using System.Collections;
 
 public class DialogueUIManager : MonoBehaviour

@@ -39,15 +39,26 @@ namespace TutorialBoss.States.Jo
                 // 플레이어가 인식 범위 안에 있다면 플레이어 방향으로 이동
                 if (distanceToPlayer <= controller.bossStats.detectRange) // Dok2Stats에 detectionRange가 있다고 가정
                 {
-                    Vector2 moveDirection = controller.player.position - controller.transform.position;
-                    controller.rb.velocity = new Vector2(moveDirection.x * controller.bossStats.moveSpeed, controller.rb.velocity.y);
+                    Vector2 dir = controller.player.position - controller.transform.position;
+
+                    // 너무 가까운 경우 (예: 0.1 이하), 최소 이동 방향 강제 보정
+                    if (dir.magnitude < 0.1f)
+                    {
+                        dir = new Vector2(Mathf.Sign(dir.x), 0f); // X축 기준으로 밀어냄
+                    }
+
+                    // 방향 정규화
+                    Vector2 direction = dir.normalized;
+
+                    // 고정 속도 이동
+                    controller.transform.position += (Vector3)(direction * controller.bossStats.moveSpeed * Time.deltaTime);
+
                 }
             }
         }
 
         public override void Exit()
         {
-            controller.rb.velocity = Vector2.zero; // 상태 종료 시 이동 멈춤
         }
     }
 }

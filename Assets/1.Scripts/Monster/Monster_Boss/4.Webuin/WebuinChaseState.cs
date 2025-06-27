@@ -1,6 +1,6 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using TutorialBoss.Controller;
-using TutorialBoss.States; // BaseTutorialBossState ÂüÁ¶
+using TutorialBoss.States; // BaseTutorialBossState ì°¸ì¡°
 
 namespace TutorialBoss.States.Webuin
 {
@@ -11,42 +11,54 @@ namespace TutorialBoss.States.Webuin
         public override void Enter()
         {
             Debug.Log("[WebuinChaseState] Entering Chase State.");
-            controller.animator.Play("Webuin_ChaseWalk"); // WebuinÀÇ Ãß°İ(´Ş¸®±â) ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
-            controller.rb.velocity = Vector2.zero; // ÀÌÀü »óÅÂÀÇ ÀÜ¿© ¼Óµµ ÃÊ±âÈ­
+            controller.animator.Play("Webuin_ChaseWalk"); // Webuinì˜ ì¶”ê²©(ë‹¬ë¦¬ê¸°) ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒ
+            controller.rb.velocity = Vector2.zero; // ì´ì „ ìƒíƒœì˜ ì”ì—¬ ì†ë„ ì´ˆê¸°í™”
         }
 
         public override void Execute()
         {
-            // º¸½ºÀÇ Á×À½, ±×·Î±â, ÇÇ°İ °æÁ÷ »óÅÂ¿¡¼­´Â »óÅÂ ÀüÀÌ ·ÎÁ÷À» ½ÇÇàÇÏÁö ¾Ê½À´Ï´Ù.
+            // ë³´ìŠ¤ì˜ ì£½ìŒ, ê·¸ë¡œê¸°, í”¼ê²© ê²½ì§ ìƒíƒœì—ì„œëŠ” ìƒíƒœ ì „ì´ ë¡œì§ì„ ì‹¤í–‰í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
             if (controller.isDead || controller.isGroggy || controller.isHitRecovery) return;
 
             if (controller.player == null)
             {
-                // ÇÃ·¹ÀÌ¾î°¡ ¾ø´Ù¸é Idle »óÅÂ·Î µ¹¾Æ°¡°Å³ª ´ë±â (ÇöÀç´Â Chase À¯Áö)
+                // í”Œë ˆì´ì–´ê°€ ì—†ë‹¤ë©´ Idle ìƒíƒœë¡œ ëŒì•„ê°€ê±°ë‚˜ ëŒ€ê¸° (í˜„ì¬ëŠ” Chase ìœ ì§€)
                 controller.rb.velocity = Vector2.zero;
                 return;
             }
 
-            // º¸½º ½ºÇÁ¶óÀÌÆ® ¹æÇâ ÀüÈ¯
+            // ë³´ìŠ¤ ìŠ¤í”„ë¼ì´íŠ¸ ë°©í–¥ ì „í™˜
             controller.FaceToPlayer();
 
             float distanceToPlayer = Vector2.Distance(controller.transform.position, controller.player.position);
 
-            // °ø°İ ¹üÀ§ Ã¼Å©
+            // ê³µê²© ë²”ìœ„ ì²´í¬
             if (distanceToPlayer <= controller.bossStats.attackRange && !controller.isAttackCooldown)
             {
-                // ÇÃ·¹ÀÌ¾î°¡ ±ÙÁ¢ °ø°İ ¹üÀ§ ³»¿¡ ÀÖ°í, ÄğÅ¸ÀÓÀÌ ¾Æ´Ï¶ó¸é AttackState·Î ÀüÈ¯
-                controller.FaceToPlayer(); // °ø°İ Àü¿¡ ÇÃ·¹ÀÌ¾î¸¦ ¹Ù¶óº¸µµ·Ï
+                // í”Œë ˆì´ì–´ê°€ ê·¼ì ‘ ê³µê²© ë²”ìœ„ ë‚´ì— ìˆê³ , ì¿¨íƒ€ì„ì´ ì•„ë‹ˆë¼ë©´ AttackStateë¡œ ì „í™˜
+                controller.FaceToPlayer(); // ê³µê²© ì „ì— í”Œë ˆì´ì–´ë¥¼ ë°”ë¼ë³´ë„ë¡
                 controller.ChangeState(new WebuinAttackState(controller));
                 return;
             }
             else
             {
-                // ÇÃ·¹ÀÌ¾î°¡ ÀÎ½Ä ¹üÀ§ ¾È¿¡ ÀÖ´Ù¸é ÇÃ·¹ÀÌ¾î ¹æÇâÀ¸·Î ÀÌµ¿
-                if (distanceToPlayer <= controller.bossStats.detectRange) // Dok2Stats¿¡ detectionRange°¡ ÀÖ´Ù°í °¡Á¤
+                // í”Œë ˆì´ì–´ê°€ ì¸ì‹ ë²”ìœ„ ì•ˆì— ìˆë‹¤ë©´ í”Œë ˆì´ì–´ ë°©í–¥ìœ¼ë¡œ ì´ë™
+                if (distanceToPlayer <= controller.bossStats.detectRange) // Dok2Statsì— detectionRangeê°€ ìˆë‹¤ê³  ê°€ì •
                 {
-                    Vector2 moveDirection = controller.player.position - controller.transform.position;
-                    controller.rb.velocity = new Vector2(moveDirection.x * controller.bossStats.moveSpeed, controller.rb.velocity.y);
+                    Vector2 dir = controller.player.position - controller.transform.position;
+
+                    // ë„ˆë¬´ ê°€ê¹Œìš´ ê²½ìš° (ì˜ˆ: 0.1 ì´í•˜), ìµœì†Œ ì´ë™ ë°©í–¥ ê°•ì œ ë³´ì •
+                    if (dir.magnitude < 0.1f)
+                    {
+                        dir = new Vector2(Mathf.Sign(dir.x), 0f); // Xì¶• ê¸°ì¤€ìœ¼ë¡œ ë°€ì–´ëƒ„
+                    }
+
+                    // ë°©í–¥ ì •ê·œí™”
+                    Vector2 direction = dir.normalized;
+
+                    // ê³ ì • ì†ë„ ì´ë™
+                    controller.transform.position += (Vector3)(direction * controller.bossStats.moveSpeed * Time.deltaTime);
+
                 }
             }
         }
@@ -54,7 +66,6 @@ namespace TutorialBoss.States.Webuin
         public override void Exit()
         {
             Debug.Log("[WebuinChaseState] Exit");
-            controller.rb.velocity = Vector2.zero; // »óÅÂ Á¾·á ½Ã ÀÌµ¿ ¸ØÃã
         }
     }
 }

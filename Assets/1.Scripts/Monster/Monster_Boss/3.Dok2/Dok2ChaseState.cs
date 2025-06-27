@@ -43,8 +43,8 @@ namespace TutorialBoss.States.Dok2
                 // 플레이어가 인식 범위 안에 있다면 플레이어 방향으로 이동
                 if (distanceToPlayer <= controller.bossStats.detectRange) // Dok2Stats에 detectionRange가 있다고 가정
                 {
-                    Vector2 moveDirection = controller.player.position - controller.transform.position;
-                    controller.rb.velocity = new Vector2(moveDirection.x * controller.bossStats.moveSpeed, controller.rb.velocity.y);
+                    Vector2 direction = (controller.player.position - controller.transform.position).normalized;
+                    controller.transform.position += (Vector3)(direction * controller.bossStats.moveSpeed * Time.deltaTime);
                 }
             }
         }
@@ -52,7 +52,6 @@ namespace TutorialBoss.States.Dok2
         public override void Exit()
         {
             Debug.Log("[Dok2ChaseState] Exit");
-            controller.rb.velocity = Vector2.zero; // 상태 종료 시 이동 멈춤
         }
     }
 }

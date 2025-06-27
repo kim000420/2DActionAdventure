@@ -36,6 +36,14 @@ namespace TutorialBoss
                 string bossId = controller.bossName; // Jo, Bow, Dok2 µî
                 BossManager.Instance?.RegisterBoss(bossId, gameObject);
             }
+            if (bossUI == null)
+            {
+                var ui = GameObject.FindObjectOfType<BossUIManager>();
+                if (ui != null)
+                {
+                    bossUI = ui;
+                }
+            }
 
             bossUI?.ShowUI();
             UpdateUI();

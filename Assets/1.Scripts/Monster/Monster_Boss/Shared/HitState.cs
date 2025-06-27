@@ -43,7 +43,9 @@ namespace TutorialBoss.States
 
         private IEnumerator ReturnToIdleAfterDelay()
         {
-            yield return new WaitForSeconds(knockbackForce * 0.2f);
+            float knockbackDuration = Mathf.Clamp(knockbackForce * 0.2f, 0.3f, 0.8f);
+
+            yield return new WaitForSeconds(knockbackDuration);
 
             switch (controller.bossName)
             {
