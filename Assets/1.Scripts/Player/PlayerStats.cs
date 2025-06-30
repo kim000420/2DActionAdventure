@@ -107,7 +107,7 @@ public class PlayerStats : MonoBehaviour
             controller.RequestStateChange(PlayerState.Dead);
 
             // 사망 연출 후 귀환 처리 (1초 후)
-            Invoke(nameof(RespawnToHomeScene), 1f);
+            Invoke(nameof(RespawnToLastSavedPoint), 1f);
         }
     }
 
@@ -156,9 +156,9 @@ public class PlayerStats : MonoBehaviour
         OnHPChanged?.Invoke(currentHP, maxHP);
         OnStaminaChanged?.Invoke(currentStamina, maxStamina);
     }
-    private void RespawnToHomeScene()
+    private void RespawnToLastSavedPoint()
     {
-        SceneTransitionManager.Instance.RespawnToScene("Home", "R_home_bed");
+        SceneTransitionManager.Instance.RespawnToLastSavedPoint();
     }
 
 }

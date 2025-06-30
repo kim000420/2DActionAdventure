@@ -3,6 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransitionManager : MonoBehaviour
 {
+
+    [Header("현재 리스폰 위치 상태")]
+    public string currentSceneName = "Home";
+    public string currentSpawnId = "default_spawn";
     public static SceneTransitionManager Instance { get; private set; }
 
     private string targetSpawnPoint;
@@ -16,6 +20,18 @@ public class SceneTransitionManager : MonoBehaviour
         }
 
         Instance = this;
+    }
+    
+    // 리스폰 갱신
+    public void SetRespawnLocation(string sceneName, string spawnId)
+    {
+        currentSceneName = sceneName;
+        currentSpawnId = spawnId;
+        Debug.Log($"[Respawn] 위치 갱신 → {sceneName} / {spawnId}");
+    }
+    public void RespawnToLastSavedPoint()
+    {
+        RespawnToScene(currentSceneName, currentSpawnId);
     }
 
     public void TransitionToScene(string sceneName, string spawnPoint)

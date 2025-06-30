@@ -1,4 +1,4 @@
-using Player.States;
+ï»¿using Player.States;
 using UnityEngine;
 
 public class SkillCastingState : IPlayerState
@@ -12,24 +12,27 @@ public class SkillCastingState : IPlayerState
         this.controller = controller;
         anim = controller.GetComponent<PlayerAnimationController>();
         rb = controller.GetComponent<Rigidbody2D>();
-
-        Debug.Log("[State] SkillCasting »óÅÂ ÁøÀÔ");
+        if (controller.TryGetComponent(out PlayerMotor motor))
+        {
+            motor.StopImmediately(); //ì´ë™ ê°’ ì´ˆê¸°í™”
+        }
+        Debug.Log("[State] SkillCasting ìƒíƒœ ì§„ì…");
     }
 
     public void Update(PlayerStateController controller)
     {
-        // ½ºÅ³ ½ÃÀü Áß¿¡´Â ÀÔ·Â Â÷´ÜÀÌ ±âº»
-        // ´Ü, ÇÊ¿ä ½Ã ¿©±â¼­ Á¦ÇÑµÈ ÀÔ·Â ÀÏºÎ Çã¿ë °¡´É
+        // ìŠ¤í‚¬ ì‹œì „ ì¤‘ì—ëŠ” ì…ë ¥ ì°¨ë‹¨ì´ ê¸°ë³¸
+        // ë‹¨, í•„ìš” ì‹œ ì—¬ê¸°ì„œ ì œí•œëœ ì…ë ¥ ì¼ë¶€ í—ˆìš© ê°€ëŠ¥
     }
 
     public void Exit(PlayerStateController controller)
     {
-        Debug.Log("[State] SkillCasting »óÅÂ Á¾·á");
+        Debug.Log("[State] SkillCasting ìƒíƒœ ì¢…ë£Œ");
     }
 
     public void FixedUpdate()
     {
-        // ÀÌµ¿ ¿ÏÀü Â÷´Ü
+        // ì´ë™ ì™„ì „ ì°¨ë‹¨
         rb.velocity = new Vector2(0f, rb.velocity.y);
     }
 

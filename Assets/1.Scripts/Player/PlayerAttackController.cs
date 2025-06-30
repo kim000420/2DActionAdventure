@@ -79,6 +79,7 @@ public class PlayerAttackController : MonoBehaviour
 
     private void OnStrongAttack()
     {
+        if (!controller.IsControllable()) return;
         if (!controller.CanTransitionTo(PlayerState.Attacking)) return;
         if (currentPhase != AttackPhase.None) return;
 

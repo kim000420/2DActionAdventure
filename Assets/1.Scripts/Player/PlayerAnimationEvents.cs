@@ -45,6 +45,7 @@ public class PlayerAnimationEvents : MonoBehaviour
         {
             controller.ForceStateChange(PlayerState.Idle);
             attackController.ResetAttackPhase();
+            motor.StopImmediately();
         }
     }
     public void EnableComboHitbox(int step)
@@ -80,6 +81,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         controller.ForceStateChange(PlayerState.Idle);
         motor.DisableMovementOverride();
+        motor.StopImmediately();
         Debug.Log("[Skill] 스킬 종료 및 상태 복귀 (강제)");
     }
 }

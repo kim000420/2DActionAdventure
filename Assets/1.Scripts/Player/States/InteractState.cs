@@ -1,4 +1,4 @@
-using Player.States;
+ï»¿using Player.States;
 using UnityEngine;
 
 public class InteractState : IPlayerState
@@ -6,7 +6,7 @@ public class InteractState : IPlayerState
     public void Enter(PlayerStateController controller)
     {
         Debug.Log("[State] Enter Interact");
-        // »óÈ£ÀÛ¿ë ¾Ö´Ï¸ŞÀÌ¼Ç Æ®¸®°Å µî
+        // ìƒí˜¸ì‘ìš© ì• ë‹ˆë©”ì´ì…˜ íŠ¸ë¦¬ê±° ë“±
         if (controller.TryGetComponent(out Rigidbody2D rb))
         {
             rb.velocity = Vector2.zero;
@@ -15,12 +15,16 @@ public class InteractState : IPlayerState
 
     public void Update(PlayerStateController controller)
     {
-        // ¾Æ¹« ÀÔ·Âµµ ¹ŞÁö ¾Ê°í »óÈ£ÀÛ¿ë ÁßÀÏ ¶§ ´ë±â
-        // ½Ã°£ÀÌ Áö³­ ÈÄ »óÅÂ º¹±Í or ¿ÜºÎ ÀÌº¥Æ®·Î Á¾·á
+        // ì•„ë¬´ ì…ë ¥ë„ ë°›ì§€ ì•Šê³  ìƒí˜¸ì‘ìš© ì¤‘ì¼ ë•Œ ëŒ€ê¸°
+        // ì‹œê°„ì´ ì§€ë‚œ í›„ ìƒíƒœ ë³µê·€ or ì™¸ë¶€ ì´ë²¤íŠ¸ë¡œ ì¢…ë£Œ
     }
 
     public void Exit(PlayerStateController controller)
     {
+        if (controller.TryGetComponent(out PlayerMotor motor))
+        {
+            motor.StopImmediately();
+        }
         Debug.Log("[State] Exit Interact");
     }
 }
