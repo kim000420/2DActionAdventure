@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class CameraController : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class CameraController : MonoBehaviour
 
     [Header("스폰 포인트")]
     [SerializeField] private Transform spawnPoint;
+
+    public float CamOffsetY = 0.4f;
 
     private bool isFollowing = true;
     private bool isWaitingForPlayer = false;
@@ -104,6 +107,22 @@ public class CameraController : MonoBehaviour
     public void FollowOn()
     {
         isFollowing = true;
+    }
+    public IEnumerator FocusOn(Transform target, float duration = 1f)
+    {
+        FollowOff(); // 자동 추적 멈춤
+        Vector3 start = transform.position;
+        Vector3 end = target.position + new Vector3(0, CamOffsetY, 0);
+        end.z = transform.position.z;
+
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            transform.position = Vector3.Lerp(start, end, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = end;
     }
 
 }

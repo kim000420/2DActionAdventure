@@ -34,16 +34,6 @@ public class DialogueEventManager : MonoBehaviour
     {
         currentTalkContext = contextKey;
     }
-
-    private void SetBossActive(string bossName, bool isActive)
-    {
-        var boss = GameObject.Find(bossName);
-        if (boss != null)
-        {
-            boss.SetActive(isActive);
-            Debug.Log($"{bossName} 보스 {(isActive ? "활성화" : "비활성화")}됨");
-        }
-    }
     // 특정 오브젝트 이름으로 대화 실행 시도
     private void TryStartDialogueByObjectName(string objectName)
     {
@@ -81,6 +71,9 @@ public class DialogueEventManager : MonoBehaviour
             case "MS_intro":
                 // 씬 전환시 StartTriggerObl 오브젝트를 찾고 대화 실행
                 TryStartDialogueByObjectName("StartTriggerObj");
+
+                //스폰 지점 지정
+                SceneTransitionManager.Instance.SetRespawnLocation("Home", "R_home_bed");
                 break;
 
             // 엄마와 대화 후 - 잘다녀와
@@ -101,6 +94,9 @@ public class DialogueEventManager : MonoBehaviour
             case "MS_002":
                 GameEventManager.Instance.SetCurrentStoryStage("ST_002");
                 BossManager.Instance.SetBossActive("Webuin", true);
+
+                //스폰 지점 지정
+                SceneTransitionManager.Instance.SetRespawnLocation("Home_Out_2-2", "Portal_homeout2-1");
                 break;
 
             // 수상한 외부인 사망
@@ -138,6 +134,8 @@ public class DialogueEventManager : MonoBehaviour
                 GameEventManager.Instance.SetCurrentStoryStage("ST_005");
                 //죠 활성화
                 BossManager.Instance.SetBossActive("Jo", true);
+                //스폰 지점 지정
+                SceneTransitionManager.Instance.SetRespawnLocation("Village_halbe_Guild4", "P_g2_g4");
                 break;
 
             // 죠 사망
@@ -182,6 +180,8 @@ public class DialogueEventManager : MonoBehaviour
                 GameEventManager.Instance.SetCurrentStoryStage("ST_009");
                 //보우 활성화
                 BossManager.Instance.SetBossActive("Bow", true);
+                //스폰 지점 지정
+                SceneTransitionManager.Instance.SetRespawnLocation("Village_halbe_Guild4", "P_g2_g4");
                 break;
 
             // 보우 사망 
@@ -223,8 +223,10 @@ public class DialogueEventManager : MonoBehaviour
             // Dok2활성.  
             case "MS_013":
                 GameEventManager.Instance.SetCurrentStoryStage("ST_013");
-                //죠 활성화
+                //Dok2 활성화
                 BossManager.Instance.SetBossActive("Dok2", true);
+                //스폰 지점 지정
+                SceneTransitionManager.Instance.SetRespawnLocation("Village_halbe_Guild4", "P_g2_g4");
                 break;
 
             // Dok2 사망
@@ -269,6 +271,8 @@ public class DialogueEventManager : MonoBehaviour
             case "MS_018_ATZ":
                 GameEventManager.Instance.SetCurrentStoryStage("ST_018_ATZ");
                 TryStartDialogueByObjectName("StartTriggerObj");
+                //스폰 지점 지정
+                SceneTransitionManager.Instance.SetRespawnLocation("Home", "R_home_bed");
                 break;
 
             // 얼리버드 기상 엄마 대화 이후 - 계란말이 머겅.  

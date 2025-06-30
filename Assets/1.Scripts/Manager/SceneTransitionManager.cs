@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class SceneTransitionManager : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class SceneTransitionManager : MonoBehaviour
     [Header("현재 리스폰 위치 상태")]
     public string currentSceneName = "Home";
     public string currentSpawnId = "default_spawn";
+
+    [Header("화면 암전시 UI 이미지")]
+    [SerializeField] private CanvasGroup fadeCanvas;
     public static SceneTransitionManager Instance { get; private set; }
 
     private string targetSpawnPoint;
@@ -37,15 +41,13 @@ public class SceneTransitionManager : MonoBehaviour
     public void TransitionToScene(string sceneName, string spawnPoint)
     {
         targetSpawnPoint = spawnPoint;
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.LoadScene(sceneName);
+        StartCoroutine(TransitionCoroutine(sceneName));
     }
 
     public void RespawnToScene(string sceneName, string returnSpawnID)
     {
         targetSpawnPoint = returnSpawnID;
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.LoadScene(sceneName);
+        StartCoroutine(TransitionCoroutine(sceneName));
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -93,5 +95,38 @@ public class SceneTransitionManager : MonoBehaviour
         {
             hud.SetPlayer(stats, skill);
         }
+    }
+    private IEnumerator TransitionCoroutine(string sceneName)
+    {
+        yield return StartCoroutine(FadeOut(0.3f)); // 암전
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.LoadScene(sceneName);
+        yield return null; // 한 프레임 대기 후 → OnSceneLoaded 호출됨
+        yield return StartCoroutine(FadeIn(0.3f)); // 암전 해제
+    }
+    public IEnumerator FadeOut(float duration = 0.3f)
+    {
+        fadeCanvas.gameObject.SetActive(true);
+        float time = 0f;
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            fadeCanvas.alpha = Mathf.Lerp(0, 1, time / duration);
+            yield return null;
+        }
+        fadeCanvas.alpha = 1f;
+    }
+
+    public IEnumerator FadeIn(float duration = 0.3f)
+    {
+        float time = 0f;
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            fadeCanvas.alpha = Mathf.Lerp(1, 0, time / duration);
+            yield return null;
+        }
+        fadeCanvas.alpha = 0f;
+        fadeCanvas.gameObject.SetActive(false);
     }
 }

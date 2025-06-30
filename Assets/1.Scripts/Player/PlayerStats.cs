@@ -103,11 +103,18 @@ public class PlayerStats : MonoBehaviour
         //사망처리
         if (currentHP <= 0)
         {
+            if (ShouldBypassDeath())
+            {
+                Debug.Log("[Respawn] 사망 방지 조건 → 즉시 복귀");
+                RespawnWithoutDeath(); // 씬 이동 없이 포지션 + HP 복원
+                return;
+            }
+
             // Dead 상태 전이
             controller.RequestStateChange(PlayerState.Dead);
 
             // 사망 연출 후 귀환 처리 (1초 후)
-            Invoke(nameof(RespawnToLastSavedPoint), 1f);
+            Invoke(nameof(RespawnToLastSavedPoint), 2f);
         }
     }
 
@@ -131,24 +138,6 @@ public class PlayerStats : MonoBehaviour
         isGuarding = value;
     }
 
-    private void RespawnAtReturnPoint()
-    {
-        SpawnPoint returnPoint = FindObjectsOfType<SpawnPoint>()
-            .FirstOrDefault(p => p.spawnType == SpawnType.Return);
-
-        if (returnPoint != null)
-        {
-            transform.position = returnPoint.transform.position;
-            controller.ForceStateChange(PlayerState.Idle);
-            RestoreToFull(); // 체력/스태미너 회복
-            Debug.Log("[Respawn] 귀환 완료");
-        }
-        else
-        {
-            Debug.LogWarning("[Respawn] Return 스폰포인트를 찾을 수 없습니다.");
-        }
-    }
-
     public void RestoreToFull()
     {
         currentHP = maxHP;
@@ -159,6 +148,31 @@ public class PlayerStats : MonoBehaviour
     private void RespawnToLastSavedPoint()
     {
         SceneTransitionManager.Instance.RespawnToLastSavedPoint();
+    }
+    private bool ShouldBypassDeath()
+    {
+        string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
+        // ✅ 씬 기반 예시
+        if (currentScene == "Village_halbe_Guild4" || currentScene == "Home_Out_2-2")
+            return true;
+
+        return false;
+    }
+
+    private void RespawnWithoutDeath()
+    {
+        // 현재 위치 or 지정된 리스폰 위치로 이동
+        string id = SceneTransitionManager.Instance.currentSpawnId;
+
+        var point = GameObject.FindObjectsOfType<SpawnPoint>()
+            .FirstOrDefault(p => p.spawnID == id);
+
+        if (point != null)
+            transform.position = point.transform.position;
+
+        RestoreToFull(); // 체력/스태미너 회복
+        controller.ForceStateChange(PlayerState.Idle);
     }
 
 }

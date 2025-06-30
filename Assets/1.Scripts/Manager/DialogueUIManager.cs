@@ -25,6 +25,8 @@ public class DialogueUIManager : MonoBehaviour
 
     public System.Action onDialogueEnd;
 
+    private Transform bubbleTarget; // 말풍선이 따라갈 타겟 Transform
+
     private DialogueEntry[] currentLines;
     public string onEndEventId; // 대화 종료 후 실행할 트리거 ID
     public string activeBranchId = null; // 현재 진행중인 분기 ID
@@ -43,6 +45,12 @@ public class DialogueUIManager : MonoBehaviour
     private void Update()
     {
         if (!isDialogueActive) return;
+
+        if (speechBubbleObject.activeSelf && bubbleTarget != null && !choicePanel.activeSelf)
+        {
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(bubbleTarget.position);
+            speechBubbleObject.transform.position = screenPos;
+        }
 
         // 🔸 선택지 상태 입력 처리
         if (choicePanel.activeSelf)
@@ -150,6 +158,7 @@ public class DialogueUIManager : MonoBehaviour
         if (speechBubbleObject != null)
             speechBubbleObject.SetActive(false);
 
+        bubbleTarget = null;
 
         onDialogueEnd?.Invoke();
         onDialogueEnd = null;
@@ -159,6 +168,12 @@ public class DialogueUIManager : MonoBehaviour
         if (!string.IsNullOrEmpty(onEndEventId))
         {
             DialogueEventManager.Instance?.Trigger(onEndEventId);
+        }
+
+        CameraController cam = Camera.main.GetComponent<CameraController>();
+        if (cam != null)
+        {
+            cam.FollowOn(); // 대화 종료 후 다시 추적 시작
         }
 
         GameManager.Instance.GetPlayerComponent<PlayerInteractStateController>()?.ResetInteractCooldown();
@@ -174,6 +189,16 @@ public class DialogueUIManager : MonoBehaviour
             Debug.LogWarning($"[DialogueUI] '{targetName}'을 찾을 수 없습니다.");
             return;
         }
+
+        CameraController cam = Camera.main.GetComponent<CameraController>();
+        if (cam != null)
+        {
+            cam.FollowOff();
+            StartCoroutine(cam.FocusOn(target.transform, 0.3f));
+
+        }
+
+        bubbleTarget = target.transform;
 
         Vector3 screenPos = Camera.main.WorldToScreenPoint(target.transform.position);
 

@@ -23,6 +23,8 @@ public class CameraEffectManager : MonoBehaviour
     private float zoomDuration = 0f;
     private float zoomSpeed = 0f;
 
+    [SerializeField] private CanvasGroup flashImage; // 흰색 전체 화면 UI 이미지
+
     public float ZoomSize => targetZoom;
 
     private void Awake()
