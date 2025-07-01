@@ -23,7 +23,7 @@ public class CameraEffectManager : MonoBehaviour
     private float zoomDuration = 0f;
     private float zoomSpeed = 0f;
 
-    [SerializeField] private CanvasGroup flashImage; // 흰색 전체 화면 UI 이미지
+    [SerializeField] private CanvasGroup flashGroup; // 흰색 전체 화면 UI 이미지
 
     public float ZoomSize => targetZoom;
 
@@ -65,16 +65,16 @@ public class CameraEffectManager : MonoBehaviour
         switch (strength)
         {
             case ShakeStrength.Weak:
-                shakeIntensity = 0.1f;
-                shakeDuration = 0.1f;
+                shakeIntensity = 0.06f;
+                shakeDuration = 0.05f;
                 break;
             case ShakeStrength.Medium:
-                shakeIntensity = 0.3f;
-                shakeDuration = 0.2f;
+                shakeIntensity = 0.12f;
+                shakeDuration = 0.1f;
                 break;
             case ShakeStrength.Strong:
-                shakeIntensity = 0.6f;
-                shakeDuration = 0.3f;
+                shakeIntensity = 0.3f;
+                shakeDuration = 0.2f;
                 break;
         }
     }
@@ -96,6 +96,27 @@ public class CameraEffectManager : MonoBehaviour
             yield return null;
         }
         Camera.main.orthographicSize = targetSize;
+    }
+    public void FlashWhite(float duration = 0.1f)
+    {
+        StartCoroutine(FlashCoroutine(duration));
+    }
+
+    private IEnumerator FlashCoroutine(float duration)
+    {
+        flashGroup.gameObject.SetActive(true);
+        flashGroup.alpha = 1f;
+
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            flashGroup.alpha = Mathf.Lerp(1f, 0f, elapsed / duration);
+            yield return null;
+        }
+
+        flashGroup.alpha = 0f;
+        flashGroup.gameObject.SetActive(false); // 꺼서 성능 최적화
     }
 
 }

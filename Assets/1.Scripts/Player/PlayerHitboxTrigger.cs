@@ -24,7 +24,7 @@ public class PlayerHitboxTrigger : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             var commonMonsterStats = other.GetComponent<CommonMonster.Stats.CommonMonsterStats>();
-            var bossStats = other.GetComponent<TutorialBoss.TutorialBossStats>();
+            var TutorialBossStats = other.GetComponent<TutorialBoss.TutorialBossStats>();
             var attackerStats = transform.root.GetComponent<PlayerStats>();
 
             if (attackerStats != null)
@@ -46,9 +46,18 @@ public class PlayerHitboxTrigger : MonoBehaviour
                     finalDamage *= critMult;
                     Debug.Log("[크리티컬 Hit!] " + Mathf.RoundToInt(finalDamage));
                 }
-
+                // 일반몹일떄
                 if (commonMonsterStats != null)
                 {
+                    if (isCritical)
+                    {
+                        CameraEffectManager.Instance.Shake(ShakeStrength.Medium);
+                        CameraEffectManager.Instance.FlashWhite(0.2f);
+                    }
+                    else
+                    {
+                        CameraEffectManager.Instance.Shake(ShakeStrength.Weak);
+                    }
                     commonMonsterStats.ApplyHit(
                         Mathf.RoundToInt(finalDamage),
                         Mathf.RoundToInt(finalGroggy),
@@ -57,9 +66,20 @@ public class PlayerHitboxTrigger : MonoBehaviour
                     );
                     hasHit = true;
                 }
-                else if (bossStats != null)
+                // 튜토보스일때
+                else if (TutorialBossStats != null)
                 {
-                    bossStats.ApplyHit(
+                    if (isCritical)
+                    {
+                        CameraEffectManager.Instance.Shake(ShakeStrength.Medium);
+                        CameraEffectManager.Instance.FlashWhite(0.2f);
+                    }
+                    else
+                    {
+                        CameraEffectManager.Instance.Shake(ShakeStrength.Weak);
+                    }
+
+                    TutorialBossStats.ApplyHit(
                         Mathf.RoundToInt(finalDamage),
                         Mathf.RoundToInt(finalGroggy),
                         knockbackForce,
