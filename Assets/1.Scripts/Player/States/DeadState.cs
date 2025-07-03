@@ -25,5 +25,9 @@ public class DeadState : IPlayerState
         Debug.Log("[State] Dead 상태 종료");
         controller.ChangeState(PlayerState.Idle);
     }
-
+    public bool CanTransitionTo(PlayerState nextState)
+    {
+        // 사망 상태에서는 어떤 상태로도 전이 불가능
+        return false;
+    }
 }

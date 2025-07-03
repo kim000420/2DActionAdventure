@@ -1,0 +1,35 @@
+using UnityEngine;
+
+namespace Player.States
+{
+    public abstract class GroundedState : IPlayerState
+    {
+        public virtual void Enter(PlayerStateController controller) { }
+
+        public virtual void Exit(PlayerStateController controller) { }
+
+        public virtual void Update(PlayerStateController controller)
+        {
+            HandleCommonInput(controller);
+        }
+
+        protected void HandleCommonInput(PlayerStateController controller)
+        {
+            var input = controller.GetComponent<PlayerInputHandler>();
+
+            if (input.CrouchHeld)
+            {
+                controller.RequestStateChange(PlayerState.Crouching);
+                return;
+            }
+
+            if (input.GuardHeld)
+            {
+                controller.RequestStateChange(PlayerState.Guarding);
+                return;
+            }
+        }
+
+        public abstract bool CanTransitionTo(PlayerState nextState);
+    }
+}

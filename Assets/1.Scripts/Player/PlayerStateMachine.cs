@@ -39,16 +39,30 @@ public class PlayerStateMachine : MonoBehaviour
     {
         currentStateInstance?.Update(stateController);
     }
-
+    /// <summary>
+    /// enum 기반 상태 전이. 상태 맵에서 기본 FSM 상태로 전환할 때 사용.
+    /// CanTransitionTo 검사 포함.
+    /// </summary>
     public void ChangeState(PlayerState newState)
     {
         if (!stateMap.ContainsKey(newState)) return;
+
+        // 상태 전이 가능 여부 체크 (각 상태의 CanTransitionTo 이용)
+        if (currentStateInstance != null && !currentStateInstance.CanTransitionTo(newState))
+        {
+            Debug.Log($"[StateMachine] {stateController.CurrentState} → {newState} 전이 거부됨");
+            return;
+        }
 
         currentStateInstance?.Exit(stateController);
         stateController.ChangeState(newState);
         currentStateInstance = stateMap[newState];
         currentStateInstance.Enter(stateController);
     }
+    /// <summary>
+    /// 직접 생성된 상태 인스턴스로 전이.
+    /// KnockbackState 등 파라미터 기반 상태 전이에 적합.
+    /// </summary>
     public void ChangeState(IPlayerState newState, PlayerStateController controller)
     {
         currentStateInstance?.Exit(controller);

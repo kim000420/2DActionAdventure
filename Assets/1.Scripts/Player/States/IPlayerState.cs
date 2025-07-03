@@ -5,5 +5,6 @@
         void Enter(PlayerStateController controller);
         void Update(PlayerStateController controller);
         void Exit(PlayerStateController controller);
+        bool CanTransitionTo(PlayerState nextState);
     }
 }

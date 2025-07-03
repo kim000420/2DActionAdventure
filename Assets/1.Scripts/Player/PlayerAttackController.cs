@@ -111,6 +111,23 @@ public class PlayerAttackController : MonoBehaviour
         if (direction == 0) direction = controller.GetComponent<SpriteRenderer>().flipX ? -1 : 1;
 
     }
+    public void BeginComboStep(int step)
+    {
+        controller.ChangeState(PlayerState.Attacking);
+
+        anim.PlayTrigger($"attack_Combo_{(char)('A' + step)}");
+        currentPhase = (AttackPhase)(step + 1);
+        lastAttackTime = Time.time;
+        attackDirection = motor.LastDirection;
+
+        motor.EnableMovementOverride();
+
+        var inputH = controller.GetComponent<PlayerInputHandler>();
+        direction = Mathf.Sign(inputH.Horizontal);
+        if (direction == 0)
+            direction = controller.GetComponent<SpriteRenderer>().flipX ? -1 : 1;
+    }
+
 
     private void PlayFinishAttack()
     {

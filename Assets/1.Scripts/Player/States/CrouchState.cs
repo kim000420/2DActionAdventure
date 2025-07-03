@@ -1,41 +1,72 @@
 using UnityEngine;
 
-public class CrouchState : CrouchGuardBaseState
+namespace Player.States
 {
-    private CapsuleCollider2D collider;
-    private Vector2 originalSize;
-    private Vector2 crouchSize = new Vector2(0.5f, 0.689999998f);
-    private Vector2 originalOffset;
-    private Vector2 crouchOffset = new Vector2(0, 0.340000004f);
-
-    public override void Enter(PlayerStateController controller)
+    public class CrouchState : IPlayerState
     {
-        base.Enter(controller);
+        private CapsuleCollider2D collider;
+        private Vector2 originalSize;
+        private Vector2 crouchSize = new Vector2(0.5f, 0.689999998f);
+        private Vector2 originalOffset;
+        private Vector2 crouchOffset = new Vector2(0, 0.340000004f);
 
-        collider = controller.GetComponent<CapsuleCollider2D>();
-        originalSize = collider.size;
-        originalOffset = collider.offset;
+        private float holdTime = 0.5f;
+        private float timer = 0f;
+        private bool hasHeldEnough = false;
+        private bool isReleased = false;
 
-        collider.size = crouchSize;
-        collider.offset = crouchOffset;
 
-        var anim = controller.GetComponent<PlayerAnimationController>();
-        anim.SetBool("isCrouching", true);
-    }
+        public void Enter(PlayerStateController controller)
+        {
+            timer = 0f;
+            hasHeldEnough = false;
+            isReleased = false;
 
-    public override void Exit(PlayerStateController controller)
-    {
-        base.Exit(controller);
+            var motor = controller.GetComponent<PlayerMotor>();
+            motor.EnableMovementOverride(); // 이동 금지
 
-        collider.size = originalSize;
-        collider.offset = originalOffset;
+            collider = controller.GetComponent<CapsuleCollider2D>();
+            originalSize = collider.size;
+            originalOffset = collider.offset;
 
-        var anim = controller.GetComponent<PlayerAnimationController>();
-        anim.SetBool("isCrouching", false);
-    }
+            collider.size = crouchSize;
+            collider.offset = crouchOffset;
 
-    protected override bool IsHolding(PlayerInputHandler input)
-    {
-        return input.CrouchHeld;
+            var anim = controller.GetComponent<PlayerAnimationController>();
+            anim.SetBool("isCrouching", true);
+        }
+        public void Update(PlayerStateController controller)
+        {
+            var input = controller.GetComponent<PlayerInputHandler>();
+
+            timer += Time.deltaTime;
+            if (timer >= holdTime) hasHeldEnough = true;
+            if (!input.CrouchHeld) isReleased = true;
+
+            if (hasHeldEnough && isReleased)
+            {
+                controller.RequestStateChange(PlayerState.Idle);
+            }
+        }
+        public  void Exit(PlayerStateController controller)
+        {
+            var motor = controller.GetComponent<PlayerMotor>();
+            motor.DisableMovementOverride();
+
+            collider.size = originalSize;
+            collider.offset = originalOffset;
+
+            var anim = controller.GetComponent<PlayerAnimationController>();
+            anim.SetBool("isCrouching", false);
+        }
+        public bool CanTransitionTo(PlayerState nextState)
+        {
+            // 앉은 상태에서 스킬 시전, 점프, 피격, 넉백, 사망만 허용
+            return nextState is PlayerState.SkillCasting or
+                              PlayerState.Jumping or
+                              PlayerState.Hit or
+                              PlayerState.Knockback or
+                              PlayerState.Dead;
+        }
     }
 }

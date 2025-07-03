@@ -12,13 +12,11 @@ public class InteractState : IPlayerState
             rb.velocity = Vector2.zero;
         }
     }
-
     public void Update(PlayerStateController controller)
     {
         // 아무 입력도 받지 않고 상호작용 중일 때 대기
         // 시간이 지난 후 상태 복귀 or 외부 이벤트로 종료
     }
-
     public void Exit(PlayerStateController controller)
     {
         if (controller.TryGetComponent(out PlayerMotor motor))
@@ -26,5 +24,10 @@ public class InteractState : IPlayerState
             motor.StopImmediately();
         }
         Debug.Log("[State] Exit Interact");
+    }
+    public bool CanTransitionTo(PlayerState nextState)
+    {
+        // 상호작용 중에는 피격, 넉백, 사망만 허용
+        return nextState is PlayerState.Idle or PlayerState.Hit or PlayerState.Knockback or PlayerState.Dead;
     }
 }

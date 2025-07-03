@@ -32,24 +32,7 @@ public class PlayerStateController : MonoBehaviour
 
     public bool CanTransitionTo(PlayerState nextState)
     {
-        // 스킬 시전 상태는 Idle,Moving일 때만 진입 가능
-        if (nextState == PlayerState.SkillCasting &&
-            CurrentState != PlayerState.Idle &&
-            CurrentState != PlayerState.Moving)
-            return false;
-        // 공격 중 → 다른 상태 차단 (단, 피격/사망 허용)
-        if (CurrentState == PlayerState.Attacking)
-        {
-            return nextState is PlayerState.Attacking or PlayerState.Hit or PlayerState.Knockback or PlayerState.Dead;
-        }
-
-        // 스킬 중 → 피격/사망/가드만 허용
-        if (CurrentState == PlayerState.SkillCasting)
-        {
-            return nextState is PlayerState.Hit or PlayerState.Knockback or PlayerState.Dead or PlayerState.Guarding;
-        }
-
-        return true;
+        return StateMachine.CurrentStateInstance?.CanTransitionTo(nextState) ?? true;
     }
 
 

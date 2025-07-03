@@ -4,25 +4,30 @@ namespace Player.States
 {
     public class AttackState : IPlayerState
     {
-        private int comboIndex = 0;
-
         public void Enter(PlayerStateController controller)
         {
-            var anim = controller.GetComponent<PlayerAnimationController>();
-            string trigger = $"attack_Combo_{(char)('A' + comboIndex)}";
-            anim.PlayTrigger(trigger);
-            controller.StartCoroutine(EndAfterDelay(controller, 0.4f));
+            // 공격 흐름 시작 요청 → Controller가 콤보 A부터 시작
+            var attack = controller.GetComponent<PlayerAttackController>();
+            attack?.BeginComboStep(0); // 0단계 콤보 시작
 
-            comboIndex = (comboIndex + 1) % 3;
+            // 이동 차단
+            controller.GetComponent<PlayerMotor>()?.EnableMovementOverride();
         }
 
         public void Update(PlayerStateController controller) { }
-        public void Exit(PlayerStateController controller) { }
-
-        private System.Collections.IEnumerator EndAfterDelay(PlayerStateController controller, float delay)
+        public void Exit(PlayerStateController controller)
         {
-            yield return new WaitForSeconds(delay);
-            controller.ChangeState(PlayerState.Idle);
+            var attack = controller.GetComponent<PlayerAttackController>();
+            attack?.ResetAttackPhase();
+
+            controller.GetComponent<PlayerMotor>()?.DisableMovementOverride();
+        }
+        public bool CanTransitionTo(PlayerState nextState)
+        {
+            return nextState is PlayerState.Attacking or
+                                 PlayerState.Hit or
+                                 PlayerState.Knockback or
+                                 PlayerState.Dead;
         }
     }
 }

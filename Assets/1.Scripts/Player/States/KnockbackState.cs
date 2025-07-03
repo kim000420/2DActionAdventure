@@ -83,7 +83,11 @@ namespace Player.States
             anim.SetBool("isKnockback", false);
             motor.DisableMovementOverride();
         }
-
+        public bool CanTransitionTo(PlayerState nextState)
+        {
+            // 넉백 상태에서는 사망 외에는 전이 제한
+            return nextState == PlayerState.Dead;
+        }
         public static KnockbackState Create(KnockbackType type, float forceX, float forceY)
         {
             return new KnockbackState(type, new Vector2(forceX, forceY));
