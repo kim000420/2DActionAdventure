@@ -86,7 +86,7 @@ namespace Player.States
         public override bool CanTransitionTo(PlayerState nextState)
         {
             // 구르기 중에는 대부분 전이 금지 (단, 피격, 넉백, 사망은 예외)
-            return nextState is PlayerState.Hit or PlayerState.Knockback or PlayerState.Dead;
+            return nextState is PlayerState.Idle or PlayerState.Hit or PlayerState.Knockback or PlayerState.Dead;
         }
     }
 }

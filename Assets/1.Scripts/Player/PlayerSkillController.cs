@@ -81,7 +81,7 @@ public class PlayerSkillController : MonoBehaviour
     private void TryUseKick()
     {
         if (stats.kickLevel <= 0) return;
-        if (!controller.CanTransitionTo(PlayerState.SkillCasting)) return;
+        if (!controller.StateMachine.CurrentStateInstance.CanTransitionTo(PlayerState.SkillCasting)) return;
         if (!IsSkillAvailable("Kick") || !HasEnoughStamina("Kick")) return;
 
         controller.RequestStateChange(PlayerState.SkillCasting);
@@ -147,7 +147,7 @@ public class PlayerSkillController : MonoBehaviour
 
     private void TryUseSubWeapon()
     {
-        if (!controller.CanTransitionTo(PlayerState.SkillCasting)) return;
+        if (!controller.StateMachine.CurrentStateInstance.CanTransitionTo(PlayerState.SkillCasting)) return;
         if (!IsSkillAvailable("Sub") || !HasEnoughStamina("Sub")) return;
 
         controller.RequestStateChange(PlayerState.SkillCasting);
@@ -181,7 +181,7 @@ public class PlayerSkillController : MonoBehaviour
     private void TryUseFood()
     {
         if (stats.foodItem == null || stats.foodItem.useCount <= 0) return;
-        if (!controller.CanTransitionTo(PlayerState.SkillCasting)) return;
+        if (!controller.StateMachine.CurrentStateInstance.CanTransitionTo(PlayerState.SkillCasting)) return;
         if (!IsSkillAvailable("Food")) return;
 
         controller.RequestStateChange(PlayerState.SkillCasting);

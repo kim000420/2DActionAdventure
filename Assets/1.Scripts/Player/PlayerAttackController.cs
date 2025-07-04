@@ -50,7 +50,9 @@ public class PlayerAttackController : MonoBehaviour
     private void OnComboInput()
     {
         // Idle 또는 Move 상태일 때만 공격 허용
-        if (controller.CurrentState != PlayerState.Idle && controller.CurrentState != PlayerState.Moving && controller.CurrentState != PlayerState.Attacking)
+        if (controller.StateMachine.CurrentEnumState != PlayerState.Idle 
+            && controller.StateMachine.CurrentEnumState != PlayerState.Moving 
+            && controller.StateMachine.CurrentEnumState != PlayerState.Attacking)
         {
             return;
         }
@@ -62,7 +64,8 @@ public class PlayerAttackController : MonoBehaviour
         }
 
         // 콤보 입력 흐름
-        if (currentPhase == AttackPhase.None && controller.CanTransitionTo(PlayerState.Attacking))
+        if (currentPhase == AttackPhase.None 
+            && controller.StateMachine.CurrentStateInstance.CanTransitionTo(PlayerState.Attacking))
         {
             PlayCombo(0);
         }
@@ -80,10 +83,10 @@ public class PlayerAttackController : MonoBehaviour
     private void OnStrongAttack()
     {
         if (!controller.IsControllable()) return;
-        if (!controller.CanTransitionTo(PlayerState.Attacking)) return;
+        if (!controller.StateMachine.CurrentStateInstance.CanTransitionTo(PlayerState.Attacking)) return;
         if (currentPhase != AttackPhase.None) return;
 
-        controller.ChangeState(PlayerState.Attacking);
+        controller.RequestStateChange(PlayerState.Attacking);
         anim.PlayTrigger("attack_Strong");
         currentPhase = AttackPhase.Strong;
         lastAttackTime = Time.time;
@@ -99,7 +102,7 @@ public class PlayerAttackController : MonoBehaviour
 
     private void PlayCombo(int step)
     {
-        controller.ChangeState(PlayerState.Attacking);
+        controller.RequestStateChange(PlayerState.Attacking);
         anim.PlayTrigger($"attack_Combo_{(char)('A' + step)}");
         currentPhase = (AttackPhase)(step + 1);
         lastAttackTime = Time.time;
@@ -113,7 +116,7 @@ public class PlayerAttackController : MonoBehaviour
     }
     public void BeginComboStep(int step)
     {
-        controller.ChangeState(PlayerState.Attacking);
+        controller.RequestStateChange(PlayerState.Attacking);
 
         anim.PlayTrigger($"attack_Combo_{(char)('A' + step)}");
         currentPhase = (AttackPhase)(step + 1);
@@ -131,7 +134,7 @@ public class PlayerAttackController : MonoBehaviour
 
     private void PlayFinishAttack()
     {
-        controller.ChangeState(PlayerState.Attacking);
+        controller.RequestStateChange(PlayerState.Attacking);
         anim.PlayTrigger("attack_Finish");
         currentPhase = AttackPhase.Finish;
 

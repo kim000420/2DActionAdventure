@@ -44,7 +44,7 @@ public class PlayerMotor : MonoBehaviour
         if (direction != 0)
             LastDirection = Mathf.Sign(direction);
 
-        if (stateController != null && stateController.CurrentState == PlayerState.Attacking)
+        if (stateController != null && stateController.StateMachine.CurrentEnumState == PlayerState.Attacking)
         {
             inputX = 0f;
             return;  // ❌ 방향 갱신 안 함
@@ -64,7 +64,7 @@ public class PlayerMotor : MonoBehaviour
         if (!wasGrounded && isGrounded)
         {
             var controller = GetComponent<PlayerStateController>();
-            if (controller != null && controller.CurrentState == PlayerState.Knockback)
+            if (controller != null && controller.StateMachine.CurrentEnumState == PlayerState.Knockback)
             {
                 var events = GetComponent<PlayerAnimationEvents>();
                 if (events != null)
@@ -84,7 +84,7 @@ public class PlayerMotor : MonoBehaviour
         
         // ✅ Interact 상태도 이동 중단
         var stateController = GetComponent<PlayerStateController>();
-        if (stateController != null && stateController.CurrentState == PlayerState.Interacting)
+        if (stateController != null && stateController.StateMachine.CurrentEnumState == PlayerState.Interacting)
         {
             rb.velocity = new Vector2(0f, rb.velocity.y); // 수평 이동 중단
             currentVelocityX = 0f;

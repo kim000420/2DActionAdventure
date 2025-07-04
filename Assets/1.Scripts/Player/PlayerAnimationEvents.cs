@@ -25,7 +25,7 @@ public class PlayerAnimationEvents : MonoBehaviour
             anim.SetBool("isKnockback", false);
         }
 
-        if (controller != null && controller.CurrentState == PlayerState.Knockback)
+        if (controller != null && controller.StateMachine.CurrentEnumState == PlayerState.Knockback)
         {
             controller.RequestStateChange(PlayerState.Idle);
         }
@@ -43,7 +43,7 @@ public class PlayerAnimationEvents : MonoBehaviour
         // 콤보 종료 or 입력 끊김 → Idle 전이 및 초기화 필요
         if (controller != null && attackController != null)
         {
-            controller.ForceStateChange(PlayerState.Idle);
+            controller.StateMachine.ForceChangeState(PlayerState.Idle);
             attackController.ResetAttackPhase();
             motor.StopImmediately();
         }
@@ -79,7 +79,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     }
     public void EndSkillCast()
     {
-        controller.ForceStateChange(PlayerState.Idle);
+        controller.StateMachine.ForceChangeState(PlayerState.Idle);
         motor.DisableMovementOverride();
         motor.StopImmediately();
         Debug.Log("[Skill] 스킬 종료 및 상태 복귀 (강제)");

@@ -16,8 +16,9 @@ namespace Player.States
         protected void HandleCommonInput(PlayerStateController controller)
         {
             var input = controller.GetComponent<PlayerInputHandler>();
+            var state = controller.StateMachine.CurrentEnumState;
 
-            if (input.CrouchHeld)
+            if (state == PlayerState.Idle && input.CrouchHeld)
             {
                 controller.RequestStateChange(PlayerState.Crouching);
                 return;

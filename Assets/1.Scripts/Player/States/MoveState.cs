@@ -6,7 +6,7 @@ namespace Player.States
     {
         public override void Enter(PlayerStateController controller)
         {
-            if (!controller.CanTransitionTo(PlayerState.Moving))
+            if (!controller.StateMachine.CurrentStateInstance.CanTransitionTo(PlayerState.Moving))
                 return;
         }
 

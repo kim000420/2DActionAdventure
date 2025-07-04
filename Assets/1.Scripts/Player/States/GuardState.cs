@@ -53,7 +53,7 @@ namespace Player.States
         public bool CanTransitionTo(PlayerState nextState)
         {
             // 가드 중에는 피격, 넉백, 사망만 허용
-            return nextState is PlayerState.Hit or PlayerState.Knockback or PlayerState.Dead;
+            return nextState is PlayerState.Idle or PlayerState.Hit or PlayerState.Knockback or PlayerState.Dead;
         }
 
         public float TimeSinceEntered => Time.time - enterTime;

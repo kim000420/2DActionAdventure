@@ -64,6 +64,7 @@ namespace Player.States
             // 앉은 상태에서 스킬 시전, 점프, 피격, 넉백, 사망만 허용
             return nextState is PlayerState.SkillCasting or
                               PlayerState.Jumping or
+                              PlayerState.Idle or
                               PlayerState.Hit or
                               PlayerState.Knockback or
                               PlayerState.Dead;

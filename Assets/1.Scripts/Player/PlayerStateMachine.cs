@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
 {
-    private PlayerStateController stateController;
+    private PlayerStateController controller;
     private Dictionary<PlayerState, IPlayerState> stateMap;
     private IPlayerState currentStateInstance;
+    private PlayerState currentEnumState;
 
+    public PlayerState CurrentEnumState => currentEnumState;
     public IPlayerState CurrentStateInstance => currentStateInstance;
-
     private void Awake()
     {
-        stateController = GetComponent<PlayerStateController>();
+        controller = GetComponent<PlayerStateController>();
         stateMap = new Dictionary<PlayerState, IPlayerState>
         {
             { PlayerState.Idle, new IdleState() },
@@ -24,8 +25,8 @@ public class PlayerStateMachine : MonoBehaviour
             { PlayerState.Attacking, new AttackState() },
             { PlayerState.SkillCasting, new SkillCastingState() },
             { PlayerState.Interacting, new InteractState() },
-            { PlayerState.Hit, new HitState() },
-            { PlayerState.Dead, new DeadState() },
+            { PlayerState.Knockback, new KnockbackState(KnockbackType.Weak, Vector2.zero) },
+            { PlayerState.Dead, new DeadState() }
         };
     }
 
@@ -36,7 +37,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void Update()
     {
-        currentStateInstance?.Update(stateController);
+        currentStateInstance?.Update(controller);
     }
     /// <summary>
     /// enum 기반 상태 전이. 상태 맵에서 기본 FSM 상태로 전환할 때 사용.
@@ -45,18 +46,45 @@ public class PlayerStateMachine : MonoBehaviour
     public void ChangeState(PlayerState newState)
     {
         if (!stateMap.ContainsKey(newState)) return;
+        
+        //  동일 상태 전이 방지
+        if (currentEnumState == newState)
+        {
+            Debug.LogWarning($"[FSM] 중복 상태 전이 시도: {newState} → 무시됨");
+            return;
+        }
 
         // 상태 전이 가능 여부 체크 (각 상태의 CanTransitionTo 이용)
         if (currentStateInstance != null && !currentStateInstance.CanTransitionTo(newState))
         {
-            Debug.Log($"[StateMachine] {stateController.CurrentState} → {newState} 전이 거부됨");
+            Debug.Log($"[FSM] 상태 전이 거부됨: {currentEnumState} → {newState}");
             return;
         }
 
-        currentStateInstance?.Exit(stateController);
-        stateController.ChangeState(newState);
+        Debug.Log($"[FSM] 상태 전이: {currentEnumState} → {newState}");
+
+        currentStateInstance?.Exit(controller);
         currentStateInstance = stateMap[newState];
-        currentStateInstance.Enter(stateController);
+        currentEnumState = newState;
+
+        currentStateInstance.Enter(controller);
+    }
+    public void ForceChangeState(PlayerState newState)
+    {
+        if (!stateMap.ContainsKey(newState)) return;
+
+        if (currentEnumState == PlayerState.Dead)
+        {
+            Debug.LogWarning("[FSM] Dead 상태에서 강제 전이 시도 → 무시됨");
+            return;
+        }
+
+        currentStateInstance?.Exit(controller);
+        currentStateInstance = stateMap[newState];
+        currentEnumState = newState;
+
+        Debug.Log($"[FSM] 상태 강제 전이: → {newState}");
+        currentStateInstance.Enter(controller);
     }
     /// <summary>
     /// 직접 생성된 상태 인스턴스로 전이.

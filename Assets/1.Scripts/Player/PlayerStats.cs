@@ -175,7 +175,7 @@ public class PlayerStats : MonoBehaviour
             transform.position = point.transform.position;
 
         RestoreToFull(); // 체력/스태미너 회복
-        controller.ForceStateChange(PlayerState.Idle);
+        controller.StateMachine.ForceChangeState(PlayerState.Idle);
     }
 
 }

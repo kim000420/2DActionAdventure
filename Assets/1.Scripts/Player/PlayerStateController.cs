@@ -4,57 +4,26 @@ using Player.States;
 public class PlayerStateController : MonoBehaviour
 {
     public PlayerStateMachine StateMachine { get; private set; }
-    public PlayerState CurrentState { get; private set; } = PlayerState.Idle;
 
-    public bool Is(PlayerState state) => CurrentState == state;
-    public bool IsBusy() => CurrentState is PlayerState.Attacking or PlayerState.SkillCasting or PlayerState.Knockback;
     private void Awake()
     {
         StateMachine = GetComponent<PlayerStateMachine>();
     }
-    public void ChangeState(PlayerState newState)
-    {
-        if (CurrentState == newState) return;
-        Debug.Log($"[State] {CurrentState} → {newState}");
-        CurrentState = newState;
-    }
-    public void ChangeState(IPlayerState newState)
-    {
-        if (newState is KnockbackState)
-            CurrentState = PlayerState.Knockback;
-        else if (newState is GuardState)
-            CurrentState = PlayerState.Guarding;
-        else if (newState is CrouchState)
-            CurrentState = PlayerState.Crouching;
 
-        StateMachine.ChangeState(newState, this);
-    }
-
-    public bool CanTransitionTo(PlayerState nextState)
-    {
-        return StateMachine.CurrentStateInstance?.CanTransitionTo(nextState) ?? true;
-    }
-
-
+    // 외부 전이 요청 → 실제 로직은 StateMachine에 위임
     public void RequestStateChange(PlayerState newState)
     {
-        if (!CanTransitionTo(newState)) return;
-        Debug.Log($"[State] {CurrentState} → {newState}");
-        GetComponent<PlayerStateMachine>().ChangeState(newState);
+        StateMachine.ChangeState(newState);
     }
 
-    //스킬을 사용할 수 있는 상태
-    public bool IsControllable()
+    // 강제 전이 요청 (검사 없이)
+    public void SetStateInstantly(PlayerState newState)
     {
-        return CurrentState is PlayerState.Idle or PlayerState.Moving;
+        StateMachine.ForceChangeState(newState);
     }
 
-    //강제 상태 전이
-    public void ForceStateChange(PlayerState state)
-    {
-        CurrentState = state;
-        GetComponent<PlayerStateMachine>().ChangeState(state);
-    }
-
-
+    // 상태 판단용 보조 메서드
+    public bool Is(PlayerState state) => StateMachine.CurrentEnumState == state;
+    public bool IsBusy() => StateMachine.CurrentEnumState is PlayerState.Attacking or PlayerState.SkillCasting or PlayerState.Knockback;
+    public bool IsControllable() => StateMachine.CurrentEnumState is PlayerState.Idle or PlayerState.Moving;
 }

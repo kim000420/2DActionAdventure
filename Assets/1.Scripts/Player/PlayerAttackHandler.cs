@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerAttackHandler : MonoBehaviour
 {
-    private PlayerStateController stateController;
+    private PlayerStateController Controller;
     private PlayerAnimationController anim;
 
     public GameObject[] comboHitboxes;
@@ -10,15 +10,15 @@ public class PlayerAttackHandler : MonoBehaviour
 
     private void Start()
     {
-        stateController = GetComponent<PlayerStateController>();
+        Controller = GetComponent<PlayerStateController>();
         anim = GetComponent<PlayerAnimationController>();
     }
 
     public void PerformComboAttack()
     {
-        if (!stateController.CanTransitionTo(PlayerState.Attacking)) return;
+        if (!Controller.StateMachine.CurrentStateInstance.CanTransitionTo(PlayerState.Attacking)) return;
 
-        stateController.ChangeState(PlayerState.Attacking);
+        Controller.RequestStateChange(PlayerState.Attacking);
         string triggerName = $"attack_Combo_{(char)('A' + comboIndex)}";
         anim.PlayTrigger(triggerName);
 
@@ -39,6 +39,6 @@ public class PlayerAttackHandler : MonoBehaviour
             if (hitbox != null)
                 hitbox.SetActive(false);
 
-        stateController.ChangeState(PlayerState.Idle);
+        Controller.RequestStateChange(PlayerState.Idle);
     }
 }

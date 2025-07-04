@@ -27,6 +27,7 @@ namespace Player.States
             return nextState is PlayerState.Attacking or
                                  PlayerState.Hit or
                                  PlayerState.Knockback or
+                                 PlayerState.Idle or
                                  PlayerState.Dead;
         }
     }

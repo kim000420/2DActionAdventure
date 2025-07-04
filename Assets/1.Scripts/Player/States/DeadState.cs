@@ -23,7 +23,7 @@ public class DeadState : IPlayerState
     public void Exit(PlayerStateController controller)
     {
         Debug.Log("[State] Dead 상태 종료");
-        controller.ChangeState(PlayerState.Idle);
+        controller.RequestStateChange(PlayerState.Idle);
     }
     public bool CanTransitionTo(PlayerState nextState)
     {
