@@ -98,8 +98,9 @@ public class PlayerStats : MonoBehaviour
         float direction = transform.position.x < attackerX ? -1f : 1f;
         Vector2 knockback = new Vector2(forceX * direction, forceY);
 
-        controller.ForceStateChange(PlayerState.Knockback); // enum 기반 전이
-        controller.StateMachine.ChangeState(new KnockbackState(knockbackType, knockback), controller); // 상태 인스턴스 설정
+        var knockbackState = new KnockbackState(knockbackType, knockback);
+        controller.StateMachine.ChangeState(knockbackState, controller);
+
 
         attackController.ResetAttackPhase();
         //사망처리

@@ -15,7 +15,7 @@ namespace Player.States
         public bool CanTransitionTo(PlayerState nextState)
         {
             // Hit 상태에서는 Knockback, Dead 외에는 제한
-            return nextState is PlayerState.Knockback or PlayerState.Dead;
+            return nextState is PlayerState.Idle or PlayerState.Knockback or PlayerState.Dead;
         }
         private System.Collections.IEnumerator EndAfterDelay(PlayerStateController controller, float delay)
         {

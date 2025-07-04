@@ -10,7 +10,6 @@ namespace TutorialBoss.States.Webuin
 
         public override void Enter()
         {
-            Debug.Log("[WebuinChaseState] Entering Chase State.");
             controller.animator.Play("Webuin_ChaseWalk"); // Webuin의 추격(달리기) 애니메이션 재생
             controller.rb.velocity = Vector2.zero; // 이전 상태의 잔여 속도 초기화
         }
@@ -65,7 +64,6 @@ namespace TutorialBoss.States.Webuin
 
         public override void Exit()
         {
-            Debug.Log("[WebuinChaseState] Exit");
         }
     }
 }

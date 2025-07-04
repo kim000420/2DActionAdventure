@@ -41,6 +41,7 @@ public class SkillCastingState : IPlayerState
         return nextState == PlayerState.Hit ||
                nextState == PlayerState.Knockback ||
                nextState == PlayerState.Dead ||
+               nextState == PlayerState.Idle ||
                nextState == PlayerState.Guarding;
 
     }

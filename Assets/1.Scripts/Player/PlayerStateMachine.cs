@@ -25,7 +25,6 @@ public class PlayerStateMachine : MonoBehaviour
             { PlayerState.SkillCasting, new SkillCastingState() },
             { PlayerState.Interacting, new InteractState() },
             { PlayerState.Hit, new HitState() },
-            { PlayerState.Knockback, new KnockbackState() },
             { PlayerState.Dead, new DeadState() },
         };
     }
