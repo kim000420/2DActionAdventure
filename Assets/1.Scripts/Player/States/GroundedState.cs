@@ -24,7 +24,7 @@ namespace Player.States
                 return;
             }
 
-            if (input.GuardHeld)
+            if ((state == PlayerState.Idle || state == PlayerState.Moving) && input.GuardHeld)
             {
                 controller.RequestStateChange(PlayerState.Guarding);
                 return;
