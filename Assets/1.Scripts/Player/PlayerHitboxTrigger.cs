@@ -53,6 +53,7 @@ public class PlayerHitboxTrigger : MonoBehaviour
                     {
                         CameraEffectManager.Instance.Shake(ShakeStrength.Medium);
                         CameraEffectManager.Instance.FlashWhite(0.2f);
+                        SoundManager.Instance.PlaySFX(SoundID.sfx_critical_01); // 크리티컬 사운드
                     }
                     else
                     {
@@ -73,6 +74,7 @@ public class PlayerHitboxTrigger : MonoBehaviour
                     {
                         CameraEffectManager.Instance.Shake(ShakeStrength.Medium);
                         CameraEffectManager.Instance.FlashWhite(0.2f);
+                        SoundManager.Instance.PlaySFX(SoundID.sfx_critical_01); // 크리티컬 사운드
                     }
                     else
                     {

@@ -449,7 +449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 79096059}
   bgmSource: {fileID: 79096058}
-  soundLibrary: {fileID: 0}
+  soundLibrary: {fileID: 11400000, guid: 76a9b2edebdeedb4c9721a442b7996b6, type: 2}
 --- !u!4 &79096061
 Transform:
   m_ObjectHideFlags: 0

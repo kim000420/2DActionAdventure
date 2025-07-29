@@ -146,6 +146,8 @@ public class DialogueUIManager : MonoBehaviour
             D_nameText.text = $"{entry.speaker}";
             dialogueText.text = entry.text;
 
+            SoundManager.Instance?.PlaySFX(SoundID.sfx_npc_talk); // 대사 출력시 사운드 재생
+
             ShowBubbleAt(entry.positionTarget, entry.text);
         }
     }

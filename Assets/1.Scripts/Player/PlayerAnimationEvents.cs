@@ -84,4 +84,56 @@ public class PlayerAnimationEvents : MonoBehaviour
         motor.StopImmediately();
         Debug.Log("[Skill] 스킬 종료 및 상태 복귀 (강제)");
     }
+    public void PlaySound_Landing() // 착지 사운드
+    {
+        SoundManager.Instance?.PlaySFX(SoundID.sfx_player_landing);
+    }
+    public void PlaySound_Walk() // 걷기 사운드
+    {
+        SoundManager.Instance?.PlaySFX(SoundID.sfx_player_walk);
+    }
+    public void PlaySound_Roll() // 구르기 사운드
+    {
+        SoundManager.Instance?.PlaySFX(SoundID.sfx_player_roll);
+    }
+    public void PlaySound_Attack_Combo1() // 콤보공격 1 사운드
+    {
+        SoundManager.Instance?.PlaySFX(SoundID.sfx_swing_11);
+    }
+    public void PlaySound_Attack_Combo2() // 콤보공격 2 사운드
+    {
+        SoundManager.Instance?.PlaySFX(SoundID.sfx_swing_12);
+    }
+    public void PlaySound_Attack_Combo3() // 콤보공격 3 사운드
+    {
+        SoundManager.Instance?.PlaySFX(SoundID.sfx_swing_13);
+    }
+    public void PlaySound_Attack_Strong() // 강공격 사운드
+    {
+        SoundManager.Instance?.PlaySFX(SoundID.sfx_swing_14);
+    }
+    public void PlaySound_Attack_Finish() // 마무리공격 사운드
+    {
+        SoundManager.Instance?.PlaySFX(SoundID.sfx_swing_02);
+    }
+    public void PlaySound_GunFire() // 총발사 사운드
+    {
+        SoundManager.Instance?.PlaySFX(SoundID.sfx_gun_fire);
+    }
+    public void PlaySound_GunReload() // 총장전 사운드
+    {
+        SoundManager.Instance?.PlaySFX(SoundID.sfx_gun_reload);
+    }
+    public void PlaySound_KickA() // 발차기 1,2 사운드
+    {
+        SoundManager.Instance?.PlaySFX(SoundID.sfx_swing_strong_01);
+    }
+    public void PlaySound_KickB() // 발차기 3 사운드
+    {
+        SoundManager.Instance?.PlaySFX(SoundID.sfx_swing_strong_03);
+    }
+    public void PlaySound_Heal() // 회복 사운드
+    {
+        SoundManager.Instance?.PlaySFX(SoundID.sfx_player_landing);
+    }
 }

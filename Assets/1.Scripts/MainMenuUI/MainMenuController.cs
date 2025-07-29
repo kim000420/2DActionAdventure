@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class MainMenuController : MonoBehaviour
 {
+    public void Start()
+    {
+        SoundManager.Instance.PlayBGM(SoundID.bgm_title);
+    }
     public void StartGame()
     {
         Debug.Log("[MainMenu] 게임 시작 버튼 선택됨");
