@@ -2460,6 +2460,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d088dc5f32d8c44be0c08290b23437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSceneName: Home
+  currentSpawnId: default_spawn
+  fadeCanvas: {fileID: 0}
 --- !u!114 &6052135627546015488
 MonoBehaviour:
   m_ObjectHideFlags: 0
