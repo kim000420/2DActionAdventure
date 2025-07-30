@@ -60,5 +60,8 @@ public class GuardState : CrouchGuardBaseState
         float direction = controller.transform.position.x < attackerX ? -1f : 1f;
         Vector2 guardKnockback = new Vector2(forceX * 0.4f * direction, 0f);
         motor.ForceMove(guardKnockback);
+
+        // 가드성공 효과음
+        SoundManager.Instance.PlaySFX(SoundID.sfx_player_guard);
     }
 }

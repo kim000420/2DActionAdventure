@@ -15,6 +15,7 @@ namespace TutorialBoss.AnimEvents
         // 애니메이션에서 호출: 공격 타이밍 순간
         public void EnableHitbox_Attack()
         {
+            SoundManager.Instance.PlaySFX(SoundID.sfx_swing_strong_01);
             Hitbox_Attack.SetActive(true);
             StartCoroutine(DeactivateMeleeHitboxAfterDelay(0.3f));
         }

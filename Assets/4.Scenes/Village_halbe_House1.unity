@@ -171,6 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneName: Village_halbe_Main
   targetSpawnPointName: P_h1_main
+  portalType: 1
 --- !u!61 &141768164
 BoxCollider2D:
   m_ObjectHideFlags: 0

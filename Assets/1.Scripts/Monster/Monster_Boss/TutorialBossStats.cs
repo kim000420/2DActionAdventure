@@ -57,6 +57,7 @@ namespace TutorialBoss
             if (controller.isDead) return;
 
             currentHP -= damage;
+            SoundManager.Instance.PlaySFX(SoundID.sfx_player_attack_01); // 몬스터 타격 사운드
             UpdateUI();
 
             if (currentHP <= 0)

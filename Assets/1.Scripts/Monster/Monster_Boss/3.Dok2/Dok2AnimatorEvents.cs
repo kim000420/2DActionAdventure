@@ -22,11 +22,13 @@ namespace TutorialBoss.AnimEvents
         // 애니메이션 이벤트: 근접 공격 히트박스 활성화 (예: 공격 프레임 시작 시)
         public void EnableHitbox_Attack1()
         {
+            SoundManager.Instance.PlaySFX(SoundID.sfx_swing_strong_03);
             Hitbox_Attack1.gameObject.SetActive(true);
             StartCoroutine(DeactivateMeleeHitboxAfterDelay(0.3f));
         }
         public void EnableHitbox_Attack2()
         {
+            SoundManager.Instance.PlaySFX(SoundID.sfx_swing_strong_03);
             Hitbox_Attack2.gameObject.SetActive(true);
             StartCoroutine(DeactivateMeleeHitboxAfterDelay(0.3f));
         }

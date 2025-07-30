@@ -11,13 +11,21 @@ public class SoundManager : MonoBehaviour
 
     [Header("Sound Library")]
     [SerializeField] private SoundLibrary soundLibrary;
-
+    public SoundID CurrentBGM { get; private set; } // 현재 재생중인 BGM 저장
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            Debug.Log("SoundManager 생성됨");
+        }
+        else
+        {
+            Debug.LogWarning("중복된 SoundManager가 생성되어 파괴됨");
+            Destroy(gameObject);
+        }
 
-        DontDestroyOnLoad(gameObject);
         soundLibrary.Initialize();
     }
 
@@ -27,15 +35,26 @@ public class SoundManager : MonoBehaviour
         if (clip != null)
             sfxSource.PlayOneShot(clip);
     }
-
+   
     public void PlayBGM(SoundID id, bool loop = true)
     {
         var clip = soundLibrary.GetClip(id);
         if (clip != null)
         {
+
+            if (bgmSource.isPlaying && bgmSource.clip == clip) // 중첩방지
+            {
+                Debug.Log($"[SoundManager] 같은 BGM({id}) 재생 중 → 무시");
+                return;
+            }
+
+            bgmSource.Stop(); // 기존 재생 중단
             bgmSource.clip = clip;
             bgmSource.loop = loop;
             bgmSource.Play();
+
+            CurrentBGM = id; // 현재 재생중인 BGM 등록
+            Debug.Log($"[SoundManager] BGM 재생 시작: {id}");
         }
     }
 

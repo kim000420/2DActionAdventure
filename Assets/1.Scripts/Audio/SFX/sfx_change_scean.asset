@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea76a111d47732a4e9dea8280639b96c, type: 3}
   m_Name: sfx_change_scean
   m_EditorClassIdentifier: 
-  soundID: 14
+  soundID: 15
   clip: {fileID: 8300000, guid: efba7a3627a00714c8483bd211acae66, type: 3}

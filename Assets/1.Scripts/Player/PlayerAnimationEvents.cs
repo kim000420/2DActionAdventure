@@ -136,4 +136,8 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         SoundManager.Instance?.PlaySFX(SoundID.sfx_player_landing);
     }
+    public void PlaySound_Guard() // 방어 사운드
+    {
+        SoundManager.Instance?.PlaySFX(SoundID.sfx_player_guard);
+    }
 }

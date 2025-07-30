@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea76a111d47732a4e9dea8280639b96c, type: 3}
   m_Name: bgm_mepi
   m_EditorClassIdentifier: 
-  soundID: 16
+  soundID: 30
   clip: {fileID: 8300000, guid: 2f28a75d59bea0c4e8be98fe84c37444, type: 3}

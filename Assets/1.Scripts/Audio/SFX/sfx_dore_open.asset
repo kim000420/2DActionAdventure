@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea76a111d47732a4e9dea8280639b96c, type: 3}
   m_Name: sfx_dore_open
   m_EditorClassIdentifier: 
-  soundID: 11
+  soundID: 12
   clip: {fileID: 8300000, guid: 8a72ffe605e88654daa418493f4538ca, type: 3}

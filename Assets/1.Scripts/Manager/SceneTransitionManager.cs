@@ -106,6 +106,7 @@ public class SceneTransitionManager : MonoBehaviour
     }
     public IEnumerator FadeOut(float duration = 0.3f)
     {
+        SoundManager.Instance.PlaySFX(SoundID.sfx_change_scean);
         fadeCanvas.gameObject.SetActive(true);
         float time = 0f;
         while (time < duration)

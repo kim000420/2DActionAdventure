@@ -87,11 +87,15 @@ public class DialogueEventManager : MonoBehaviour
             // 숲에서 무슨 소리가 나는데?   
 
             case "MS_002_SET":
+                // 브금변경
+                SoundManager.Instance.PlayBGM(SoundID.bgm_mepi);
                 TryStartDialogueByObjectName("StartTriggerObj");
                 break;
 
             // 수상한 외부인 조우 - 주거랏!!. 수상한외부인과 전투  
             case "MS_002":
+                // 브금변경
+                SoundManager.Instance.PlayBGM(SoundID.bgm_fight_boss);
                 GameEventManager.Instance.SetCurrentStoryStage("ST_002");
                 BossManager.Instance.SetBossActive("Webuin", true);
 
@@ -101,6 +105,7 @@ public class DialogueEventManager : MonoBehaviour
 
             // 수상한 외부인 사망
             case "MS_002_MDT":
+                SoundManager.Instance.PlayBGM(SoundID.bgm_mepi);
                 GameEventManager.Instance.SetCurrentStoryStage("ST_002_MDT");
                 break;
 
@@ -134,6 +139,8 @@ public class DialogueEventManager : MonoBehaviour
                 GameEventManager.Instance.SetCurrentStoryStage("ST_005");
                 //죠 활성화
                 BossManager.Instance.SetBossActive("Jo", true);
+                // 브금변경
+                SoundManager.Instance.PlayBGM(SoundID.bgm_fight_jo);
                 //스폰 지점 지정
                 SceneTransitionManager.Instance.SetRespawnLocation("Village_halbe_Guild4", "P_g2_g4");
                 break;
@@ -180,6 +187,8 @@ public class DialogueEventManager : MonoBehaviour
                 GameEventManager.Instance.SetCurrentStoryStage("ST_009");
                 //보우 활성화
                 BossManager.Instance.SetBossActive("Bow", true);
+                // 브금변경
+                SoundManager.Instance.PlayBGM(SoundID.bgm_fight_jo);
                 //스폰 지점 지정
                 SceneTransitionManager.Instance.SetRespawnLocation("Village_halbe_Guild4", "P_g2_g4");
                 break;
@@ -225,6 +234,8 @@ public class DialogueEventManager : MonoBehaviour
                 GameEventManager.Instance.SetCurrentStoryStage("ST_013");
                 //Dok2 활성화
                 BossManager.Instance.SetBossActive("Dok2", true);
+                // 브금변경
+                SoundManager.Instance.PlayBGM(SoundID.bgm_fight_jo);
                 //스폰 지점 지정
                 SceneTransitionManager.Instance.SetRespawnLocation("Village_halbe_Guild4", "P_g2_g4");
                 break;

@@ -14,14 +14,16 @@ namespace TutorialBoss.AnimEvents
         public GameObject Hitbox_Attack2;
 
         // 애니메이션에서 호출: 공격 타이밍 순간
-        public void EnableHitbox_Attack1() 
+        public void EnableHitbox_Attack1()
         {
+            SoundManager.Instance.PlaySFX(SoundID.sfx_swing_sting);
             Hitbox_Attack1.SetActive(true);
             StartCoroutine(DeactivateMeleeHitboxAfterDelay(0.1f));
         }
 
         public void EnableHitbox_Attack2()
         {
+            SoundManager.Instance.PlaySFX(SoundID.sfx_swing_sting);
             Hitbox_Attack2.SetActive(true);
             StartCoroutine(DeactivateMeleeHitboxAfterDelay(0.1f));
         }

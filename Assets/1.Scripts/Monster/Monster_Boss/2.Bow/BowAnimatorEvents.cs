@@ -28,6 +28,8 @@ namespace TutorialBoss.AnimEvents
                 return;
             }
 
+            SoundManager.Instance.PlaySFX(SoundID.sfx_attack_arrow);
+
             Vector2 startPosition = controller.bowShootPoint.position;
 
             // ⭐ 변경: 플레이어의 위치를 기반으로 발사 방향 계산

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea76a111d47732a4e9dea8280639b96c, type: 3}
   m_Name: bgm_fight_boss
   m_EditorClassIdentifier: 
-  soundID: 21
+  soundID: 35
   clip: {fileID: 8300000, guid: 9439da706e3c4554bbb247af76f5ae96, type: 3}
